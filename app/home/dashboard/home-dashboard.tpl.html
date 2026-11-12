@@ -1,0 +1,2569 @@
+<!--link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="../src/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script-- src="../src/js/fileinput.js" type="text/javascript"></script-->
+
+<style>
+.btn-clipboard {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    padding: .25rem .5rem;
+    font-size: .90em;
+    color: #0d6efd;
+    background-color: #fff;
+    border: 1px solid;
+    border-radius: .25rem;
+}
+  .resaltado { background-color:beige; }
+.h11 {
+  color: #6c2eb9;
+  font-weight: normal;
+  font-size: 40px;
+  font-family: Arial;
+  text-transform: uppercase;
+}
+.h22 {
+  color: #3c1b66;
+  font-weight: normal;
+  font-size: 35px;
+  font-family: Arial;
+  text-transform: uppercase;  
+}
+.h33 {
+  color: #443963;
+  font-weight: normal;
+  font-size: 30px;
+  font-family: Arial;
+  text-transform: lowercase;
+}
+.h44 {
+  color: #4f4866;
+  font-weight: normal;
+  font-size: 25px;
+  font-family: Arial;
+  text-transform: lowercase;
+}
+.h55 {
+  font-weight: normal;
+  font-size: 12px;
+  font-family: Arial;
+  text-transform: lowercase;
+}
+.h66 {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 11px;
+  font-family: Arial;
+  text-shadow: #555 2px 2px 2px;
+}
+.custom-control-label {
+  color: #000000;
+  position: relative;
+  margin-bottom: 0;
+  vertical-align:middle;
+  font-size: 13px;
+}
+.label {
+    display: inline-block;
+    margin-bottom:  0;
+}
+.config-row {
+  padding: 12px 8px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.config-row:hover {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+  transform: translateY(-1px);
+}
+</style>
+<style>
+  thead tr th { 
+              position: sticky;
+              top: 0;
+              z-index: 10;
+              background-color: #0A7E96;
+              color: #E4F6FF;
+          }
+      
+          .table-responsive { 
+              height:200px;
+              overflow:scroll;
+          }    
+    div.scroll {
+          margin: 0px, 0px;  
+          padding: 2px;
+          background-color: #ffff;  
+          width: 100%;
+          height: 330px;   
+          overflow-x: auto;
+          overflow-y: auto; 
+          white-space: auto;
+      }
+  </style>
+<section class="content">
+  <div class="row" style="height: {{Warning=='' ? '1px':''}}">  
+    <div class="col-md-12" style="height: {{Warning=='' ? '1px':''}}">
+      <marquee scrollamount="10" style="color: #F39C12;" style="height: {{Warning=='' ? '1px':''}}">  
+        <i class="fa fa-exclamation-triangle" ng-show="Warning!=''"></i> 
+        <b ng-show="Warning!=''">{{Warning}}</b>     
+      </marquee>
+        
+      <!--div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" data-toggle="tooltip" data-placement="left" title="Ocultar Alerta!" aria-hidden="true">×</button>
+        <h5><i class="icon fa fa-warning"></i> Alerta!: Sucursal alameda </h5>
+      </div-->
+
+    </div>
+  </div> 
+<div class="row">
+  
+  <div class="col-md-12">
+ 
+      <div class="nav-tabs-custom" style="background-color:#f8f8f8">
+
+          <uib-tabset active="tabActive">
+              <uib-tab ng-show="currentUser.profile==0 ||currentUser.profile==1" index=-1>
+                  <uib-tab-heading ng-show="currentUser.profile==0 ||currentUser.profile==1" class="{{tabActive ==-1 ? 'text-green':''}}" ng-click="loadDatosDashBoardFront(dt, dtt, Servicio);">  
+                     <i class="fa fa-bar-chart"></i> DashBoard 
+                  </uib-tab-heading>
+  
+<!--***************************DASHBOARD SUPERVISOR*************************************-->
+
+                  <div ng-show="currentUser.profile==0 ||currentUser.profile==1" class="content" style="background-color:#F8F8F8">
+                      <div class="row">
+                        <div class="col-md-12">
+                          
+                          <div class="row">  
+                            
+                              <div class="col-xs-3">
+                                
+                                
+                                  <div class="box box-success">
+                                    <div class="row">
+         
+                                      <div class="col-xs-2">
+                                        <div class="input-group date">  
+                                          <span class="pull-left" style=" font-weight: bold;"> Fecha desde&nbsp;&nbsp;</span>
+                                            <p class="input-group">
+                                            <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span> 
+                                            <input type="text" class="form-control" style="width:100px" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" ng-change="changeHandler()" datepicker-options="dateOptions" clear-text="Borrar" current-text="Hoy"  close-text="Cerrar" alt-input-formats="altInputFormats" />
+                         
+                                            </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-xs-6">  
+                                        <div class="input-group date">
+                                          <span class="pull-left" style=" font-weight: bold;"> Fecha hasta&nbsp;&nbsp;</span>
+                                          <p class="input-group">
+                                          <span class="input-group-btn">
+                                          <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                          </span>
+                                          <input type="text" class="form-control" style="width:100px" uib-datepicker-popup="{{format}}" ng-model="dtt" is-open="popup2.opened" min-date="minDate" ng-change="changeHandler()" datepicker-options="dateOptions" clear-text="Borrar" current-text="Hoy"  close-text="Cerrar" alt-input-formats="altInputFormats" />
+                         
+                                          </p>
+                                        </div>
+                         
+                                      </div>
+                  
+                                      <div class="col-xs-2">       
+                                       <br/>
+                                       <button type="submit" class="btn btn-primary" ng-click="ObtieneDatosDashBoardSupervisor(dt, dtt);loadDatosDashBoardFront(dt, dtt, '0');">Procesar</button>  
+                                      </div>
+                         
+                         
+                         
+                                    </div>
+                  
+                    
+                                    </span>
+                                    
+                                  
+                                  </div>
+                                    
+                              </div>
+                  
+          <!--***********HOGAR*************************************--> 
+          <div class="col-md-3">  
+            <div class="small-box bg-aqua" style="height: 135px;"> 
+                <div class="col-md-4">   
+                  <div class="inner">  
+                    <br/>
+                    <h3>{{datosDashboardSupervisor[0].Q_ATENCIONES_HOGAR | currency:"":0}}</h3>     
+                    <br/>
+                    <p><b>HOGAR</b></p>  
+
+                    <br/>
+                  </div>
+                </div>
+                <div class="col-md-8"> 
+                  <div class="inner">
+                    <br/>
+
+                    <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_HOGAR_MANTENCION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_HOGAR_MANTENCION | currency:"":0}}% Mantención</b></h5>  
+                    <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_HOGAR_PROVISION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_HOGAR_PROVISION | currency:"":0}}% Provisión</b></h5>  
+
+                    <br/>
+                  </div>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </div>
+                <!--a href="" class="small-box-footer">
+                  <i class="fa fa-arrow-circle-rig"></i>
+                </a-->
+              </div>
+        </div>     
+        <!--*********************************************************-->
+
+        <!--***********CALIDAD***********************************-->
+        <div class="col-md-3">  
+          <div class="small-box bg-green" style="height: 135px;">
+              <div class="col-md-4">
+                <div class="inner">
+                  <br/>
+                  <h3>{{datosDashboardSupervisor[0].Q_ATENCIONES_CALIDAD | currency:"":0}}</h3>
+                  <br/>
+                  <p><b>CALIDAD</b></p>
+
+                  <br/>
+                </div>
+              </div>
+              <div class="col-md-8">   
+                <div class="inner">
+                  <br/>
+                  <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_CALIDAD_MANTENCION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_CALIDAD_MANTENCION | currency:"":0}}% Mantención</b></h5>  
+                  <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_CALIDAD_PROVISION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_CALIDAD_PROVISION | currency:"":0}}% Provisión</b></h5>  
+
+                  <br/>
+                </div>  
+              </div>              
+              <div class="icon">
+                <i class="fa fa-calendar-times-o"></i>
+              </div>
+              <!--a href="" class="small-box-footer">
+                <i class="fa fa-arrow-circle-righ"></i>
+              </a-->
+            </div>
+        </div>                    
+        <!--*********************************************************-->
+
+        <!--***********TELCO***************************************-->
+        <div class="col-md-3">   
+            <div class="small-box bg-orange" style="height: 135px;"> 
+                <div class="col-md-4">
+                  <div class="inner">
+                    <br/>
+                    <h3>{{datosDashboardSupervisor[0].Q_ATENCIONES_TELCO | currency:"":0}}</h3>
+                    <br/>
+                    <p><b>TELCO</b></p>   
+
+                    <br/>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="inner">
+                    <br/>
+                    <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_TELCO_MANTENCION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_TELCO_MANTENCION | currency:"":0}}% Mantención</b></h5>  
+                    <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_TELCO_PROVISION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_TELCO_PROVISION | currency:"":0}}% Provisión</b></h5>  
+  
+                    <br/>
+                  </div>  
+                </div>    
+                <div class="icon">
+                  <i class="fa  fa-phone-square"></i>
+                </div>
+                <!--a href="" class="small-box-footer" >
+                     <i class="fa fa-arrow-circle-rigt"></i>
+                </a-->
+              </div>
+        </div>
+        <!--*********************************************************-->
+    
+                    
+                    
+                          </div>
+                          
+                          <div class="row">
+                            
+                              <div class="col-xs-12">
+                                  <div class="box box-aqua">
+                                      <div class="progress-bar progress-bar-success" style="width: 100%">
+
+                                        <div class="row">
+                            
+                                          <div class="col-xs-10">   
+            
+                                          <span class="pull-left" style=" font-weight: bold;">&nbsp;&nbsp;<i class="fa fa-lock"></i> Resumen Atenciones x Agente</span>
+
+                                          </div>
+
+                                          <div class="col-xs-2">  
+                                            
+                                          <li class="dropdown open" style="list-style-type: none;">  
+                                            <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">               
+                                            <div >
+                                              <span class="fa fa-bars" style="color: white;"></span>  
+                                            </div>
+                                             </a>
+                                            <ul class="dropdown-menu text-right" role="menu">  
+                                              <li><a class="fa fa-users" style="color: {{Servicio=='0' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '0');">&nbsp;&nbsp;<font face="nunito,arial,verdana">TODOS</font></a></li>
+                                              <li><a class="fa fa-pencil-square-o" style="color: {{Servicio=='4' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '4');">&nbsp;&nbsp;<font face="nunito,arial,verdana">CALIDAD</font></a></li>
+                                              <li><a class="fa fa-comments" style="color: {{Servicio=='5' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardChatBot(dt, dtt, '5');">&nbsp;&nbsp;<font face="nunito,arial,verdana">CHATBOX</font></a></li>
+                                              <li><a class="fa fa-home" style="color: {{Servicio=='2' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '2');">&nbsp;&nbsp;&nbsp;&nbsp;<font face="nunito,arial,verdana">HOGAR</font></a></li>
+                                              <li><a class="fa fa-industry" style="color: {{Servicio=='3' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '3');">&nbsp;&nbsp;&nbsp;&nbsp;<font face="nunito,arial,verdana">TELCO</font></a></li>
+
+                                            </ul>
+                                          </li>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    <p></p>
+                                    <br/>
+                                    <span class="text-success">
+                  
+                                    <div class="box-body" style="padding-top: 15px; text-align: left;">
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 1 ||$index+1 == 2 ||$index+1 == 3 ||$index+1 == 4 ||$index+1 == 5 ||$index+1 == 6">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p> 
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a>  
+                                              </p>
+                                              
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-green" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-red" ><b style="cursor:pointer;" title="Q PENDIENTES...">EN GESTIÓN: {{dataD.Q_PENDIENTES}}</b></p>
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 7 ||$index+1 == 8 ||$index+1 == 9 ||$index+1 == 10 ||$index+1 == 11 ||$index+1 == 12">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>   
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 13 ||$index+1 == 14 ||$index+1 == 15 ||$index+1 == 16 ||$index+1 == 17 ||$index+1 == 18">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};"> 
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>                                      
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 19 ||$index+1 == 20 ||$index+1 == 21 ||$index+1 == 22 ||$index+1 == 23 ||$index+1 == 24">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 25 ||$index+1 == 26 ||$index+1 == 27 ||$index+1 == 28 ||$index+1 == 29 ||$index+1 == 30">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 31 ||$index+1 == 32 ||$index+1 == 33 ||$index+1 == 34 ||$index+1 == 35 ||$index+1 == 36">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>  
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 37 ||$index+1 == 38 ||$index+1 == 39 ||$index+1 == 40 ||$index+1 == 41 ||$index+1 == 42">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 43 ||$index+1 == 44 ||$index+1 == 45 ||$index+1 == 46 ||$index+1 == 47 ||$index+1 == 48">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 49 ||$index+1 == 50 ||$index+1 == 51 ||$index+1 == 52 ||$index+1 == 53 ||$index+1 == 54">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 55 ||$index+1 == 56 ||$index+1 == 57 ||$index+1 == 58 ||$index+1 == 59 ||$index+1 == 60">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 61 ||$index+1 == 62 ||$index+1 == 63 ||$index+1 == 64 ||$index+1 == 65 ||$index+1 == 66">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>
+                                      <hr/>
+                                      <div class="row">
+                                        <div class="col-xs-2" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 67 ||$index+1 == 68 ||$index+1 == 69 ||$index+1 == 70 ||$index+1 == 71 ||$index+1 == 72">  
+                        
+                                              <p ><span class="text-success" ><b></b></span><b>{{dataD.NOMBRE_AGENTE}}</b></p>
+                                              <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q TICKETS...">TICKETS: {{dataD.Q_TICKETS}}</b></p>
+                                              &nbsp;&nbsp;&nbsp;
+                                              <p data-toggle="tooltip" data-placement="top" title="{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION}}" class="pull-center badge {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'alert-danger':dataD.ESTADO_CONEXION =='BREAK' ? 'alert-info':dataD.ESTADO_CONEXION =='EN COLACION' ? 'alert-danger':dataD.ESTADO_CONEXION =='EN LINEA' ? 'alert-success':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'alert-warning':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'alert-hola':'' }}" style="background-color: {{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? '#4A0A4F' : ''}};">
+                                                <a class="fa {{dataD.ESTADO_CONEXION =='FUERA DE LINEA' ? 'fa-times-circle':dataD.ESTADO_CONEXION =='BREAK' ? 'fa-coffee':dataD.ESTADO_CONEXION =='EN COLACION' ? 'fa-spoon':dataD.ESTADO_CONEXION =='EN LINEA' ? 'fa-user':dataD.ESTADO_CONEXION =='INICIO JORNADA' ? 'fa-edit':dataD.ESTADO_CONEXION =='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}" style="color: white;" href="#">  
+                                                  <!--&nbsp;&nbsp;<font-- face="nunito,arial,verdana">{{dataD.ESTADO_CONEXION=='' ||dataD.ESTADO_CONEXION==undefined ? 'FUERA DE LINEA' : dataD.ESTADO_CONEXION }}</font--> 
+                                                </a> 
+                                              </p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q ATENDIDOS...">ATENDIDOS: {{dataD.Q_ATENDIDOS}}</b></p>
+                                              <br/>
+                                              <p ng-show="Servicio=='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Q PENDIENTES...">PENDIENTES: {{dataD.Q_PENDIENTES}}</b></p>
+
+
+                                              <!--ui-knob ng-show="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsVerde"></!--ui-knob>
+                                              <ui-knob-- ng-hide="(dataD.POR_CANT_ATENCIONES>=5)" value="dataD.POR_CANT_ATENCIONES" options="optionsRojo"></ui-knob-->
+                                            
+                                        </div>
+                                      </div>    
+                                      <hr/>                                  
+                                    </div>
+
+                                    </span>
+                                    <p></p>
+                                    <div class="overlay" ng-show="satisLoad">
+                                      <i class="fa fa-refresh fa-spin"></i>
+                                    </div>
+                                  </div>
+                              </div>   
+                    
+                   
+                          </div>      
+                  
+                   
+                        </div> 
+                        <!-- aqui terminan las tablas -->
+                        <br/>  
+                      </div>
+                  </div>  
+
+<!--***************************FIN DASHBOARD SUPERVISOR*************************************-->
+
+              </uib-tab>            
+          
+              <uib-tab index=0  ng-click="loadDatosDashBoard();ObtieneProcedimientosRecurrentes();">
+                <uib-tab-heading class="{{tabActive ==0 ? 'text-green':''}}">
+                   <i class="fa fa-home"></i> Inicio
+                </uib-tab-heading>
+
+                <!--PRIMERA TABLA !-->        
+
+                <div class="row">
+                    <div class="box box-success">
+
+                      <div class="col-md-3">
+                      <!-- Widget: user widget style 1 -->
+                      <div class="box box-widget widget-user" >
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-aqua-active" style="height: 60px;">
+                          <h3 class="widget-user-username" style="font-size: 100%"><b>{{currentUser.user_name}}</b></h3> 
+                          <h5 class="widget-user-desc" style="font-size: 80%">Agente CESOP</h5> 
+                        </div>
+                        <div class="widget-user-image">
+                          <img class="img-circle" src="{{imagePath}}110000.jpg" alt="User CESOP" style="height: 70px;">
+                          <!--img class="img-circle" src="{{imagePath}}{{currentUser.user_id}}.JPG" alt="User CCI" style="height: 70px;"-->
+                        </div>
+                        <div class="box-footer" style="height: 75px;">
+                          <div class="row" >
+                            <div class="col-sm-4 border-right">
+                              <div ng-show="dataU.ID_RUT_AGENTE_TECNICO==currentUser.user_id" class="description-block" ng-repeat="dataU in datosDashboard">
+                                <h5 class="description-header" >{{dataU.CANT_ATENCIONES}}</h5> 
+                                <span><small>ATEN.  </small></span>
+                              </div>
+                              <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4 border-right">
+                              <div class="description-block">
+                                <h5 class="description-header">&nbsp;</h5>
+                                <span class="description-text">&nbsp;</span>
+                              </div>
+                              <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4 border-left">
+                              <div ng-show="dataU.ID_RUT_AGENTE_TECNICO==currentUser.user_id" class="description-block text-center" ng-repeat="dataU in datosDashboard">
+                                <h5 class="description-header text-center">{{dataU.CANT_VALORACIONES}}</h5>
+                                <span class="text-center"><small>CALIF.</small></span>
+                              </div>
+                              <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                          </div>
+                          <!-- /.row -->
+                        </div>
+                      </div>
+                      <!-- /.widget-user -->
+                    </div>
+
+          <!--***********HOGAR*************************************--> 
+        <div class="col-md-3">  
+            <div class="small-box bg-aqua" style="height: 135px;"> 
+                <div class="col-md-4">  
+                  <div class="inner">  
+                    <br/>
+                    <h3>{{datosDashboardInicio[0].Q_ATENCIONES_HOGAR | currency:"":0}}</h3>     
+                    <br/>
+                    <p><b>HOGAR</b></p>  
+
+                    <br/>
+                  </div>
+                </div>
+                <div class="col-md-8"> 
+                  <div class="inner">
+                    <br/>
+
+                    <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_HOGAR_MANTENCION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_HOGAR_MANTENCION | currency:"":0}}% Mantención</b></h5>  
+                    <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_HOGAR_PROVISION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_HOGAR_PROVISION | currency:"":0}}% Provisión</b></h5>  
+
+                    <br/>
+                  </div>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </div>
+                <!--a href="" class="small-box-footer">
+                  <i class="fa fa-arrow-circle-rig"></i>
+                </a-->
+              </div>
+        </div>     
+        <!--*********************************************************-->
+
+        <!--***********CALIDAD***********************************-->
+        <div class="col-md-3">  
+          <div class="small-box bg-green" style="height: 135px;">
+              <div class="col-md-4">
+                <div class="inner">
+                  <br/>
+                  <h3>{{datosDashboardInicio[0].Q_ATENCIONES_CALIDAD | currency:"":0}}</h3>
+                  <br/>
+                  <p><b>CALIDAD</b></p>
+
+                  <br/>
+                </div>
+              </div>
+              <div class="col-md-8">   
+                <div class="inner">
+                  <br/>
+
+                  <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_CALIDAD_MANTENCION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_CALIDAD_MANTENCION | currency:"":0}}% Mantención</b></h5>  
+                  <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_CALIDAD_PROVISION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_CALIDAD_PROVISION | currency:"":0}}% Provisión</b></h5>  
+
+                  <br/>
+                </div>  
+              </div>              
+              <div class="icon">
+                <i class="fa fa-calendar-times-o"></i>
+              </div>
+              <!--a href="" class="small-box-footer">
+                <i class="fa fa-arrow-circle-righ"></i>
+              </a-->
+            </div>
+        </div>                    
+        <!--*********************************************************-->
+
+        <!--***********TELCO***************************************-->
+        <div class="col-md-3">   
+            <div class="small-box bg-orange" style="height: 135px;"> 
+                <div class="col-md-4">
+                  <div class="inner">
+                    <br/>
+                    <h3>{{datosDashboardInicio[0].Q_ATENCIONES_TELCO | currency:"":0}}</h3>
+                    <br/>
+                    <p><b>TELCO</b></p>
+
+                    <br/>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="inner">
+                    <br/>
+
+                    <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_TELCO_MANTENCION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_TELCO_MANTENCION | currency:"":0}}% Mantención</b></h5>  
+                    <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_TELCO_PROVISION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_TELCO_PROVISION | currency:"":0}}% Provisión</b></h5>  
+  
+                    <br/>
+                  </div>  
+                </div>    
+                <div class="icon">
+                  <i class="fa  fa-phone-square"></i>
+                </div>
+                <!--a href="" class="small-box-footer" >
+                     <i class="fa fa-arrow-circle-rigt"></i>
+                </a-->
+              </div>
+        </div>
+        <!--*********************************************************-->
+
+                  </div>
+                </div>
+                <!--SEGUNDA TABLA !-->
+
+                <div class="row">
+
+                  <div class="box box-success">
+                    <div class="col-md-12">
+
+                      <div class="nav-tabs-custom" style="background-color:#f8f8f8">
+                        <ul class="nav nav-tabs">
+                          <li class="active" ng-click="ObtieneProcedimientosRecurrentes()"><a href="#settings" data-toggle="tab">Procedimientos Frecuentes</a></li>
+                          <li><a href="#activity" data-toggle="tab">Actividad</a></li>
+                          <li><a href="#timeline" data-toggle="tab">Bitácora</a></li>
+                          <li ng-show="historialValoracionDetalle"><a href="#valorizacion" data-toggle="tab">Valorización flujo: {{idValoracionActiva}}</a></li>
+                        </ul> 
+          
+                        <div class="tab-content">
+          
+<!--******************************TAB PROCEDIMIENTOS FRECUENTES*********** -->                                                    
+                          <div class="active tab-pane" id="settings">
+                              
+                            <div class="box box-primary">
+
+                              <!-- /.box-header -->
+                              <div class="box-body">
+                                <ul class="products-list product-list-in-box">
+                                  <li class="item">
+                            <table class="table table-condensed">
+                              <tbody>
+                                <tr ng-repeat="dataR in DataProcesoRecurrentes">
+                                <th style="width: 10px;height: 70px;">
+                                    <div class="product-img">
+
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Acceso')==0" src="../dist/img/acceso.png" width="50px" height="50px" alt="Acceso">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Asignación')==0" src="../dist/img/asignacion.jpg" width="50px" height="50px" alt="Asignación">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Bloqueo')==0" src="../dist/img/bloqueo.jpg" width="50px" height="50px" alt="Bloqueo">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Desbloquear')==0" src="../dist/img/desbloqueo.jpg" width="50px" height="50px" alt="Desbloqueo">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Creación')==0" src="../dist/img/creacion.png" width="50px" height="50px" alt="Creación">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Gestión')==0" src="../dist/img/gestion.png" width="50px" height="50px" alt="Gestión">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Gestiones')==0" src="../dist/img/gestion.png" width="50px" height="50px" alt="Gestiones">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Incidentes')==0" src="../dist/img/incidente.jpg" width="50px" height="50px" alt="Incidente">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Modificar')==0" src="../dist/img/modificar.png" width="50px" height="50px" alt="Modificar">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Monitor')==0" src="../dist/img/consulta.png" width="50px" height="50px" alt="Consulta">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Requerimiento')==0" src="../dist/img/requerimiento.png" width="50px" height="50px" alt="Requerimiento">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Restablecer')==0" src="../dist/img/restablecer.jpg" width="50px" height="50px" alt="Restablecer">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Problemas')==0" src="../dist/img/modificar.png" width="50px" height="50px" alt="Certificación"> 
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Cambio Equipo')==0" src="../dist/img/CambioEquipo.jpg" width="50px" height="50px" alt="Cambio Equipo"> 
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Error Callback')==0" src="../dist/img/ErrorCallback.jpg" width="50px" height="50px" alt="Error Callback"> 
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Wa')==0" src="../dist/img/default-reabastecimiento.png" width="50px" height="50px" alt="Generado"> 
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Derivación')==0" src="../dist/img/asignacion.jpg" width="50px" height="50px" alt="Asignación">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Decos')==0" src="../dist/img/incidente.jpg" width="50px" height="50px" alt="Generado"> 
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Cambio Mal Generado')==0" src="../dist/img/CambioMalGenerado.jpg" width="50px" height="50px" alt="Cambio Mal Generado">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Errores X Pasos')==0" src="../dist/img/ErroresXPasos.jpg" width="50px" height="50px" alt="Errores X Pasos">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Pont Fijo sin Internet')==0" src="../dist/img/PontFijosinInternet.jpg" width="50px" height="50px" alt="Pont Fijo sin Internet">
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Zona Roja')==0" src="../dist/img/ZonaRoja.jpg" width="50px" height="50px" alt="Zona Roja (2012)">  
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Zofri')==0" src="../dist/img/Zofri.jpg" width="50px" height="50px" alt="Zofri (2013)">    
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Revisión recursos')==0" src="../dist/img/Revision.jpg" width="50px" height="50px" alt="Revisión recursos ONNET (2010)">     
+                                      <img ng-show="dataR.GL_FLUJO.indexOf('Revision Incidencias')==0" src="../dist/img/Revision_Incidencias.jpg" width="50px" height="50px" alt="Revision Incidencias Asignacion (2011)">     
+                                      
+                                      
+                                    </div>
+                                </th>  
+                                <th>
+                                      <a href="" class="product-title" ng-click="changePlataforma(dataR.ID_FLUJO, dataR.GL_FLUJO);">{{dataR.GL_FLUJO}} ({{dataR.ID_FLUJO}})</a>
+                                      <span class="product-description">{{dataR.DETALLE}}</span>
+                                </th>
+                                <th>
+                                  <div class="a-row a-spacing-mini">
+                                    <div class="btn-group">
+                                        <button type="button" ng-class="(dataR.MAX_VALORACION == 1) ? 'btn btn-info btn-xs': 'btn btn-default btn-xs'" ng-click="">1</button>
+                                        <button type="button" ng-class="(dataR.MAX_VALORACION == 2) ? 'btn btn-info btn-xs': 'btn btn-default btn-xs'" ng-click="">2</button>
+                                        <button type="button" ng-class="(dataR.MAX_VALORACION == 3) ? 'btn btn-info btn-xs': 'btn btn-default btn-xs'" ng-click="">3</button>
+                                        <button type="button" ng-class="(dataR.MAX_VALORACION == 4) ? 'btn btn-info btn-xs': 'btn btn-default btn-xs'" ng-click="">4</button>
+                                        <button type="button" ng-class="(dataR.MAX_VALORACION == 5) ? 'btn btn-info btn-xs': 'btn btn-default btn-xs'" ng-click="">5</button>
+                                    </div>
+                                    <a href="" class="a-size-small a-link-normal a-text-normal" ng-click="loadComentariosValoracionDetalle(dataR.ID_FLUJO);">
+                                      &nbsp;&nbsp;{{dataR.CANT_OBSERVACIONES}}
+                                    </a>
+                                 </div>
+                                </th>
+                                <th style="width: 200px">
+                                    <span class="badge bg-yellow ng-binding">{{dataR.USABILIDAD}}%</span>
+                                  <!--div class="progress progress-xs" style="height: 18px">
+                                    <div class="{{dataR.USABILIDAD < 25 ? 'progress-bar progress-bar-warning':dataR.USABILIDAD < 50 ? 'progress-bar progress-bar-info':'progress-bar progress-bar-success'}};" style="width: {{dataR.USABILIDAD}}%">{{dataR.USABILIDAD}}% Usabilidad</div>
+                                  </div-->
+                                </th>
+                                <th style="width: 20px">
+                                    <span class="badge bg-green ng-binding">{{dataR.VISITAS}} Visitas</span>
+                                    <!--div class="product-info">
+                                    <span class="label {{dataR.USABILIDAD < 25 ? 'label-warning':dataR.USABILIDAD < 50 ? 'label-info':'label-success'}} pull-right">{{dataR.VISITAS}} </span>
+                                    </div-->
+                                </th>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+              
+                                </ul>
+                              </div>
+                              <!-- /.box-body -->
+                              <div class="box-footer text-center">
+                                <a href="javascript:void(0)" class="uppercase">Ver Todos</a>
+                              </div>
+                              <!-- /.box-footer -->
+                            </div>
+                      
+                          
+                          </div>
+          
+<!--******************************TAB ACTIVIDAD**************************** -->                          
+
+                          <div class="tab tab-pane" id="activity">
+                            <!-- Post -->
+                            <div class="post" class="post clearfix" ng-repeat="history in historialSatis">
+                              <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="{{imagePath}}{{history.USUARIO}}.JPG" alt="{{history.NOMBRE_USUARIO}}">
+                                    <span class="username">
+                                      <a href="#">{{history.NOMBRE_USUARIO}}</a>
+                                      <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                                    </span>
+                                <span class="description">Publicado - {{history.FECHA_COMENTARIO}}</span>
+                              </div>
+                              <!-- /.user-block -->
+                              <p>
+                                {{history.COMENTARIO}}
+                              </p>
+                              <ul class="list-inline">
+                                <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Compartir ({{CountCompartir}})</a></li>
+                                <li><a href="#" class="link-black text-sm" ng-click="likeComentarios()"><i class="fa fa-thumbs-o-up margin-r-5"></i> Me Gusta ({{CountMegusta}})</a>
+                                </li>
+                                <li class="pull-right">
+                                  <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comentarios   (5)</a></li>
+                              </ul>
+                              <form class="form-horizontal">
+                                <div class="input-group">
+                                  <input class="form-control" ng-model="putComentarioSatis" placeholder="Escribe un comentario...">
+                      
+                                  <div class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" ng-click="guardaComentarios(putComentarioSatis)" ng-disabled="!putComentarioSatis"><i class="fa fa-plus"></i></button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                            <!-- /.post -->
+          
+                         </div>
+
+<!--******************************TAB BITACORA**************************** -->                          
+                          <div class="tab-pane" id="timeline">
+                            <!-- The timeline -->
+                            <ul class="timeline timeline-inverse">
+                              <!-- timeline time label -->
+                              <li class="time-label">
+                                    <span class="bg-red">
+                                      10 Feb. 2018
+                                    </span>
+                              </li>
+                              <!-- /.timeline-label -->
+                              <!-- timeline item -->
+                              <li>
+                                <i class="fa fa-envelope bg-blue"></i>
+          
+                                <div class="timeline-item">
+                                  <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+          
+                                  <h3 class="timeline-header"><a href="#">Usuario </a> Envia un email</h3>
+          
+                                  <div class="timeline-body">
+                                    Para poder responder a las interrogantes de los procedimientos se modificaron los de Geopost, etc.
+                                  </div>
+                                  <div class="timeline-footer">
+                                    <a class="btn btn-primary btn-xs">Leer más...</a>
+                                    <a class="btn btn-danger btn-xs">Borrar</a>
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- END timeline item -->
+                              <!-- timeline item -->
+                              <li>
+                                <i class="fa fa-user bg-aqua"></i>
+          
+                                <div class="timeline-item">
+                                  <span class="time"><i class="fa fa-clock-o"></i> 5 mins atrás</span>
+          
+                                  <h3 class="timeline-header no-border"><a href="#">Usuario Administrador</a> Modifica el script de Acceso a Contraseñas
+                                  </h3>
+                                </div>
+                              </li>
+                              <!-- END timeline item -->
+                              <!-- timeline item -->
+                              <li>
+                                <i class="fa fa-comments bg-yellow"></i>
+          
+                                <div class="timeline-item">
+                                  <span class="time"><i class="fa fa-clock-o"></i> 27 mins atrás</span>
+          
+                                  <h3 class="timeline-header"><a href="#">Cristian Valenzuela</a> comenta en la publicación</h3>
+          
+                                  <div class="timeline-body">
+                                    Muy bien modificacdo el formulario!
+                                  </div>
+                                  <div class="timeline-footer">
+                                    <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- END timeline item -->
+                              <!-- timeline time label -->
+                              <li class="time-label">
+                                    <span class="bg-green">
+                                      3 Jan. 2014
+                                    </span>
+                              </li>
+                              <!-- /.timeline-label -->
+                              <!-- timeline item -->
+                              <li>
+                                <i class="fa fa-camera bg-purple"></i>
+          
+                                <div class="timeline-item">
+                                  <span class="time"><i class="fa fa-clock-o"></i> 2 days atrás</span>
+          
+                                  <h3 class="timeline-header"><a href="#">Roberto Cifuentes</a> ha actualizado algunas fotos.</h3>
+          
+                                  <div class="timeline-body">
+                                    <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                    <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                    <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                    <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- END timeline item -->
+                              <li>
+                                <i class="fa fa-clock-o bg-gray"></i>
+                              </li>
+                            </ul>
+                          </div>
+                          
+<!--******************************TAB VALORIZACION**************************** -->
+
+                          <div class="tab tab-pane" id="valorizacion">
+
+                            <div class="box">
+                              <div class="box-header">
+                  
+                                        <div class="box-body no-padding">
+                                          <table class="table">
+                                            <tbody>
+                                            <tr>
+                                              <th>#</th>
+                                              <th>%</th>
+                                              <!--th>%</th-->
+                                              <th>Total</th>
+                                            </tr>
+                                            <tr ng-repeat="dataD in historialValoracionDetalle track by $index" ng-click="loadComentariosValoracion(idValoracionActiva, dataD.valoracion, $index)" ng-class="resaltadoindex == $index ? 'resaltado':''" style="cursor:pointer;">
+                                              <td>
+                                                  {{dataD.valoracion}}
+                                              </td>
+                                              <td>
+                                                  <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width:  {{dataD.por_valoracion}}%;" aria-valuenow=" {{dataD.por_valoracion}}" aria-valuemin="0" aria-valuemax="100"> {{dataD.por_valoracion}}%</div>
+                                                  </div>      
+                                              </td>    
+                                              <!--td>
+                                                {{dataD.por_valoracion}}%
+                                              </td-->
+                                              <td><span class="badge bg-green">{{dataD.cant_valoracion}}</span></td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        </div>
+                                </div>
+                              </div>                            
+                            
+
+                            <ul class="timeline timeline-inverse" ng-repeat="dataV in historialValoracion track by $index">
+                              <li class="time-label" ng-show="dataV.FECHA_VALORACION !=historialValoracion[$index-1].FECHA_VALORACION">
+                                    <span class="bg-green">
+                                      {{dataV.FECHA_VALORACION}}
+                                    </span> 
+                              </li>
+                              <li>
+                                <i class="fa fa-comments bg-yellow"></i>
+                                <div class="timeline-item">
+                                  <span class="time"><i class="fa fa-clock-o"></i> {{dataV.TIEMPO}} atrás</span>
+                                  <h3 class="timeline-header"><a href="#">{{dataV.NOMBRE_USUARIO}}</a> Valoración/Comenta:</h3>
+                                  <div class="timeline-body">
+                                    <b>{{dataV.VALORACION}}.-</b>  {{dataV.OBSERVACION}}
+                                  </div>
+                                  <div class="timeline-footer">
+                                    <!--a class="btn btn-warning btn-flat btn-xs">View comment</a-->
+                                  </div>
+                                </div>
+                              </li>
+                              <!-- END timeline item -->
+                              <li ng-show="$index == historialValoracion.length-1">
+                                <i class="fa fa-clock-o bg-gray"></i>
+                              </li>
+                            </ul>                            
+
+                         </div>
+
+
+                        </div>
+                        <!-- /.tab-content -->
+                      </div>
+
+                    </div>
+
+
+                  </div>
+                </div>
+
+              </uib-tab>
+
+              <uib-tab index=30 ng-click="document.getElementById('userForm').reset();buscaID();">  
+                <uib-tab-heading class="{{tabActive ==30 ? 'text-green':''}}"> 
+                   <i class="fa fa-phone"></i> Tipificación y Cierre
+                </uib-tab-heading>
+
+<section class="content">
+<div class="row">
+<div class="col-md-12"> 
+
+<div class="register-box-body with-border">
+<div class="register-logo">
+
+<!----iframe src="http://www.google.cl" width="100%"></iframe-->
+</div>
+<!----div class="register-box-body"-->
+<!----p class="login-box-msg">Formulario de Retiro de Servicios</p-->
+
+<form id="userForm" name="userForm"> 
+<div class="row">
+<div class="form-group has-feedback col-md-3"> 
+  <input type="text" id="NUMERO_OXT" ng-model="NUMERO_OXT" class="form-control" maxlength="30" placeholder="OTT" required>
+      
+</div>
+
+<div class="col-xs-3">  
+  <button ng-click="ObtieneDatosOTT(NUMERO_OXT);BuscarTickets('2',NUMERO_OXT);" style="width: 200px;"  class="btn btn-primary btn-block btn-flat">Buscar</button> 
+</div>
+
+<div class="col-xs-2"> 
+  &nbsp;&nbsp; 
+  <button ng-show="false" id="histoButton" data-toggle="tooltip" data-placement="top" title="Historial" class="btn btn-primary" ng-click="Historial=true"><span class="fa fa-calendar-check-o"></span></button>             
+</div>
+
+<div class="col-md-2"> 
+
+      <input type="text" id="COD_GRABACION" ng-model="COD_GRABACION" class="form-control" maxlength="300" placeholder="ID Llamado" required >    
+
+</div>
+
+<div class="col-md-2"> 
+  <div class="input-group" style="width: 167px">
+    <div class="input-group-btn">
+      <button type="button" class="btn btn-success">Ticket:</button>  
+    </div>
+    <!-- /btn-group -->
+    <input type="text" id="TICKET_TIPI" ng-model="TICKET_TIPI" class="form-control" maxlength="20" required disabled>   
+  </div>
+</div>
+
+</div>
+
+<!--******************************************************************************************-->
+<!--******************************************************************************************-->
+
+  <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: left; padding: 7px 10px; margin-top: 0;" ng-show="ListaGeneralHistorial.length">
+    Historial: {{NUMERO_OXT}}
+  </h4>
+
+
+<div class="row" ng-show="ListaGeneralHistorial.length">    
+
+  <div class="col-md-12" style="overflow: auto;width: 100%;height: 180px;">   
+
+    <div class="row">
+      <div class="col-xs-12">
+
+      <table class="table"  id="exportable">  
+        <thead>
+          <tr>
+            <th nowrap="">
+              #
+            </th>
+            <th nowrap="">TICKET</th>
+            <th nowrap="">FECHA INICIO</th>
+            <th nowrap="">FECHA TERMINO</th>
+            <th nowrap="">TIPO LLAMADO</th>
+            <th nowrap="">TIPO SOLICITUD</th>
+            <th nowrap="">ACCION</th>
+            <th nowrap="">OBSERVACION</th> 
+          </tr>
+        </thead>
+        <tbody>   
+        <tr ng-repeat="mail in ListaGeneralHistorial"> 
+          <td>{{$index + 1}}</td> 
+          <td nowrap="">{{mail.TICKET}}</td>
+          <td nowrap="">{{mail.FECHA_INICIO}}</td> 
+          <td nowrap="">{{mail.FECHA_CREACION}}</td>
+          <td nowrap="">{{mail.TIPO_LLAMADO}}</td>
+          <td nowrap="">{{mail.SOLICITUD}}</td>
+          <td nowrap="">{{mail.ACCION}}</td>
+          <td nowrap="">
+            <a href="" data-toggle="tooltip" title="{{mail.OBSERVACION}}">  
+              {{mail.OBSERVACION | limitTo: 20}} 
+            </a>
+          </td> 
+        </tr>
+      </tbody>
+      </table>  
+
+    </div>
+      
+    </div>
+
+
+  </div>
+
+</div>
+<!--******************************************************************************************-->
+<!--******************************************************************************************-->
+
+  <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: left; padding: 7px 10px; margin-top: 0;">
+    Información de OTT
+  </h4>
+<!----hr style="border-color: darkgrey;"-->
+<div class="row">
+<div class="form-group has-feedback col-md-4">
+      <label>Código Servicio:</label> 
+      <input type="text" id="COD_SERVICIO" ng-model="COD_SERVICIO" class="form-control" maxlength="100" placeholder="CÓDIGO SERVICIO" required> 
+
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>Tipo Servicio:</label> 
+
+      <input type="text" id="TIPO_SERVICIO" ng-model="TIPO_SERVICIO" class="form-control" maxlength="100" placeholder="TIPO SERVICIO" required> 
+
+      <!--select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="TIPO_SERVICIO" id="TIPO_SERVICIO" required>
+        <option value="" disabled selected hidden>Tipo Servicio...</option> 
+        <option value="{{data.DATO}}" ng-repeat="data in DataTIPO_SERVICIO">{{data.DATO}}</option> 
+      </!--select-->
+
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>ID OFSC:</label>
+      <input type="text" id="WO" ng-model="WO" class="form-control" maxlength="20" placeholder="ID OFSC" required >  
+  
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>Tipo Trabajo:</label> 
+      <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="TIPO_TRABAJO" id="TIPO_TRABAJO" required>
+        <option value="" disabled selected hidden>Tipo Trabajo...</option> 
+        <option value="{{data.DATO}}" ng-repeat="data in DataTIPO_TRABAJO">{{data.DATO}}</option> 
+      </select>
+
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>Segmento:</label>
+      <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="SEGMENTO" id="SEGMENTO" required>
+        <option value="" disabled selected hidden>Segmento...</option> 
+        <option value="{{data.DATO}}" ng-repeat="data in DataSEGMENTO">{{data.DATO}}</option> 
+      </select>
+
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>Razón Social:</label> 
+      <input type="text" id="RAZON_SOCIAL" ng-model="RAZON_SOCIAL" class="form-control" maxlength="100" placeholder="Razón Social" required > 
+
+</div>
+<!--div class="form-group has-feedback col-md-4">
+  <label>Planilla:</label> 
+  <input type="text" id="PLANTILLA" ng-model="PLANTILLA" class="form-control" maxlength="100" placeholder="PLANTILLA" required >
+
+</!--div-->
+<div class="form-group has-feedback col-md-4">
+    <label>Dirección:</label>
+    <textarea type="text" id="EXTREMO_A" ng-model="EXTREMO_A" rows="3"  class="form-control" maxlength="100" placeholder="Dirección" required ></textarea>
+
+</div>
+<div class="form-group has-feedback col-md-4">
+  <label>Comuna:</label>
+  <textarea type="text" id="EXTREMO_B" ng-model="EXTREMO_B" rows="3"  class="form-control" maxlength="100" placeholder="Comuna" required ></textarea>
+
+</div>
+</div>
+
+
+  <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: left; padding: 7px 10px; margin-top: 0;">
+    Información del Solicitante
+  </h4> 
+
+<div class="row">
+<div class="form-group has-feedback col-md-4">
+      <label>Nombre Solicitante:</label> 
+      <input type="text" id="NOMBRE_SOLICITANTE" ng-model="NOMBRE_SOLICITANTE" class="form-control" maxlength="50" placeholder="NOMBRE SOLICITANTE" required >
+
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>Teléfono Solicitante:</label>
+      <input type="text" id="TELEFONO_SOLICITANTE" ng-model="TELEFONO_SOLICITANTE" class="form-control" maxlength="50" placeholder="TELEFONO SOLICITANTE" required >
+
+</div>
+<div class="form-group has-feedback col-md-4"> 
+
+      <label>Área Solicitante:</label>
+      <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="AREA_SOLICITANTE" id="AREA_SOLICITANTE" required>
+        <option value="" disabled selected hidden>Área Solicitante...</option>  
+        <option value="{{data.DATO}}" ng-repeat="data in DataAREA_SOLICITANTE">{{data.DATO}}</option> 
+      </select>
+
+</div>
+
+</div>
+
+
+  <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: left; padding: 7px 10px; margin-top: 0;">
+    Tipificación y Cierre
+  </h4> 
+
+
+  <div class="row">
+
+
+    <div class="col-xs-6" style="text-align: left;">
+      <label>Plataforma:</label>     
+        <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" ng-model="PLATAFORMA" id="PLATAFORMA" ng-change="TIPO_LLAMADO='';SOLICITUD='';RESULTADO='';ACCION='';ObtieneTipoLlamado(PLATAFORMA);buscaResponsable(PLATAFORMA);"  required>
+          <option value="" disabled selected hidden>Plataforma...</option>  
+          <option value="{{data.PERFIL}}" ng-repeat="data in DataPlataforma">{{data.PERFIL}}</option>  
+        </select>
+    </div>
+
+  </div>
+
+<div class="row">
+
+
+        <div class="col-xs-6" style="text-align: left;">  
+          <label>Tipo Llamado:</label>    
+            <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" ng-model="TIPO_LLAMADO" id="TIPO_LLAMADO" ng-change="SOLICITUD='';RESULTADO='';ACCION='';ObtieneSolicitud(PLATAFORMA, TIPO_LLAMADO)"  required>
+              <option value="" disabled selected hidden>Tipo Llamado...</option> 
+              <option value="{{data.TIPO_LLAMADO}}" ng-repeat="data in DataTipoLlamado">{{data.TIPO_LLAMADO}}</option> 
+            </select>
+        </div>
+        <div class="col-xs-6" style="text-align: left;"> 
+          <label>Solicitud:</label>     
+          <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" ng-model="SOLICITUD" id="SOLICITUD" ng-change="RESULTADO='';ACCION='';ObtieneResultado(PLATAFORMA, TIPO_LLAMADO, SOLICITUD)"  required>
+            <option value="" disabled selected hidden>Solicitud...</option> 
+            <option value="{{data.SOLICITUD}}" ng-repeat="data in DataSolicitud">{{data.SOLICITUD}}</option>
+            </select>
+        </div>
+        <br/><br/><br/>
+      <div class="col-xs-6" style="text-align: left;">
+        <label>Resultado:</label>     
+        <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" ng-model="RESULTADO" id="RESULTADO" ng-change="ACCION='';ObtieneAccion(PLATAFORMA, TIPO_LLAMADO, SOLICITUD, RESULTADO)"  required> 
+          <option value="" disabled selected hidden>Resultado...</option> 
+          <option value="{{data.RESULTADO}}" ng-repeat="data in DataResultado">{{data.RESULTADO}}</option> 
+          </select>
+      </div> 
+      <div class="col-xs-6" style="text-align: left;">
+        <label>Acción:</label>         
+        <select class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" ng-model="ACCION" id="ACCION" ng-change=""  required> 
+          <option value="" disabled selected hidden>Acción...</option>  
+          <option value="{{data.ACCION}}" ng-repeat="data in DataAccion">{{data.ACCION}}</option> 
+          </select>
+      </div>
+
+</div>
+<div ng-show="VerTiemposxEtapa">
+
+
+<br/>
+  <h4>
+    Cuadro tiempos por etapa
+  </h4> 
+
+  <div class="row config-row">
+
+
+    <div class="col-xs-3" style="text-align: left;">
+
+    </div>
+    <div class="col-xs-3" style="text-align: left;" ng-click="">
+      <label>Configuración Capa 2:</label>     
+     
+    </div>
+    <div class="col-xs-1" style="text-align: left;">
+
+       <button type="button" class="btn btn-success" style="width: 100%;" ng-click="guardaIngresosxEtapas('Configuración Capa 2','OK');" ng-disabled="!ConfiguracionCapa2_OK">OK</button>            
+
+    </div>    
+    <div class="col-xs-1" style="text-align: left;"> 
+
+      <button type="button" class="btn btn-danger" style="width: 100%;" ng-click="guardaIngresosxEtapas('Configuración Capa 2','NOK');" ng-disabled="!ConfiguracionCapa2_OK">NOK</button>            
+      
+    </div> 
+    <div class="col-xs-4" style="text-align: left;">
+
+       <li ng-show="ConfiguracionCapa2_Tiempo!=''"><a class="fa fa-clock-o" style="color: #00A65A" href="#">&nbsp;&nbsp;<font face="nunito,arial,verdana">{{ConfiguracionCapa2_Tiempo}}</font></a></li>
+
+    </div>    
+
+  </div>
+
+  <div class="row config-row">
+
+
+    <div class="col-xs-3" style="text-align: left;">
+
+    </div>
+    <div class="col-xs-3" style="text-align: left;">
+
+      <label>Configuración Capa 3:</label>     
+
+    </div>
+    <div class="col-xs-1" style="text-align: left;">
+
+       <button type="button" class="btn btn-success" style="width: 100%;" ng-click="guardaIngresosxEtapas('Configuración Capa 3','OK');" ng-disabled="!ConfiguracionCapa3_OK">OK</button>            
+
+    </div>    
+    <div class="col-xs-1" style="text-align: left;">
+
+      <button type="button" class="btn btn-danger" style="width: 100%;" ng-click="guardaIngresosxEtapas('Configuración Capa 3','NOK');" ng-disabled="!ConfiguracionCapa3_NOK">NOK</button>            
+      
+    </div> 
+    <div class="col-xs-4" style="text-align: left;">
+
+      <li ng-show="ConfiguracionCapa3_Tiempo!=''"><a class="fa fa-clock-o" style="color: #00A65A" href="#">&nbsp;&nbsp;<font face="nunito,arial,verdana">{{ConfiguracionCapa3_Tiempo}}</font></a></li>      
+
+    </div>    
+
+  </div>
+  <div class="row config-row">
+
+
+    <div class="col-xs-3" style="text-align: left;">
+
+    </div>
+    <div class="col-xs-3" style="text-align: left;">
+
+      <label>Configuración Equipo Alcanzable:</label>     
+      
+    </div>
+    <div class="col-xs-1" style="text-align: left;">
+
+       <button type="button" class="btn btn-success" style="width: 100%;" ng-click="guardaIngresosxEtapas('Configuración Equipo Alcanzable','OK');" ng-disabled="!ConfiguracionEquipoAlcanzable_OK">OK</button>            
+
+    </div>    
+    <div class="col-xs-1" style="text-align: left;">
+
+      <button type="button" class="btn btn-danger" style="width: 100%;" ng-click="guardaIngresosxEtapas('Configuración Equipo Alcanzable','NOK');" ng-disabled="!ConfiguracionEquipoAlcanzable_NOK">NOK</button>            
+      
+    </div> 
+    <div class="col-xs-4" style="text-align: left;">
+
+      <li ng-show="ConfiguracionEquipoAlcanzable_Tiempo!=''"><a class="fa fa-clock-o" style="color: #00A65A" href="#">&nbsp;&nbsp;<font face="nunito,arial,verdana">{{ConfiguracionEquipoAlcanzable_Tiempo}}</font></a></li>      
+
+    </div>    
+
+  </div>
+  <div class="row config-row">
+
+
+    <div class="col-xs-3" style="text-align: left;">
+
+    </div>
+    <div class="col-xs-3" style="text-align: left;">
+
+      <label>Activación Addons:</label>     
+      
+    </div>
+    <div class="col-xs-1" style="text-align: left;">
+
+       <button type="button" class="btn btn-success" style="width: 100%;" ng-click="guardaIngresosxEtapas('Activación Addons','OK');" ng-disabled="!ActivacionAddons_OK">OK</button>            
+
+    </div>    
+    <div class="col-xs-1" style="text-align: left;">
+
+      <button type="button" class="btn btn-danger" style="width: 100%;" ng-click="guardaIngresosxEtapas('Activación Addons','NOK');" ng-disabled="!ActivacionAddons_NOK">NOK</button>            
+      
+    </div> 
+    <div class="col-xs-4" style="text-align: left;">
+
+      <li ng-show="ActivacionAddons_Tiempo!=''"><a class="fa fa-clock-o" style="color: #00A65A" href="#">&nbsp;&nbsp;<font face="nunito,arial,verdana">{{ActivacionAddons_Tiempo}}</font></a></li>        
+
+    </div>    
+
+  </div>
+</div>  
+<hr/>
+<div class="row">
+    
+    <div class="col-md-6">
+
+    <div class="form-group has-feedback" >  
+        <label>Responsable:</label>    
+        <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="RESPONSABLE" id="RESPONSABLE" required>  
+          <option value="" disabled selected hidden>Responsable...</option>   
+          <option value="{{data.DATO}}" ng-repeat="data in DataRESPONSABLE" data-toggle="tooltip" data-placement="top" title="{{data.DATO == 'ASIGNACIONES' ? '(Cuando el problema es causa de alguna provision mal realizada por el area de asignaciones, aplica solo para TELCO)' : data.DATO == 'ATT' ? '(Cuando la causa del llamado correponde a un error del tecnico (no aplica procedimiento, no sigue los pasos, llamado equivocado, etc))' : data.DATO == 'CIO' ? ' (Cuando el problema corresponde a alguna aplicación de Entel (WFM, EOC, ETC….))' : data.DATO == 'CLIENTE' ? ' (Cuando cliente rechaza el servicio o no tiene las dependencias habilitadas para la instalacion)' : data.DATO == 'COMERCIAL' ? ' (Cuando hay errores de direccion o postventas que noi estan liberadas)' : data.DATO == 'ONNET' ? ' (Cuando el problema es de API de ONNET o de Red Onnet)' : ''}}">{{data.DATO}}</option>  
+        </select>
+
+     </div> 
+
+    </div> 
+
+    <div class="col-md-6">    
+      <div class="form-group has-feedback date" >
+          <label>Motivo Responsable:</label>    
+          <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="MOTIVO_RESPONSABLE" id="MOTIVO_RESPONSABLE" required>     
+            <option value="" disabled selected hidden>Motivo Responsable...</option>     
+            
+<!--*****************OPCIONES HOGAR********************************************************-->
+
+            <option ng-show="RESPONSABLE=='ACS GENIE'" value="ACS GENIE" data-toggle="tooltip" data-placement="top" title="">ACS GENIE</option>              
+            <option ng-show="RESPONSABLE=='CONTINGENCIA SISTEMICA'" value="CONTINGENCIA SISTEMICA" data-toggle="tooltip" data-placement="top" title="">CONTINGENCIA SISTEMICA</option>              
+            <option ng-show="RESPONSABLE=='EQUIPOS ONT/STB'" value="EQUIPOS ONT/STB" data-toggle="tooltip" data-placement="top" title="">EQUIPOS ONT/STB</option>              
+            <option ng-show="RESPONSABLE=='NAGRA'" value="NAGRA" data-toggle="tooltip" data-placement="top" title="">NAGRA</option>              
+            <option ng-show="RESPONSABLE=='SISTEMAS'" value="SISTEMAS" data-toggle="tooltip" data-placement="top" title="">SISTEMAS</option>                
+
+            <option ng-show="RESPONSABLE=='EOBSERV'" value="REVISION OBSERVABILIDAD" data-toggle="tooltip" data-placement="top" title="">REVISION OBSERVABILIDAD</option>                
+            
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Consulta informacion de servicio" data-toggle="tooltip" data-placement="top" title="">Consulta informacion de servicio</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Desconoce Configuracion de Servicio" data-toggle="tooltip" data-placement="top" title="">Desconoce Configuracion de Servicio</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Equipo inalcanzable" data-toggle="tooltip" data-placement="top" title="">Equipo inalcanzable</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Equipo/Recurso no esta en OTT" data-toggle="tooltip" data-placement="top" title="">Equipo/Recurso no esta en OTT</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Llamada incorrecta" data-toggle="tooltip" data-placement="top" title="">Llamada incorrecta</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="No aplica procedimiento" data-toggle="tooltip" data-placement="top" title="">No aplica procedimiento</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="No espera tiempo de activacion" data-toggle="tooltip" data-placement="top" title="">No espera tiempo de activacion</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="No tiene equipos para instalar" data-toggle="tooltip" data-placement="top" title="">No tiene equipos para instalar</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="OTT en estado 40" data-toggle="tooltip" data-placement="top" title="">OTT en estado 40</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Parametros Fuera de Norma" data-toggle="tooltip" data-placement="top" title="">Parametros Fuera de Norma</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Provision // Certificacion servicio B2C" data-toggle="tooltip" data-placement="top" title="">Provision // Certificacion servicio B2C</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Sin herramientas caja fusionada / Sin DROP" data-toggle="tooltip" data-placement="top" title="">Sin herramientas caja fusionada / Sin DROP</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="ATT Corta llamado" data-toggle="tooltip" data-placement="top" title="">ATT Corta llamado</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Solicita derivar sin evidencias" data-toggle="tooltip" data-placement="top" title="">Solicita derivar sin evidencias</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Solicitud no homologada // Fuera de procedimiento" data-toggle="tooltip" data-placement="top" title="">Solicitud no homologada // Fuera de procedimiento</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ATT'" value="Trabajo Riesgoso" data-toggle="tooltip" data-placement="top" title="">Trabajo Riesgoso</option>
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Cliente cortado por otra VNO" data-toggle="tooltip" data-placement="top" title="">Cliente cortado por otra VNO</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="CTO con direccion erronea" data-toggle="tooltip" data-placement="top" title="">CTO con direccion erronea</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="CTO Copada" data-toggle="tooltip" data-placement="top" title="">CTO Copada</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="CTO No encontrada" data-toggle="tooltip" data-placement="top" title="">CTO No encontrada</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="CTO o Filamento Defectuoso" data-toggle="tooltip" data-placement="top" title="">CTO o Filamento Defectuoso</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="CTO o Puerto atenuado/Sin potencia" data-toggle="tooltip" data-placement="top" title="">CTO o Puerto atenuado/Sin potencia</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="CTO Sin Accesos" data-toggle="tooltip" data-placement="top" title="">CTO Sin Accesos</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Ductos Obstruidos" data-toggle="tooltip" data-placement="top" title="">Ductos Obstruidos</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Error Consulta estado Vecino" data-toggle="tooltip" data-placement="top" title="">Error Consulta estado Vecino</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Error de Enrolamiento" data-toggle="tooltip" data-placement="top" title="">Error de Enrolamiento</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Error Intervencion Asegurada Inicio/FIN" data-toggle="tooltip" data-placement="top" title="">Error Intervencion Asegurada Inicio/FIN</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Error Sistémico API OnNet" data-toggle="tooltip" data-placement="top" title="">Error Sistémico API OnNet</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Error Sistémico API OnNet (CeV)" data-toggle="tooltip" data-placement="top" title="">Error Sistémico API OnNet (CeV)</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Excede metraje" data-toggle="tooltip" data-placement="top" title="">Excede metraje</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="No navega / No levanta servicio INET" data-toggle="tooltip" data-placement="top" title="">No navega / No levanta servicio INET</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Problema de Activacion" data-toggle="tooltip" data-placement="top" title="">Problema de Activacion</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Problema de asignacion de recursos" data-toggle="tooltip" data-placement="top" title="">Problema de asignacion de recursos</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Reapertura de Reclamo Onnet" data-toggle="tooltip" data-placement="top" title="">Reapertura de Reclamo Onnet</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Sin autorizacion para tendido en fachada" data-toggle="tooltip" data-placement="top" title="">Sin autorizacion para tendido en fachada</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Sin postacion" data-toggle="tooltip" data-placement="top" title="">Sin postacion</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ONNET'" value="Solicitud de Acceso a Dependencia" data-toggle="tooltip" data-placement="top" title="">Solicitud de Acceso a Dependencia</option>
+
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Cliente reagenda / posterga" data-toggle="tooltip" data-placement="top" title="">Cliente reagenda / posterga</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Cliente rechaza" data-toggle="tooltip" data-placement="top" title="">Cliente rechaza</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Cliente solicita contacto comercial" data-toggle="tooltip" data-placement="top" title="">Cliente solicita contacto comercial</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Infraestructura local o domicilio" data-toggle="tooltip" data-placement="top" title="">Infraestructura local o domicilio</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Sin permiso de administracion" data-toggle="tooltip" data-placement="top" title="">Sin permiso de administracion</option>
+
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='COMERCIAL'" value="Acceso Terceros con problemas" data-toggle="tooltip" data-placement="top" title="">Acceso Terceros con problemas</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='COMERCIAL'" value="Direccion equivocada" data-toggle="tooltip" data-placement="top" title="">Direccion equivocada</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='COMERCIAL'" value="No es lo contratado por cliente" data-toggle="tooltip" data-placement="top" title="">No es lo contratado por cliente</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='COMERCIAL'" value="No existe procedimiento" data-toggle="tooltip" data-placement="top" title="">No existe procedimiento</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='COMERCIAL'" value="Numero no portado" data-toggle="tooltip" data-placement="top" title="">Numero no portado</option>
+
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con AQCT" data-toggle="tooltip" data-placement="top" title="">Problema con AQCT</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con Friendly Tech" data-toggle="tooltip" data-placement="top" title="">Problema con Friendly Tech</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con iXchariot" data-toggle="tooltip" data-placement="top" title="">Problema con iXchariot</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con Jasper" data-toggle="tooltip" data-placement="top" title="">Problema con Jasper</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con Meraki" data-toggle="tooltip" data-placement="top" title="">Problema con Meraki</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con ODIN" data-toggle="tooltip" data-placement="top" title="">Problema con ODIN</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con portal GDSM" data-toggle="tooltip" data-placement="top" title="">Problema con portal GDSM</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con Validador Web" data-toggle="tooltip" data-placement="top" title="">Problema con Validador Web</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema SHAMAN" data-toggle="tooltip" data-placement="top" title="">Problema SHAMAN</option>
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Accion Resolutiva Erronea" data-toggle="tooltip" data-placement="top" title="">Accion Resolutiva Erronea</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Cambio Medio de Acceso" data-toggle="tooltip" data-placement="top" title="">Cambio Medio de Acceso</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Cliente con bloqueo comercial" data-toggle="tooltip" data-placement="top" title="">Cliente con bloqueo comercial</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Cliente require postventa" data-toggle="tooltip" data-placement="top" title="">Cliente require postventa</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Configuracion equipo RED LAN (FW - telefono IP - CENTRAL telefonica)" data-toggle="tooltip" data-placement="top" title="">Configuracion equipo RED LAN (FW - telefono IP - CENTRAL telefonica)</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="CS no corresponde al reclamado" data-toggle="tooltip" data-placement="top" title="">CS no corresponde al reclamado</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Cuenta AAA con problemas" data-toggle="tooltip" data-placement="top" title="">Cuenta AAA con problemas</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Derivacion a Core telefonia" data-toggle="tooltip" data-placement="top" title="">Derivacion a Core telefonia</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Servicio asociado a BRED" data-toggle="tooltip" data-placement="top" title="">Servicio asociado a BRED</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Solicitud no Homologada" data-toggle="tooltip" data-placement="top" title="">Solicitud no Homologada</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Tecnico sin equipo correcto" data-toggle="tooltip" data-placement="top" title="">Tecnico sin equipo correcto</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='DEVUELTO ANALISTA'" value="Transferido a mesa referentes Tecnicos" data-toggle="tooltip" data-placement="top" title="">Transferido a mesa referentes Tecnicos</option>
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con AAA" data-toggle="tooltip" data-placement="top" title="">Problema con AAA</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con ACME" data-toggle="tooltip" data-placement="top" title="">Problema con ACME</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con ACTEL" data-toggle="tooltip" data-placement="top" title="">Problema con ACTEL</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con COMPILOT" data-toggle="tooltip" data-placement="top" title="">Problema con COMPILOT</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con Entel one MB solution" data-toggle="tooltip" data-placement="top" title="">Problema con Entel one MB solution</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con Kawesqar" data-toggle="tooltip" data-placement="top" title="">Problema con Kawesqar</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con PSG" data-toggle="tooltip" data-placement="top" title="">Problema con PSG</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con SMS - LITE" data-toggle="tooltip" data-placement="top" title="">Problema con SMS - LITE</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con Tierra / Marte / Telsa" data-toggle="tooltip" data-placement="top" title="">Problema con Tierra / Marte / Telsa</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema core de Telefonia" data-toggle="tooltip" data-placement="top" title="">Problema core de Telefonia</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema en PEs" data-toggle="tooltip" data-placement="top" title="">Problema en PEs</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema equipo Red de ACCESO" data-toggle="tooltip" data-placement="top" title="">Problema equipo Red de ACCESO</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='REDES'" value="Problema Portal IM" data-toggle="tooltip" data-placement="top" title="">Problema Portal IM</option>
+
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Error de EDA Genie Callback" data-toggle="tooltip" data-placement="top" title="">Error de EDA Genie Callback</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Error EMA" data-toggle="tooltip" data-placement="top" title="">Error EMA</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Error EOC" data-toggle="tooltip" data-placement="top" title="">Error EOC</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con ACS Genie" data-toggle="tooltip" data-placement="top" title="">Problema con ACS Genie</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con AR" data-toggle="tooltip" data-placement="top" title="">Problema con AR</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con EAI" data-toggle="tooltip" data-placement="top" title="">Problema con EAI</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con HELIX" data-toggle="tooltip" data-placement="top" title="">Problema con HELIX</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con Portal IM" data-toggle="tooltip" data-placement="top" title="">Problema con Portal IM</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con SAN" data-toggle="tooltip" data-placement="top" title="">Problema con SAN</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con Schaman" data-toggle="tooltip" data-placement="top" title="">Problema con Schaman</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con SMS Lite" data-toggle="tooltip" data-placement="top" title="">Problema con SMS Lite</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con WFM" data-toggle="tooltip" data-placement="top" title="">Problema con WFM</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema de activacion" data-toggle="tooltip" data-placement="top" title="">Problema de activacion</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CIO'" value="Problema de Certificacion" data-toggle="tooltip" data-placement="top" title="">Problema de Certificacion</option>
+
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CCI'" value="No responde plataforma" data-toggle="tooltip" data-placement="top" title="">No responde plataforma</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CCI'" value="Portabilidad con problemas" data-toggle="tooltip" data-placement="top" title="">Portabilidad con problemas</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CCI'" value="Postventa en vuelo" data-toggle="tooltip" data-placement="top" title="">Postventa en vuelo</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CCI'" value="Reagendamiento de orden" data-toggle="tooltip" data-placement="top" title="">Reagendamiento de orden</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='CCI'" value="Se deja tecnico en gestion con CCI" data-toggle="tooltip" data-placement="top" title="">Se deja tecnico en gestion con CCI</option>
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='ITP'" value="Derivado a ITP" data-toggle="tooltip" data-placement="top" title="">Derivado a ITP</option>
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='Seguridad'" value="Derivado EPSEC" data-toggle="tooltip" data-placement="top" title="">Derivado EPSEC</option>
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='Seguridad'" value="Forticloud con problemas" data-toggle="tooltip" data-placement="top" title="">Forticloud con problemas</option>
+
+            <option ng-show="PLATAFORMA =='HOGAR' &&RESPONSABLE=='Resuelto'" value="CESOP resuelve" data-toggle="tooltip" data-placement="top" title="">CESOP resuelve</option>
+
+<!--****************************************************************************************-->
+<!--*****************OPCIONES NO HOGAR********************************************************-->
+
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ASIGNACIONES'" value="ASIGNACIONES">ASIGNACIONES</option>     
+  
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="Certificacion servicio B2B" data-toggle="tooltip" data-placement="top" title="Certificacion manual de servicio B2B, aplica llamada a CESOP">Certificacion servicio B2B</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="Consulta informacion de servicio" data-toggle="tooltip" data-placement="top" title="Consulta informacion de servicio">Consulta informacion de servicio</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="Llamada incorrecta" data-toggle="tooltip" data-placement="top" title="Cuando llama a la opcion equivocada en el IVR, o llama para reagendar, ver temas comerciales o acciones que debe ejecutar el ATT">Llamada incorrecta</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="No aplica procedimiento" data-toggle="tooltip" data-placement="top" title="Tecnico no sigue los pasos definidos o no aplica los WA por ejemplo el de caja copada">No aplica procedimiento</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="No espera tiempo de activacion" data-toggle="tooltip" data-placement="top" title="Cuando llama por activacion pendiente antes de los 20 min que tarda la activacion">No espera tiempo de activación</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="No tiene mas equipos" data-toggle="tooltip" data-placement="top" title="Cuando llama porque no tiene mas ONTs para realizar cambios de equipos">No tiene mas equipos</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="Provision servicio B2B" data-toggle="tooltip" data-placement="top" title="Provision manual de servicio B2B, aplica llamada a CESOP">Provision servicio B2B</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="Sin herramientas caja fusionada" data-toggle="tooltip" data-placement="top" title="Cuando llama porque no sabe fusionar o no tiene las herramientas para realizar el trabajo">Sin herramientas caja fusionada</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="Solicita derivar sin evidencias" data-toggle="tooltip" data-placement="top" title="Cuando quiere anular o suspender y no tiene las evidencias de errores sistemicos o fotos definidas para problemas de red">Solicita derivar sin evidencias</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ATT'" value="Trabajo Riesgoso" data-toggle="tooltip" data-placement="top" title="Cuando tecnico indica que sector es peligroso o no estan las condiciones las cuales tiene que ver con el prevencionista de riesgos">Trabajo Riesgoso</option>
+            
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Error de EDA Genie Callback" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Error de EDA Genie Callback</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Error EMA" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Error EMA</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Error EOC" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Error EOC</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con ACS Genie" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Problema con ACS Genie</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con AR" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Problema con AR</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con HELIX" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Problema con HELIX</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con Portal IM" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Problema con Portal IM</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con Schaman" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Problema con Schaman</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con SMS Lite" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Problema con SMS Lite</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CIO'" value="Problema con WFM" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Problema con WFM</option>
+            
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Cliente cortado por otra VNO" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Cliente cortado por otra VNO</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="CTO con dirección erronea" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">CTO con dirección erronea</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="CTO Copada" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">CTO Copada</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="CTO sin Potencia" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">CTO sin Potencia</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Ductos Obstruidos" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Ductos Obstruidos</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Error Consulta estado Vecino" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Error Consulta estado Vecino</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Error de EDA create laser" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Error de EDA create laser</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Error de Enrolamiento" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Error de Enrolamiento</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Error Intervencion Asegurada" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Error Intervención Asegurada</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Excede metraje" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Excede metraje</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Filamento dañado" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Filamento dañado</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Problema de asignacion de recursos" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Problema de asignacion de recursos</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Sin autorizacion para tendido en fachada" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Sin autorización para tendido en fachada</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ONNET'" value="Sin postacion" data-toggle="tooltip" data-placement="top" title="Crear ticket ITSM con las evidencias que corresponden para el caso">Sin postación</option>
+            
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Cliente quiere cambio de plan">Cliente quiere cambio de plan</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Cliente rechaza">Cliente rechaza</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Debio generar incidencia">Debio generar incidencia</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Infraestructura local o domicilio">Infraestructura local o domicilio</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='CLIENTE'" value="Sin permiso de administracion">Sin permiso de administracion</option>
+            
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='COMERCIAL'" value="Direccion equivocada">Direccion equivocada</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='COMERCIAL'" value="No existe procedimiento">No existe procedimiento</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='COMERCIAL'" value="Numero no portado">Número no portado</option> 
+
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con Kawesqar">Problema con Kawesqar</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con Tierra / Marte / Telsa">Problema con Tierra / Marte / Telsa</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con ACME">Problema con ACME</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con ACTEL">Problema con ACTEL</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con COMPILOT">Problema con COMPILOT</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema red de ACCESO">Problema red de ACCESO</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema core de Telefonia">Problema core de Telefonia</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con AAA">Problema con AAA</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con Entel one MB solution">Problema con Entel one MB solution</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema en PEs">Problema en PEs</option>
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='REDES'" value="Problema con PSG">Problema con PSG</option> 
+
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con Validador Web">Problema con Validador Web</option> 
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con portal GDSM">Problema con portal GDSM</option> 
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con Jasper">Problema con Jasper</option> 
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con Meraki">Problema con Meraki</option> 
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con Friendly Tech">Problema con Friendly Tech</option> 
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema red de ACCESO">Problema red de ACCESO</option> 
+            <option ng-show="PLATAFORMA !='HOGAR' &&RESPONSABLE=='ESPECIALISTAS'" value="Problema con ODIN">Problema con ODIN</option> 
+
+<!--****************************************************************************************-->
+
+          </select>  
+                  
+        </div>
+      </div>          
+
+    <div class="col-md-6" > 
+      <div class="form-group has-feedback date" >
+          <label>Solución:</label>    
+          <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="SOLUCION" id="SOLUCION" required>  
+            <option value="" disabled selected hidden>Solución...</option>  
+            <option ng-hide="PLATAFORMA =='HOGAR' && (data.DATO=='DERIVADO ANALISTA' ||data.DATO=='DERIVADO ATT' ||data.DATO=='DERIVADO COMERCIAL - CCI - CLIENTE' ||data.DATO=='DERIVADO ESPECIALISTA' ||data.DATO=='DERIVADO ITP' ||data.DATO=='DERIVADO SEGURIDAD')" value="{{data.DATO}}" ng-repeat="data in DataSOLUCION" data-toggle="tooltip" data-placement="top" title="{{data.DATO == 'Solucionado CESOP' ? '(Esta se debe usar cuando Cesop solucion sin ayuda de ONNET)' : data.DATO == 'Solucionado CESOP-ONNET' ? '(Se debe ocupar cuando se solicita ayuda ha ONNET en línea)' : data.DATO == 'DERIVADO ONNET' ? ' (Esta se usa cuando no fue posible solucionar y se tuvo que enviar ticket Helix derivando la orden)' : data.DATO == 'DERIVADO CIO' ? ' (Esto se debe usar cuando una orden red ONNET se deriva a CIO, es decir el problema es de Entel)' : ''}}">{{data.DATO}}</option>  
+          </select>
+    
+                  
+        </div>
+      </div>
+
+    <div class="col-md-6" > 
+      <div class="form-group has-feedback date" > 
+          <label>Huella Laser:</label>  
+          <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="HUELLA" id="HUELLA" required>
+            <option value="" disabled selected hidden>Huella Laser...</option>  
+            <option ng-hide="data.DATO=='OnNet' &&(PLATAFORMA =='CALIDAD' ||PLATAFORMA =='TELCO - ITP')" value="{{data.DATO}}" ng-repeat="data in DataHUELLA">{{data.DATO}}</option> 
+          </select>
+    
+                  
+        </div>
+      </div>
+
+      <div class="col-md-6" ng-show="HUELLA=='OnNet' &&PLATAFORMA !='CALIDAD' &&PLATAFORMA !='TELCO - ITP'"> 
+        <div class="form-group has-feedback date" >
+            <label>Problema Reportado:</label>   
+
+            <!--textarea type="text" id="PROBLEMA_REPORTADO" ng-model="PROBLEMA_REPORTADO" rows="3" class="form-control" maxlength="100" placeholder="Problema Reportado"></!--textarea-->
+            <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="PROBLEMA_REPORTADO" id="PROBLEMA_REPORTADO">  
+              <option value="" disabled selected hidden>Problema Reportado...</option>    
+              <option value="{{data.DATO}}" ng-repeat="data in DataPROBLEMA_REPORTADO">{{data.DATO}}</option>          
+            </select>
+
+                    
+          </div>
+        </div>      
+
+        <div class="col-md-6" ng-show="HUELLA=='OnNet' &&PLATAFORMA !='CALIDAD' &&PLATAFORMA !='TELCO - ITP'">   
+          <div class="form-group has-feedback date" >
+              <label>Aplica llamada a Cesop:</label>   
+              <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="APLICA_LLAMADA_CESOP" id="APLICA_LLAMADA_CESOP"> 
+                <option value="" disabled selected hidden>Aplica llamada a Cesop...</option>   
+                <option value="SI">SI</option> 
+                <option value="NO">NO</option>  
+              </select>
+                      
+            </div>
+          </div>
+
+          <div class="col-md-4" ng-show="HUELLA=='OnNet' &&PLATAFORMA !='CALIDAD' &&PLATAFORMA !='TELCO - ITP'">
+            <div class="form-group has-feedback date" >
+                <label>Motivo:</label>    
+                <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="MOTIVO_LLAMADO" id="MOTIVO_LLAMADO">     
+                  <option value="" disabled selected hidden>Motivo...</option>    
+                  <option value="{{data.DATO}}" ng-repeat="data in DataMOTIVO_CAUSA_LLAMADO">{{data.DATO}}</option>          
+                </select>  
+                        
+              </div>
+            </div>          
+
+ 
+            <div class="col-md-4" ng-show="HUELLA=='OnNet' &&PLATAFORMA !='CALIDAD' &&PLATAFORMA !='TELCO - ITP'">  
+              <div class="form-group has-feedback date" >
+                  <label>SE PUDO RESOLVER:</label>        
+                  <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="RESOLVIO_AUTOMATICAMENTE" id="RESOLVIO_AUTOMATICAMENTE"> 
+                    <option value="" disabled selected hidden>SE PUDO RESOLVER...</option>     
+                    <option value="SI">SI</option> 
+                    <option value="NO">NO</option>
+                    <option value="SI, CESOP RESUELVE">SI, CESOP RESUELVE</option>
+                    <option value="SI, CON SOPORTE DE CIO">SI, CON SOPORTE DE CIO</option>
+                    <option value="SI, CON SOPORTE DE ONNET">SI, CON SOPORTE DE ONNET</option>
+                    <option value="SI, CON SOPORTE DE FOCAL POINT">SI, CON SOPORTE DE FOCAL POINT</option>
+                    <option value="NO, SE ESCALA">NO, SE ESCALA</option> 
+  
+                  </select>
+                          
+                </div>
+              </div>
+    
+
+              <div class="col-md-4"  ng-show="HUELLA=='OnNet' &&PLATAFORMA !='CALIDAD' &&PLATAFORMA !='TELCO - ITP'">    
+                <div class="form-group has-feedback date" >
+                    <label>Requiere escalamiento:</label>  
+                    <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="REQUIERE_ESCALAMIENTO" id="REQUIERE_ESCALAMIENTO"> 
+                      <option value="" disabled selected hidden>Requiere escalamiento...</option>    
+                      <option value="SI">SI</option> 
+                      <option value="NO">NO</option>  
+                    </select>
+                            
+                  </div>
+                </div>
+
+                <div class="col-md-4" ng-show="HUELLA=='OnNet' &&PLATAFORMA !='CALIDAD' &&PLATAFORMA !='TELCO - ITP'">        
+                  <div class="form-group has-feedback date" >
+                      <label>A quien se escalo el caso:</label>  
+                      <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="A_QUIEN_ESCALO" id="A_QUIEN_ESCALO">  
+                        <option value="" disabled selected hidden>A quien se escalo el caso...</option>     
+                        <option value="Onnet">Onnet</option> 
+                        <option value="CIO">CIO</option>  
+                        <option value="Redes Entel">Redes Entel</option>   
+                        <option value="Focal Point">Focal Point</option>   
+                        <option value="No Aplica">No Aplica</option>   
+                      </select>
+                              
+                    </div>
+                  </div>
+                  
+              <div class="form-group has-feedback col-md-4" ng-show="HUELLA=='OnNet' &&PLATAFORMA !='CALIDAD' &&PLATAFORMA !='TELCO - ITP'">
+                <label>TICKET ITSM (INCxxxxx)</label>   
+                <input type="text" id="TICKET_ESCALAMIENTO" ng-model="TICKET_ESCALAMIENTO" class="form-control" maxlength="20" placeholder="TICKET ITSM (INCxxxxx)"> 
+              
+              </div>
+              
+
+              <div class="form-group has-feedback col-md-4" ng-show="HUELLA=='OnNet' &&PLATAFORMA !='CALIDAD' &&PLATAFORMA !='TELCO - ITP'">     
+                <label>NUMERO DE RECLAMO (CSXXXX)</label>    
+                <input type="text" id="REQUERIMIENTO_ONMET" ng-model="REQUERIMIENTO_ONMET" class="form-control" maxlength="20" placeholder="NUMERO DE RECLAMO (CSXXXX)"> 
+              
+              </div>
+
+      <div class="row">
+
+
+        <div class="form-group has-feedback col-xs-12" style="text-align: center;">
+          <label>Adjuntar</label>    
+
+          <div class="form-group">
+
+            <form enctype="multipart/form-data">
+                <div class="form-group">
+                    <input id="file3" name="file3" type="file" ngf-select ng-model="file3" class="file" multiple=true data-preview-file-type="any">
+                    (Archivos: max. 3MB)  
+                </div> 
+            </form>
+          </div>            
+        </div>
+
+
+</div>     
+
+
+    <div class="col-md-12">
+            <div class="form-group has-feedback">
+                <label>Observación:</label>
+                <textarea  data-toggle="tooltip" title="Si tiene observación Indíquela" class="form-control" rows="3" id="OBSERVACION" ng-model="OBSERVACION" placeholder="Ingrese Observaciones ..." maxlength="8000"  ></textarea>
+        </div>
+    </div>
+            
+    <div class="row" ng-show="PUNTO_CONTACTO=='RAM'">  
+
+        <div class="form-group has-feedback col-md-4">    
+          <label>¿Se necesita apoyo de focal?:</label>   
+          <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="NECESITA_FOCAL" id="NECESITA_FOCAL"> 
+            <option value="" disabled selected hidden>Requiere escalamiento...</option>    
+            <option value="SI">SI</option> 
+            <option value="NO">NO</option>  
+          </select>
+        
+        </div>
+        
+
+        <div class="form-group has-feedback col-md-4" ng-show="NECESITA_FOCAL=='SI'">     
+          <label>Focal:</label>    
+          <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="FOCAL" id="FOCAL">  
+            <option value="" disabled selected hidden>Seleccione Focal...</option>    
+            <option value="Marco Maulen">Marco Maulen</option>
+            <option value="Elias Retamales">Elias Retamales</option>
+            <option value="Jose Ignacio Cardenas">Jose Ignacio Cardenas</option>
+            <option value="Brandon Bastias">Brandon Bastias</option>
+            <option value="Alvaro Zuñiga">Alvaro Zuñiga</option>
+            <option value="Matias Roblero">Matias Roblero</option>
+            <option value="Yerko Ponce">Yerko Ponce</option>
+            <option value="Beatriz Dorado">Beatriz Dorado</option>
+            <option value="Atilio Madriz">Atilio Madriz</option> 
+          </select>
+        
+        </div>
+
+    </div>
+          
+</div>
+</form>
+                       
+<div class="box-body">
+
+  <div class="media">
+
+
+    <center>
+
+      <p></p>  
+      <button type="button" class="btn-clipboard text-left" ng-click="openModalTecnicos(1, NOMBRE_SOLICITANTE);" ng-disabled="NOMBRE_SOLICITANTE==''">Evaluar Técnico</button>
+  
+      <button type="button" class="btn btn-success"  
+      ng-click="GuardarAtencion(file3, NUMERO_OXT, COD_SERVICIO, TIPO_SERVICIO, WO, TIPO_TRABAJO, SEGMENTO, RAZON_SOCIAL, PLANTILLA, EXTREMO_A, EXTREMO_B, NOMBRE_SOLICITANTE, TELEFONO_SOLICITANTE, AREA_SOLICITANTE, 'ATT', TIPO_LLAMADO, SOLICITUD, RESULTADO, HUELLA, SOLUCION, PROBLEMA_REPORTADO, APLICA_LLAMADA_CESOP, MOTIVO_LLAMADO, RESOLVIO_AUTOMATICAMENTE, REQUIERE_ESCALAMIENTO, A_QUIEN_ESCALO, TICKET_ESCALAMIENTO, REQUERIMIENTO_ONMET, ACCION, RESPONSABLE, TICKET_TIPI, COD_GRABACION, OBSERVACION, MOTIVO_RESPONSABLE, PLATAFORMA, NECESITA_FOCAL, FOCAL);" ng-disabled="userForm.$invalid">TERMINAR LLAMADA</button>  
+    </center>
+
+  </div>
+
+</div>
+
+</div>
+</section>
+
+
+
+              </uib-tab>    
+
+
+              <uib-tab index=31 ng-show="Historial">    
+                <uib-tab-heading class="{{tabActive ==31 ? 'text-green':''}}" ng-click="BuscarTickets('2',NUMERO_OXT)">  
+                   <i class="fa fa-edit" ></i> Historial: {{NUMERO_OXT}}
+                   <a ng-click="Historial=false;" href=''><i class="fa fa-remove"></i></a> 
+                </uib-tab-heading>  
+
+                <div class="row">   
+    
+                  <div class="col-md-12" style="overflow: auto;width: 100%;height: 400px;">   
+          
+                    <div class="row">
+                      <div class="col-xs-12">
+          
+                      <table class="table"  id="exportable">  
+                        <thead>
+                          <tr>
+                            <th nowrap="">
+                              #
+                            </th>
+                            <th nowrap="">TICKET</th>
+                            <th nowrap="">FECHA INICIO</th>
+                            <th nowrap="">FECHA TERMINO</th>
+                            <th nowrap="">TIPO LLAMADO</th>
+                            <th nowrap="">TIPO SOLICITUD</th>
+                            <th nowrap="">ACCION</th>
+                            <th nowrap="">OBSERVACION</th> 
+                          </tr>
+                        </thead>
+                        <tbody>   
+                        <tr ng-repeat="mail in ListaGeneralHistorial"> 
+                          <td>{{$index + 1}}</td> 
+                          <td nowrap="">{{mail.TICKET}}</td>
+                          <td nowrap="">{{mail.FECHA_INICIO}}</td> 
+                          <td nowrap="">{{mail.FECHA_CREACION}}</td>
+                          <td nowrap="">{{mail.TIPO_LLAMADO}}</td>
+                          <td nowrap="">{{mail.SOLICITUD}}</td>
+                          <td nowrap="">{{mail.ACCION}}</td>
+                          <td nowrap="">
+                            <a href="" data-toggle="tooltip" title="{{mail.OBSERVACION}}">  
+                              {{mail.OBSERVACION | limitTo: 20}} 
+                            </a>
+                         </td> 
+                        </tr>
+                     </tbody>
+                      </table>  
+          
+                    </div>
+                      
+                    </div>
+          
+          
+                  </div>
+          
+                </div>
+
+              </uib-tab>                 
+
+              <uib-tab index=32 ng-show="false">  
+                <uib-tab-heading class="{{tabActive ==32 ? 'text-green':''}}" ng-click=""> 
+                   <i class="fa fa-edit"></i> Ticket Certificación
+                </uib-tab-heading>  
+
+<section class="content">
+<div class="row">
+<div class="col-md-12"> 
+
+<div class="register-box-body with-border">
+
+<form id="userFormTicketCertificacion" name="userFormTicketCertificacion">
+  <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: left; padding: 7px 10px; margin-top: 0;">
+    Información OTT
+  </h4>
+<div class="row">
+  <div class="form-group has-feedback col-md-2"> 
+    <label>Número de Orden:</label>  
+  </div>
+  <div class="form-group has-feedback col-md-3 text-left">  
+    <input type="number" ng-keydown="validaDatos('NUMERO_OXT', NUMERO_OXT);" id="NUMERO_OXT" ng-model="NUMERO_OXT" class="form-control" maxlength="20" placeholder="Número de Orden" required>
+  </div>
+  <div class="form-group has-feedback col-md-5">  
+    <i ng-show="validaNUMERO_OXT==true" class="fa fa-check" style="color: #00C900;"></i>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group has-feedback col-md-2"> 
+    <label>Código Servicio:</label> 
+  </div>
+  <div class="form-group has-feedback col-md-5"> 
+    <input type="text" ng-keydown="validaDatos('COD_SERVICIO', COD_SERVICIO);" id="COD_SERVICIO" ng-model="COD_SERVICIO" class="form-control" maxlength="100" placeholder="CÓDIGO SERVICIO" required> 
+  </div>
+  <div class="form-group has-feedback col-md-5">  
+    <i ng-show="validaCOD_SERVICIO==true" class="fa fa-check" style="color: #00C900;"></i>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group has-feedback col-md-2">
+    <label>WO:</label>
+  </div>
+  <div class="form-group has-feedback col-md-5"> 
+    <input type="text" ng-keydown="validaDatos('WO', WO);" id="WO" ng-model="WO" class="form-control" maxlength="50" placeholder="WO" required > 
+  </div>
+  <div class="form-group has-feedback col-md-5">  
+    <i ng-show="validaWO==true" class="fa fa-check" style="color: #00C900;"></i>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="form-group has-feedback col-md-2">
+        <label>Server Profile:</label>
+  </div>
+  <div class="form-group has-feedback col-md-5">
+        <input type="text" ng-keydown="validaDatos('SERVER_PROFILE', SERVER_PROFILE);" id="SERVER_PROFILE" ng-model="SERVER_PROFILE" class="form-control" maxlength="50" placeholder="SERVER_PROFILE" required >  
+  </div>
+  <div class="form-group has-feedback col-md-5">  
+    <i ng-show="validaSERVER_PROFILE==true" class="fa fa-check" style="color: #00C900;"></i>  
+  </div>
+
+</div>
+
+<h4 style="background-color:#f7f7f7; font-size: 18px; text-align: left; padding: 7px 10px; margin-top: 0;">
+  Evidencia
+</h4> 
+
+<div class="row">
+
+  <div class="form-group has-feedback col-md-2">
+    <label>Rango IP:</label> 
+  </div>
+  <div class="form-group has-feedback col-md-3">
+    <input type="text" ng-keydown="validaDatos('RANGOS_TR069', RANGOS_TR069);" id="RANGOS_TR069" ng-model="RANGOS_TR069" class="form-control" maxlength="50" placeholder="Rango IP" required>    
+  </div>
+  <div class="form-group has-feedback col-md-7">    
+    <i ng-show="validaRANGOS_TR069==true" class="fa fa-check" style="color: #00C900;"></i>  
+  </div>
+</div>
+<div class="row">
+
+  <div class="form-group has-feedback col-md-2"> 
+    <label>Username:</label>  
+  </div>
+  <div class="form-group has-feedback col-md-3">
+    <input type="text" ng-keydown="validaDatos('USERNAME', USERNAME);" id="USERNAME" ng-model="USERNAME" class="form-control" maxlength="50" placeholder="USERNAME" required>   
+  
+  </div>
+  <div class="form-group has-feedback col-md-2">    
+    <i ng-show="validaUSERNAME==true" class="fa fa-check" style="color: #00C900;"></i>    
+  </div>
+  <div class="form-group has-feedback col-xs-5" style="text-align: center;">
+    <!--label>Adjuntar Log APP DE CHAT</label-->    
+    <div class="form-group">
+
+      <form enctype="multipart/form-data">
+          <div class="form-group">
+              <input id="file" name="file" type="file" ngf-select ng-model="file" class="file" multiple=true data-preview-file-type="any">
+              <!-- (Archivos: .png, .jpg, .jpeg)-->
+          </div>
+      </form>
+    </div>            
+  </div>
+
+</div>
+
+<div class="row">  
+
+  <div class="form-group has-feedback col-md-2"> 
+     <label>Password:</label>    
+  </div>
+  <div class="form-group has-feedback col-md-3"> 
+     <input type="text" ng-keydown="validaDatos('PASSWORD', PASSWORD);" id="PASSWORD" ng-model="PASSWORD" class="form-control" maxlength="50" placeholder="PASSWORD" required>    
+  </div> 
+  <div class="form-group has-feedback col-md-2">    
+    <i ng-show="validaPASSWORD==true" class="fa fa-check" style="color: #00C900;"></i>  
+  </div>
+
+  <div class="form-group has-feedback col-xs-5" style="text-align: center;">
+    <!--label>Adjuntar Log Configuración</!--label-->    
+    <div class="form-group">
+
+      <form enctype="multipart/form-data">
+          <div class="form-group">
+              <input id="file2" name="file2" type="file" ngf-select ng-model="file2" class="file" multiple=true data-preview-file-type="any">
+              <!-- (Archivos: .png, .jpg, .jpeg)-->
+          </div>
+      </form>
+    </div>      
+  </div>
+</div>
+
+<div class="row">  
+
+  <div class="form-group has-feedback col-md-2"> 
+    <label>Causa Last down</label> 
+  </div>
+  <div class="form-group has-feedback col-md-3"> 
+    <input type="text" ng-keydown="validaDatos('LAST_DOWN_CORRECTA', LAST_DOWN_CORRECTA);" id="LAST_DOWN_CORRECTA" ng-model="LAST_DOWN_CORRECTA" class="form-control" maxlength="50" placeholder="Causa Last down" required>     
+  
+  </div>
+  <div class="form-group has-feedback col-md-7">     
+    <i ng-show="validaLAST_DOWN_CORRECTA==true" class="fa fa-check" style="color: #00C900;"></i>   
+  </div>
+ 
+</div>
+
+<div class="row">
+    
+  <div class="col-md-12">
+          <div class="form-group has-feedback">
+              <label>Observación:</label>
+              <textarea  data-toggle="tooltip" title="Si tiene observación Indiquela" class="form-control" rows="3" id="OBSERVACION1" ng-model="OBSERVACION1" placeholder="Ingrese Observaciones ..." maxlength="8000"  ></textarea>
+      </div>
+  </div>          
+</div>
+
+</form> 
+</div>
+
+<div class="box-body">
+  <div class="media">
+    <center>
+      <p></p>  
+      <button type="button" class="btn btn-success" ng-click="GuardarTicketCetificacion(file, file2, NUMERO_OXT, COD_SERVICIO, WO, SERVER_PROFILE, RANGOS_TR069, LAST_DOWN_CORRECTA, USERNAME, PASSWORD, USUARIO, OBSERVACION1);" ng-disabled="validaNUMERO_OXT==true &&validaCOD_SERVICIO==true &&validaWO==true &&validaSERVER_PROFILE==true &&validaRANGOS_TR069==true &&validaUSERNAME==true &&validaPASSWORD==true &&validaLAST_DOWN_CORRECTA==true ? false : true">INGRESAR TICKET</button>
+    </center>
+  </div>
+</div>
+
+</div>
+</section>
+
+              </uib-tab>    
+
+              <uib-tab index=33 ng-show="false">   
+                <uib-tab-heading class="{{tabActive ==33 ? 'text-green':''}}" ng-click=""> 
+                   <i class="fa fa-edit"></i> Ticket Certificación
+                </uib-tab-heading>  
+
+<section class="content"  ng-show="false">
+<div class="row">
+<div class="col-md-12"> 
+
+<div class="register-box-body with-border">
+
+<form name="userFormTicket">
+  <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: left; padding: 7px 10px; margin-top: 0;">
+    Información de Ticket
+  </h4>
+<div class="row">
+  <div class="form-group has-feedback col-md-4"> 
+    <label>Número de Orden:</label>  
+    <input type="text"  data-toggle="tooltip" title="Ingrese Número de Orden" id="NUMERO_OXT" ng-model="NUMERO_OXT" class="form-control" maxlength="20" placeholder="Número de Orden" required>
+        
+  </div>
+
+  <div class="form-group has-feedback col-md-4">
+    <label>Código Servicio:</label> 
+    <input type="text" id="COD_SERVICIO" ng-model="COD_SERVICIO" class="form-control" maxlength="100" placeholder="CÓDIGO SERVICIO" required> 
+
+  </div>
+
+  <div class="form-group has-feedback col-md-4">
+    <label>Resultado Provision:</label>  
+
+    <input type="text" id="RESULTADO_PROVISION" ng-model="RESULTADO_PROVISION" class="form-control" maxlength="50" placeholder="RESULTADO PROVISION" required > 
+
+  </div>
+
+  <!--div class="col-xs-8">
+    <button ng-click="ObtieneDatosOTT(NUMERO_OXT);" style="width: 200px;"  class="btn btn-primary btn-block btn-flat">Buscar</button> 
+  </!--div--> 
+
+</div>
+<!----hr style="border-color: darkgrey;"-->
+<div class="row">
+
+<div class="form-group has-feedback col-md-4">
+      <label>WO:</label>
+      <input type="text" id="WO" ng-model="WO" class="form-control" maxlength="50" placeholder="WO" required > 
+  
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>Resultado Certificación:</label>  
+      <input type="text" id="RESULTADO_CERTIFICACION" ng-model="RESULTADO_CERTIFICACION" class="form-control" maxlength="50" placeholder="RESULTADO CERTIFICACION" required > 
+
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>Código Padre:</label> 
+      <input type="text" id="CODIGO_PADRE" ng-model="CODIGO_PADRE" class="form-control" maxlength="50" placeholder="CODIGO PADRE" required > 
+
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>Resultado Validación profile TR069-2:</label> 
+      <input type="text" id="VALIDACION_PROFILE_TR069" ng-model="VALIDACION_PROFILE_TR069" class="form-control" maxlength="100" placeholder="VALIDACION PROFILE TR069" required >
+
+</div>
+<div class="form-group has-feedback col-md-4">
+  <label>Color Actividad:</label>  
+  <input type="text" id="COLOR_ACTIVIDAD" ng-model="COLOR_ACTIVIDAD" class="form-control" maxlength="50" placeholder="COLOR_ACTIVIDAD" required >
+
+</div>
+<div class="form-group has-feedback col-md-4">
+    <label>Rangos TR069:</label> 
+    <input type="text" id="RANGOS_TR069" ng-model="RANGOS_TR069" class="form-control" maxlength="50" placeholder="RANGOS TR069" required>  
+
+</div>
+<div class="form-group has-feedback col-md-4">
+  <label>IP:</label>
+  <input type="text" id="IP" ng-model="IP" class="form-control" maxlength="50" placeholder="IP" required>  
+
+</div>
+</div> 
+<div class="row">
+<div class="form-group has-feedback col-md-4">
+      <label>Reinicio WAN?:</label> 
+      <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="REINICIO_WAN" id="REINICIO_WAN" required>
+        <option value="" disabled selected hidden>Reinicio WAN?...</option>  
+        <option value="SI">SI</option> 
+        <option value="NO">NO</option>  
+      </select>
+
+
+</div>
+<div class="form-group has-feedback col-md-4">
+      <label>Last down Correcta?</label>
+      <select class="form-control select2 select2-hidden-accessible" aria-hidden="true" ng-model="LAST_DOWN_CORRECTA" id="LAST_DOWN_CORRECTA" required>
+        <option value="" disabled selected hidden>Last down Correcta?...</option>   
+        <option value="SI">SI</option> 
+        <option value="NO">NO</option>  
+      </select>
+
+</div>
+<div class="form-group has-feedback col-md-4"> 
+
+      <label>Username:</label>  
+      <input type="text" id="USERNAME" ng-model="USERNAME" class="form-control" maxlength="50" placeholder="USERNAME" required>  
+
+</div>
+<div class="form-group has-feedback col-md-4"> 
+
+  <label>Password:</label>    
+  <input type="text" id="PASSWORD" ng-model="PASSWORD" class="form-control" maxlength="50" placeholder="PASSWORD" required>    
+
+</div>
+
+</div>
+<h4 style="background-color:#f7f7f7; font-size: 18px; text-align: left; padding: 7px 10px; margin-top: 0;">
+  Ingreso documentos
+</h4> 
+<div class="row">
+
+
+        <div class="form-group has-feedback col-xs-12" style="text-align: center;">
+          <label>Adjuntar Log APP DE CHAT</label>    
+
+          <div class="form-group">
+
+            <form enctype="multipart/form-data">
+                <div class="form-group">
+                    <input id="file" name="file" type="file" ngf-select ng-model="file" class="file" multiple=true data-preview-file-type="any">
+                   <!-- (Archivos: .png, .jpg, .jpeg)-->
+                </div>
+            </form>
+          </div>            
+        </div>
+        <div class="col-xs-12" style="text-align: center;"> 
+          <label>Adjuntar Log Configuración</label>     
+          <div class="form-group">
+
+            <form enctype="multipart/form-data">
+                <div class="form-group">
+                    <input id="file2" name="file2" type="file" ngf-select ng-model="file2" class="file" multiple=true data-preview-file-type="any">
+                   <!-- (Archivos: .png, .jpg, .jpeg)-->
+                </div>
+            </form>
+          </div>      
+        </div>
+
+</div>
+
+<div class="row">
+    
+    <div class="col-md-12">
+            <div class="form-group has-feedback">
+                <label>Observación:</label>
+                <textarea  data-toggle="tooltip" title="Si tiene observación Indiquela" class="form-control" rows="3" id="OBSERVACION" ng-model="OBSERVACION" placeholder="Ingrese Observaciones ..." maxlength="8000"  ></textarea>
+        </div>
+    </div>          
+</div>
+</form> 
+                       
+<div class="box-body">
+
+  <div class="media">
+
+
+    <center>
+
+      <p></p>  
+      <button type="button" class="btn btn-success" ng-click="GuardarTicket(file, file2, NUMERO_OXT, COD_SERVICIO, RESULTADO_PROVISION, WO, RESULTADO_CERTIFICACION, CODIGO_PADRE, VALIDACION_PROFILE_TR069, COLOR_ACTIVIDAD, RANGOS_TR069, IP, REINICIO_WAN, LAST_DOWN_CORRECTA, USERNAME, PASSWORD, OBSERVACION);" ng-disabled="userFormTicket.$invalid">INGRESAR TICKET</button>
+    </center>
+
+  </div>
+
+</div>
+
+</div>
+</section>  
+
+              </uib-tab>    
+
+              <uib-tab index=1 ng-show="mostrarTab1 != ''">
+                <uib-tab-heading class="{{tabActive ==1 ? 'text-green':''}}" ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab1id,0,0,'0');ObtieneMaterialApoyo();">    
+                    <i class="fa fa-globe"></i> {{mostrarTab1}} 
+                    <a ng-click="mostrarTab1='';" href=''><i class="fa fa-remove"></i></a>  
+                </uib-tab-heading>
+                <div ng-show="mostrarTab1 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab1 != ''">
+
+                  <div class="box box-solid" ng-show="Finalizado==true &&SubProceso==false">
+                    <div class="box-body">
+
+                        <div class="media">
+                  
+
+                          <center>
+
+                            <div class="input-group" style="width: 167px">
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-success">Ticket</button>
+                              </div>
+                              <!-- /btn-group -->
+                              <input type="text" ng-model="ticket1" class="form-control">
+                            </div>
+                            <p></p>
+                            <button type="button" class="btn btn-success" ng-click="(ticket1 !=undefined && ticket1 !='') ? grabaAtencion(IdProcesoActual, 1, ticket1):levantaWarning();">TERMINAR LLAMADA</button>
+                          </center>
+
+                        </div>
+                  
+                    </div>
+                  </div>
+
+
+                </div>
+              </uib-tab>
+              <uib-tab index=2 ng-show="mostrarTab2 != ''">
+                <uib-tab-heading class="{{tabActive ==2 ? 'text-green':''}}" ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab2id,0,0,'0');ObtieneMaterialApoyo();">
+                    <i class="fa fa-globe"></i> {{mostrarTab2}}
+                    <a ng-click="mostrarTab2=''" href=''><i class="fa fa-remove"></i></a>
+                </uib-tab-heading>
+                <div ng-show="mostrarTab2 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab2 != ''">
+                  <center>
+                    <div class="input-group" style="width: 167px">  
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-success">Ticket</button>
+                      </div>
+                      <!-- /btn-group -->
+                      <input type="text" ng-model="ticket2" class="form-control">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-success" ng-click="(ticket2 !=undefined && ticket2 !='') ? grabaAtencion(IdProcesoActual, 2, ticket2):levantaWarning();" >TERMINAR LLAMADA</button>
+                  </center>  
+                </div>
+              </uib-tab>
+              <uib-tab index=3 ng-show="mostrarTab3 != ''">
+                <uib-tab-heading class="{{tabActive ==3 ? 'text-green':''}}" ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab3id,0,0,'0');ObtieneMaterialApoyo();">
+                    <i class="fa fa-globe"></i> {{mostrarTab3}}
+                    <a ng-click="mostrarTab3=''" href=''><i class="fa fa-remove"></i></a>
+                </uib-tab-heading>
+                <div ng-show="mostrarTab3 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab3 != ''">
+                  <center>
+                    <div class="input-group" style="width: 167px">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-success">Ticket</button>
+                      </div>
+                      <!-- /btn-group -->
+                      <input type="text" ng-model="ticket3" class="form-control">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-success" ng-click="(ticket3 !=undefined && ticket3 !='') ? grabaAtencion(IdProcesoActual, 3, ticket3):levantaWarning();" >TERMINAR LLAMADA</button>
+                  </center>
+                </div>
+              </uib-tab>
+              <uib-tab index=4 ng-show="mostrarTab4 != ''">
+                <uib-tab-heading class="{{tabActive ==4 ? 'text-green':''}}" ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab4id,0,0,'0');ObtieneMaterialApoyo();">
+                    <i class="fa fa-globe"></i> {{mostrarTab4}}
+                    <a ng-click="mostrarTab4=''" href=''><i class="fa fa-remove"></i></a>
+                </uib-tab-heading>
+                <div ng-show="mostrarTab4 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab4 != ''">
+                  <center>
+                    <div class="input-group" style="width: 167px">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-success">Ticket</button>
+                      </div>
+                      <!-- /btn-group -->
+                      <input type="text" ng-model="ticket4" class="form-control">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-success" ng-click="(ticket4 !=undefined && ticket4 !='') ? grabaAtencion(IdProcesoActual, 4, ticket4):levantaWarning();" >TERMINAR LLAMADA</button>
+                  </center>
+                </div>
+              </uib-tab>
+              <uib-tab index=5 ng-show="mostrarTab5 != ''">
+                <uib-tab-heading class="{{tabActive ==5 ? 'text-green':''}}" ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab5id,0,0,'0');ObtieneMaterialApoyo();">
+                    <i class="fa fa-globe"></i> {{mostrarTab5}}
+                    <a ng-click="mostrarTab5=''" href=''><i class="fa fa-remove"></i></a>
+                </uib-tab-heading>
+                <div ng-show="mostrarTab5 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab5 != ''">
+                  <center>
+                    <div class="input-group" style="width: 167px">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-success">Ticket</button>
+                      </div>
+                      <!-- /btn-group -->
+                      <input type="text" ng-model="ticket5" class="form-control">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-success" ng-click="(ticket5 !=undefined && ticket5 !='') ? grabaAtencion(IdProcesoActual, 5, ticket5):levantaWarning();" >TERMINAR LLAMADA</button>
+                  </center>
+                </div>
+              </uib-tab>
+              <uib-tab index=6 ng-show="mostrarTab6 != ''">
+                <uib-tab-heading class="{{tabActive ==6 ? 'text-green':''}}" ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab6id,0,0,'0');ObtieneMaterialApoyo();">
+                    <i class="fa fa-globe"></i> {{mostrarTab6}}
+                    <a ng-click="mostrarTab6=''" href=''><i class="fa fa-remove"></i></a>
+                </uib-tab-heading>
+                <div ng-show="mostrarTab6 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab6 != ''">
+                  <center>
+                    <div class="input-group" style="width: 167px">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-success">Ticket</button>
+                      </div>
+                      <!-- /btn-group -->
+                      <input type="text" ng-model="ticket6" class="form-control">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-success" ng-click="(ticket6 !=undefined && ticket6 !='') ? grabaAtencion(IdProcesoActual, 6, ticket6):levantaWarning();" >TERMINAR LLAMADA</button>
+                  </center>
+                </div>
+              </uib-tab>
+              <uib-tab index=7 ng-show="mostrarTab7 != ''">
+                <uib-tab-heading class="{{tabActive ==7 ? 'text-green':''}}" ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab7id,0,0,'0');ObtieneMaterialApoyo();">
+                    <i class="fa fa-globe"></i> {{mostrarTab7}}
+                    <a ng-click="mostrarTab7=''" href=''><i class="fa fa-remove"></i></a>
+                </uib-tab-heading>
+                <div ng-show="mostrarTab7 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab7 != ''">
+                  <center>
+                    <div class="input-group" style="width: 167px">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-success">Ticket</button>
+                      </div>
+                      <!-- /btn-group -->
+                      <input type="text" ng-model="ticket7" class="form-control">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-success" ng-click="(ticket7 !=undefined && ticket7 !='') ? grabaAtencion(IdProcesoActual, 7, ticket7):levantaWarning();" >TERMINAR LLAMADA</button>
+                  </center>
+                </div>
+              </uib-tab>
+              <uib-tab index=8 ng-show="mostrarTab8 != ''">
+                <uib-tab-heading class="{{tabActive ==8 ? 'text-green':''}}" ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab8id,0,0,'0');ObtieneMaterialApoyo();">
+                    <i class="fa fa-globe"></i> {{mostrarTab8}}
+                    <a ng-click="mostrarTab8=''" href=''><i class="fa fa-remove"></i></a>
+                </uib-tab-heading>
+                <div ng-show="mostrarTab8 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab8 != ''">
+                  <center>
+                    <div class="input-group" style="width: 167px">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-success">Ticket</button>
+                      </div>
+                      <!-- /btn-group -->
+                      <input type="text" ng-model="ticket8" class="form-control">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-success" ng-click="(ticket8 !=undefined && ticket8 !='') ? grabaAtencion(IdProcesoActual, 8, ticket8):levantaWarning();" >TERMINAR LLAMADA</button>
+                  </center>
+                </div>
+              </uib-tab>
+              <uib-tab index=9 ng-show="mostrarTab9 != ''">
+                <uib-tab-heading class="{{tabActive ==9 ? 'text-green':''}}" ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab9id,0,0,'0');ObtieneMaterialApoyo();">
+                    <i class="fa fa-globe"></i> {{mostrarTab9}}
+                    <a ng-click="mostrarTab9=''" href=''><i class="fa fa-remove"></i></a>
+                </uib-tab-heading>
+                <div ng-show="mostrarTab9 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab9 != ''">
+                  <center>
+                    <div class="input-group" style="width: 167px">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-success">Ticket</button>
+                      </div>
+                      <!-- /btn-group -->
+                      <input type="text" ng-model="ticket9" class="form-control">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-success" ng-click="(ticket9 !=undefined && ticket9 !='') ? grabaAtencion(IdProcesoActual, 9, ticket9):levantaWarning();" >TERMINAR LLAMADA</button>
+                  </center>
+                </div>
+              </uib-tab>
+              <uib-tab index=10 ng-show="mostrarTab10 != ''">
+                <uib-tab-heading class="{{tabActive ==10 ? 'text-green':''}}"  ng-click="IdSubProcesoActual ='0';ObtieneSiguienteProceso(mostrarTab10id,0,0,'0');ObtieneMaterialApoyo();">
+                    <i class="fa fa-globe"></i> {{mostrarTab10}}
+                    <a ng-click="mostrarTab10=''" href=''><i class="fa fa-remove"></i></a>
+                </uib-tab-heading>
+                <div ng-show="mostrarTab10 != ''" ng-include="includePath+'tabs/scriptretencion.tpl.html'"></div>
+                <div ng-show="mostrarTab10 != ''">
+                  <center> 
+                    <div class="input-group" style="width: 167px">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-success">Ticket</button>
+                      </div>
+                      <!-- /btn-group -->
+                      <input type="text" ng-model="ticket10" class="form-control">
+                    </div>
+                    <p></p>
+                    <button type="submit" class="btn btn-success" ng-click="(ticket10 !=undefined && ticket10 !='') ? grabaAtencion(IdProcesoActual, 10, ticket10):levantaWarning();" >TERMINAR LLAMADA</button>
+                  </center>
+                </div>
+              </uib-tab>   
+          </uib-tabset>
+
+
+      </div>
+
+  </div>	  
+</div>
+
+
+
+</section>

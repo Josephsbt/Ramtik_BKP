@@ -1,0 +1,291 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar ">
+
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <!-- <div class="user-panel">
+      <div class="pull-left image">
+        <img ng-src="{{imagePath}}imageIcons/data.png" class="img-rounded" alt="User Image">
+      </div>
+      <div class="pull-left info ">
+        <p class="wrapping">{{user.Nombre}}</p>
+      </div>
+    </div> -->   
+
+    <!-- search form (Optional) -->
+    <!-- <form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Buscar...">
+        <span class="input-group-btn">
+          <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+        </span>
+      </div>
+    </form> -->
+    <!-- /.search form -->
+
+    <!-- Sidebar Menu -->
+    <form class="sidebar-form">
+
+<ul class="sidebar-menu">
+   <!--li class="in">
+        <div class="input-group">
+          <input type="text" ng-keypress="$event.keyCode == 13 ? changePlataforma(IdProcesoActual,'') : null" name="q" ng-model="IdProcesoActual" class="form-control" placeholder="ID...">
+              <span class="input-group-btn">
+                <button type="button" name="search" id="search-btn" class="btn btn-flat" ng-click="changePlataforma(IdProcesoActual,'');"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+   </!--li-->    
+    <!--li>
+      <a href="" data-toggle="control-sidebar"><i class="fa fa-filter"></i> Filtros</a>
+    </li--> 
+   <li class="header cyber-side-header">
+      <svg viewBox="0 0 20 20" width="14" height="14" style="vertical-align:-2px;margin-right:6px" aria-hidden="true">
+        <rect x="3" y="4" width="14" height="11" rx="2" fill="none" stroke="#00E5FF" stroke-width="1.6"/>
+        <rect x="7" y="7" width="2" height="2" fill="#00E5FF"/>
+        <rect x="11" y="7" width="2" height="2" fill="#00E5FF"/>
+        <rect x="8" y="11" width="4" height="1.4" fill="#00FF9C"/>
+      </svg>
+      Menu Principal
+    </li>
+    </li>
+    <li ng-click="cambiaMenu('1')"> 
+      <a href="" ui-sref="home.dashboard"> <i class="fa fa-pie-chart {{Menu == '1' ? 'text-green':'text-white'}}"></i>{{currentUser.profile==0 ||currentUser.profile==1 ? 'Dashboard':'Inicio'}}</a>  
+    </li>
+    <!--li-- ng-click="cambiaMenu('2')" ng-show="currentUser.profile==0 ||currentUser.profile==1">
+      <a href="" ui-sref="tickets"> <i class="fa fa-reorder {{Menu == '2' ? 'text-green':'text-white'}}"></i>Bandeja Ticket</a>    
+    </!--li-->
+    <li ng-click="cambiaMenu('3')" ng-show="false"> 
+      <a href="" ui-sref="atenciones"> <i class="fa fa-phone {{Menu == '3' ? 'text-green':'text-white'}}"></i>Atenciones</a>       
+    </li>
+    <!--li ng-click="cambiaMenu('4')" ng-show="currentUser.profile==0 ||currentUser.profile==1"> 
+      <a href="" ui-sref="calidad"> <i class="fa fa-check-circle-o {{Menu == '4' ? 'text-green':'text-white'}}"></i>Calidad</a>        
+    </!--li>
+    <li-- ng-click="cambiaMenu('5')" ng-show="currentUser.profile==0 ||currentUser.profile==1"> 
+      <a href="" ui-sref="home.contruccion"> <i class="fa fa-pencil-square-o {{Menu == '5' ? 'text-green':'text-white'}}"></i>Evaluación</a>           
+    </li-->
+
+    <li ng-click="cambiaMenu('6')" ng-show="currentUser.profile==0 ||currentUser.profile==1"> 
+      <a href="" ui-sref="warning"> <i class="fa fa-warning {{Menu == '6' ? 'text-green':'text-white'}}"></i>Warning</a>  
+    </li>
+
+    <li ng-click="cambiaMenu('7')">    
+      <a href="" ui-sref="busquedatickets"> <i class="fa fa-search {{Menu == '7' ? 'text-green':'text-white'}}"></i>Búsqueda Tickets</a>         
+    </li>
+
+   <!--li><a href="" ui-sref="home.dashboard"><i class="fa fa-dashboard"></i><span>Alarmas CESOP</span></a></!--li>
+   <li><a href="" ui-sref="home.3play"><i class="fa fa-dashboard"></i><span>Alarmas 3Play</span></a></li>
+   <li>
+     <a href="" ui-sref="home.dashboard"> <i class="fa fa-dashboard"></i>Consolidado</a>
+   </li>
+   
+  <li>
+    <a href="" ui-sref="home.dashboarddown"> <i class="fa fa-arrow-down text-red"></i>Evaluador</a>
+  </li> 
+  <li>
+    <a href="" ui-sref="home.dashboardup"> <i class="fa fa-arrow-up text-green"></i>Evaluador</a>
+  </li>
+  <li>
+    <a href="" ui-sref="home.contruccion"> <i class="fa fa-arrow-down text-red"></i>Evaluador 3Play</a>
+  </li> 
+  <li>
+    <a href="" ui-sref="home.contruccion"> <i class="fa fa-arrow-up text-green"></i>Evaluador 3Play</a>
+  </li-->
+  <!--li>
+    <a href="" ui-sref="home.persona"> <i class="fa fa-users"></i>Persona</a>
+  </li-->
+</ul>
+<br/>
+
+<!--
+        <div class="row">
+            <div class="col-xs-2">
+                    <a href="" >
+                    <i class="fa fa-shopping-cart" data-toggle="tooltip" data-placement="top" title="Producto..."></i>
+                    </a>
+            </div>
+            <div class="col-xs-12" style="margin-left:25px;padding-left:0px;margin-right:0px;padding-right:0px;">
+                <select class="form-control select2 select2-hidden-accessible" style="width: 70%;" tabindex="-1" aria-hidden="true" ng-model="producto" ng-change="ObtieneTemas(producto)" >
+                 <option value="" disabled selected hidden>Tema...</option>
+                 <option value="{{data.PRODUCTO}}" ng-repeat="data in dataProductos">{{data.PRODUCTO}}</option>
+                </select>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-xs-12"  style="margin-left:25px;padding-left:0px;margin-right:0px;padding-right:0px;">
+                <select class="form-control select2" style="width: 70%;" tabindex="-1" aria-hidden="true" ng-model="tema" ng-change="ObtieneDetalle(producto,tema)" >
+                <option value="" disabled selected hidden>Tipo...</option>
+                <option value="{{data.TEMA}}" ng-repeat="data in dataTemas">{{data.TEMA}}</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12"  style="margin-left:25px;padding-left:0px;margin-right:0px;padding-right:0px;">
+                <select class="form-control select2 select2-hidden-accessible" style="width: 70%;" tabindex="-1" aria-hidden="true" ng-model="detalle" ng-change="ObtieneFlujo(detalle)" >
+                <option value="" disabled selected hidden>Detalle...</option>
+                <option value="{{data.ID_TIPIFICACION}}" ng-repeat="data in dataDetalles">{{data.DETALLE}}</option>
+                </select>
+                    
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+            </div>
+            <div class="col-xs-2">
+            <br/>
+
+                <a href="" >
+                  <i class="fa fa-search" data-toggle="tooltip" data-placement="top" title="Búsqueda Avanzada..."></i>
+                </a>
+                   
+            </div>
+            <div class="col-xs-2">
+            <br/>
+
+                
+            </div>
+
+            <div class="col-xs-4">
+            </div>
+        </div>
+
+
+      -->
+    </form>
+
+<!--
+
+<div class="bs-example" ng-show="dataProcesos">
+  <div class="panel-group" id="accordion">
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      <h6>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-plus"></span> 
+              Procedimientos
+          </a>
+      </h6>
+  </div>
+  <div id="collapseOne" class="panel-collapse collapse in" style="background-color: aqua;">
+<ul class="sidebar-menu" style="font-size: x-small;">
+<li ng-repeat="data in dataProcesos" class="header pointer" style="background-color:aliceblue;font-size: x-small;">
+  <span class="header"><a href="" data-toggle="tooltip" data-placement="top" title="{{data.GL_FLUJO}}"  ng-click="IdProcesoActual=data.ID_FLUJO;changePlataforma(IdProcesoActual, data.GL_FLUJO);"><font color="black"> {{data.GL_FLUJO}} ({{data.ID_FLUJO}})</font></a></span>
+  <span class="label label-success header pull-right">
+      <i class="fa fa-arrow-circle-up"></i> {{data.VISITAS}} Visitas
+  </span>  
+  
+</li>
+<li class="header pointer" style="background-color:aliceblue;"><span class="label label-success header pull-right"><i class="fa fa-arrow-circle-down"></i> 1.6%</span> </span>  <span class="header">Reabastecimiento</span></li>
+<li class="header pointer" style="background-color:aliceblue;"><span class="label label-danger header pull-right"><i class="fa fa-arrow-circle-up"></i> 3.4%</span> </span>  <span class="header">Pedido Insumos</span></li>
+</ul>
+  </div>
+</div>
+</div>
+</div>
+
+-->
+
+<!--ul class="sidebar-menu">
+       <li class="treeview">
+                <a href="">
+                    <i class="fa fa-table"></i>
+                    <span>Mantenedor</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="" ui-sref="mantenedor.usuarios" data-info="CU-06"><i class="fa fa-users text-aqua"></i>Usuarios</a>
+                    </li>
+                    <li>
+                        <a href="" ui-sref="mantenedor.roles" data-info="CU-06"><i class="fa fa-users text-aqua"></i>Roles</a>
+                    </li>
+                    <li>
+                        <a href="#" ui-sref="mantenedor.sostenedores" data-info="CU-03"><i class="fa fa-building text-aqua" ></i>Sostenedores o Empresas</a>
+                    </li>
+                    <li>
+                        <a href="#" ui-sref="mantenedor.establecimientos" data-info="CU-04"><i class="fa fa-institution text-aqua" ></i>Establecimientos</a>
+                    </li>
+                    <li>
+                        <a href="#" ui-sref="mantenedor.configestablecimientos" data-info="CU-04"><i class="fa fa-institution text-aqua" ></i>Configurar Establecimiento</a>
+                    </li>
+
+                    <li>
+                        <a href="#" ui-sref="mantenedor.docentes"><i class="fa fa-certificate text-aqua"></i>Registro Jefes/Docentes UTP</a>
+                    </li>
+
+                    <li>
+                        <a href="" ui-sref="mantenedor.cursos"><i class="fa fa-certificate text-aqua"></i> Cursos</a>
+                    </li>
+
+
+                </ul>
+
+            </li>
+          <li class="treeview">
+                <a href="">
+                    <i class="fa fa-graduation-cap"></i>
+                    <span>Alumnos</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                   <li>
+                        <a href="" ui-sref="mantenedor.matriculas"><i class="fa fa-graduation-cap text-aqua"></i>Alumnos y Matricula</a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-gamepad"></i>
+                    <span>Juegos</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="" ui-sref="mantenedor.gameapp" data-info="RF-04"><i class="fa fa-gamepad text-aqua"></i>Juegos y Aplicaciones</a>
+                    </li>
+                    <li>
+                        <a href="#" ui-sref="mantenedor.gamestage"  data-info="RF-06"><i class="fa fa-trophy text-aqua"></i>Juegos y Etapas</a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+
+            </li>
+
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-user"></i>
+                    <span>Mi Cuenta</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href=""  ui-sref="mantenedor.configmyaccount"><i class="fa fa-pencil text-aqua"></i>Modificar mis Datos</a>
+                    </li>
+                    <li>
+                        <a href="" ui-sref="mantenedor.configmypass"><i class="fa fa-key text-aqua"></i>Cambiar Contraseña</a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+    </ul-->
+    <ul class="sidebar-menu">
+
+      <li>
+          <a href="" ng-click="goOut()" ><i class="fa fa-times-circle"></i>Salir</a>
+      </li>
+
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>

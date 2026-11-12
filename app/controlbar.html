@@ -1,0 +1,84 @@
+<!-- Control Sidebar -->
+<aside  class="control-sidebar control-sidebar-dark" ng-controller="FilterController">
+  <div style="height:40px; background-color:#181f23; padding:10px;">
+    <span style="font-weight:bold;">Filtros</span>
+    <span class="pull-right" style="cursor:pointer;" data-toggle="control-sidebar"><i class="fa fa-close"></i></span>
+
+  </div>
+  <!-- Create the tabs -->
+  <!-- <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <li class="active"><a href='#control-sidebar-theme-demo-options-tab' data-toggle='tab'><i class='fa fa-wrench'></i></a></li>
+    <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+  </ul> -->
+  <!-- Tab panes -->
+  <!-- <div class="tab-content">
+
+    <div class="tab-pane active" id="control-sidebar-theme-demo-options-tab"> -->
+
+      <div style="padding:10px;">
+        <div class='form-group'>
+          <label class='control-sidebar-subheading'>
+            Fecha ( Mes / Año)
+          </label>  
+          <select class="monthselect" style="color: #000;" ng-model="datenew.month">
+            <option value="01">ene.</option>
+            <option value="02">feb.</option>
+            <option value="03">mar.</option>
+            <option value="04">abr.</option>
+            <option value="05">may.</option>
+            <option value="06">jun.</option>
+            <option value="07">jul.</option>
+            <option value="08">ago.</option>
+            <option value="09">sep.</option>
+            <option value="10">oct.</option>
+            <option value="11">nov.</option>
+            <option value="12">dic.</option>
+          </select>
+          <select class="yearselect" style="color: #000;" ng-model="datenew.year">
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+          </select>
+          <!-- <input date-range-picker class="form-control date-picker" type="text" ng-model="filterSS" options="dateRangeOptions"/> -->
+          <!-- <input date-range-picker class="form-control date-picker" type="text" ng-model="filterS" options="dateRangeOptions"/> -->
+           <!-- <input  ui-date="dateOptions" style="width:100%;line-height: 20px;height: 30px;color: #000;border-radius: 5px;    padding-left: 5px; border: 1px solid #fff;" ng-model="data.desde"> -->
+        </div>
+        <!-- <div class='form-group'>
+          <label class='control-sidebar-subheading'>
+            Fecha Termino
+          </label>
+           <input  ui-date="dateOptions" style="width:100%;line-height: 20px;height: 30px; color: #000; border-radius: 5px;    padding-left: 5px;border: 1px solid #fff;" ng-model="data.hasta">
+        </div> -->
+        <!-- <div class='form-group'>
+          <label class='control-sidebar-subheading'>
+            Tramo
+          </label>
+           <div style="width:100%;    line-height: 20px;height: 30px;"   dropdown-select="tramos" dropdown-model="tramo" dropdown-item-label="k"  ></div>
+        </div> -->
+        <!-- <div class='form-group'>
+          <label class='control-sidebar-subheading'>
+            Tipo
+          </label>
+          <div style="width:100%;    line-height: 20px;height: 30px;"   dropdown-select="data['tipos']" dropdown-model="data.tipo" dropdown-item-label="k"  ></div>
+        </div> -->
+        <div class='form-group'>
+          <button class="btn btn-primary-entel pull-right" ng-click="buscar(datenew)" data-toggle="control-sidebar">Buscar</button>
+
+        </div>
+
+      </div>
+     </div>
+
+
+
+
+
+
+
+
+
+</aside><!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+     immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>

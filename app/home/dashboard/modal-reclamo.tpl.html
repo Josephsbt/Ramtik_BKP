@@ -1,0 +1,35 @@
+  <div class="modal-header">
+    <h4 class="modal-title">Detalle Reclamo Cliente OTT: {{data.NUMERO_OXT}}</h4>
+  </div>
+  
+  <div class="modal-body">
+    <div id="exTab1" class="container">	
+    <ul  class="nav nav-pills">
+          <li class="active">
+            <a  href="#1a" data-toggle="tab">Reclamo Global</a>
+          </li>
+          <li><a href="#2a" data-toggle="tab">Reclamo CESOP</a>
+          </li>
+          <li><a href="#3a" data-toggle="tab">Reclamo ATT</a>
+          </li>
+        </ul>
+    
+          <div class="tab-content clearfix" style="width:900px;">
+            <div class="tab-pane active" id="1a">
+              <h9>{{data.RECLAMO_CLIENTE_GLOBAL}}</h9>
+            </div>
+            <div class="tab-pane" id="2a">
+              <h9>{{data.RECLAMO_CLIENTE_CCI}}</h9>
+            </div>
+            <div class="tab-pane" id="3a">
+              <h9>{{data.RECLAMO_CLIENTE_ATT}}</h9>
+            </div>
+          </div>
+      </div>
+    </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="cancel()">Cerrar</button>
+  </div>
+
+  
+  

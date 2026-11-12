@@ -1,0 +1,247 @@
+<style>
+  thead tr th { 
+              position: sticky;
+              top: 0;
+              z-index: 10;
+              background-color: #0A7E96;
+              color: #E4F6FF;
+          }
+      
+          .table-responsive { 
+              height:200px;
+              overflow:scroll;
+          }    
+    div.scroll {
+          margin: 0px, 0px;  
+          padding: 2px;
+          background-color: #ffff;  
+          width: 100%;
+          height: 320px;   
+          overflow-x: auto;
+          overflow-y: auto; 
+          white-space: auto;
+      }
+  </style>
+  
+
+
+<body style="height: 100%; background-color: #E4F6FF;">   
+  <section class="content-header">
+      <a class="btn btn-block btn-social bg-blue">
+          <i class="fa fa-search"></i> Búsqueda Tickets 
+     
+        
+      </a>
+  
+      <div class="row">  
+              <!--*******************************CONSULTA FECHA*******************************-->
+              <div class="col-xs-12">
+               
+               
+                <div class="box box-success groove">
+                  <span class="text-success" >
+         
+                  <div class="box-body" style="padding-top: 5px; text-align: left;">
+                    <div class="row">
+         
+                      <div class="col-xs-2">
+                        <div class="input-group date">    
+                          <span class="pull-left" style=" font-weight: bold;"> Fecha desde&nbsp;&nbsp;</span>
+                            <p class="input-group">
+                            <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                            <input type="text" class="form-control" style="width:100px" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" ng-change="changeHandler()" datepicker-options="dateOptions" clear-text="Borrar" current-text="Hoy"  close-text="Cerrar" alt-input-formats="altInputFormats" />
+         
+                            </p>
+                        </div>
+                      </div>
+                      <div class="col-xs-2">
+                        <div class="input-group date">
+                          <span class="pull-left" style=" font-weight: bold;"> Fecha hasta&nbsp;&nbsp;</span>
+                          <p class="input-group">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                          <input type="text" class="form-control" style="width:100px" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup2.opened" min-date="minDate" ng-change="changeHandler()" datepicker-options="dateOptions" clear-text="Borrar" current-text="Hoy"  close-text="Cerrar" alt-input-formats="altInputFormats" />
+         
+                          </p>
+                        </div>
+         
+                      </div>
+  
+                      <div class="col-xs-3"> 
+         
+                        <div class="input-group date">
+                        <span class="pull-left" style=" font-weight: bold;">Tipo Búsqueda</span>  
+                        <br/>    
+                        <p class="input-group">  
+                        <select class="form-control" id="TIPO_BUSQUEDA" ng-model="TIPO_BUSQUEDA" style="width: 180px;">  
+                          <option value="0">TODO</option>  
+                          <option value="1">TICKET</option>  
+                          <option value="2">OTT</option>  
+                          <option value="3">AGENTE</option>  
+                          <option value="4">COD_SERVICIO</option>  
+                        </select>
+                      </p>
+                      </div>
+                      </div>
+                      
+                      <div class="col-xs-3">
+         
+                        <div class="input-group date">
+                        <span class="pull-left" style=" font-weight: bold;">{{TIPO_BUSQUEDA=='3' ? 'Agente':'Valor'}}</span>   
+                        <br/> 
+                        <p class="input-group">
+                        <select ng-show="TIPO_BUSQUEDA=='3'" class="form-control" id="AGENTE" ng-model="AGENTE" style="width: 160px;">
+                          <option ng-repeat="agentes in ListaAgentes" value="{{agentes.RUT_AGENTE}}">{{agentes.AGENTE}}</option>
+                        </select>
+                        <input type="text" ng-show="TIPO_BUSQUEDA!='3'" class="form-control" style="width:250px" id="VALOR" name="VALOR" ng-model="VALOR" />    
+                        </p> 
+                      </div>
+                      </div> 
+  
+                      <div class="col-xs-2 text-left">      
+                       <br/>
+                       <button type="submit" class="btn btn-primary" ng-click="BuscarTickets(TIPO_BUSQUEDA, AGENTE, VALOR);" ng-disabled="userForm.$invalid">Procesar</button>  
+                       <button id="exportButton" data-toggle="tooltip" data-placement="top" title="Exportar a Excel!" class="btn btn-md btn-success clearfix pull-right" ng-click="ExportToExcel1('exportable')"><span class="fa fa-file-excel-o"></span></button>             
+                      </div>
+         
+         
+         
+                    </div>
+         
+                  </div>
+         
+                  </span>
+                </div>
+                  
+               </div>    
+      </div>
+  
+
+      <uib-tabset active="activeTabIndex">
+        <uib-tab index="0" heading="Bandeja Tickets" ng-click="refreshMailbox()">
+
+
+      <div class="row">   
+    
+        <div class="col-md-12" style="overflow: auto;width: 100%;height: 380px;">    
+
+          <div class="row">
+            <div class="col-xs-12">
+
+            <table class="table"  id="exportable">  
+              <thead>
+                <tr>
+                  <th nowrap="">
+                    #
+                  </th>
+                  <th nowrap="">TICKET</th>
+                  <th nowrap="">ID_ATENCION</th>
+                  <th nowrap="">FECHA INICIO</th>
+                  <th nowrap="">FECHA TERMINO</th>
+                  <th nowrap="">NUMERO OXT</th>
+                  <th nowrap="">RAZON SOCIAL</th>
+                  <th nowrap="">TIPO LLAMADO</th>  
+                  <th nowrap="">SOLICITUD</th>
+                  <th nowrap="">RESULTADO</th>
+                  <th nowrap="">ACCION</th>
+                  <th nowrap="">HUELLA LASER</th>   
+                  <th nowrap="">PROBLEMA_REPORTADO</th>	
+                  <th nowrap="">APLICA_LLAMADA_CESOP</th>
+                  <th nowrap="">MOTIVO_LLAMADO</th>
+                  <th nowrap="">SE PUDO RESOLVER</th>	
+                  <th nowrap="">REQUIERE_ESCALAMIENTO</th>
+                  <th nowrap="">A_QUIEN_ESCALO</th>
+                  <th nowrap="">TICKET ITSM (INCxxxxx)</th>
+                  <th nowrap="">NUMERO DE RECLAMO (CSXXXX)</th>   
+                  <th nowrap="">RESPONSABLE</th>
+                  <th nowrap="">USUARIO</th>
+                  <th nowrap="">COD SERVICIO</th> 
+                  <th nowrap="">AGENTE</th>
+                  <th nowrap="">NECESITA FOCAL</th>   
+                  <th nowrap="">FOCAL</th> 
+                  <th nowrap="">TECNICO_EVALUACION</th> 
+                  <th nowrap="">EVALUACION_POSITIVA</th> 
+                  <th nowrap="">EVALUACION_NEGATIVA</th> 
+                  <th nowrap="">OBSERVACION</th>    
+                </tr>
+              </thead>
+              <tbody>   
+              <tr ng-repeat="mail in ListaGeneral">    
+                <td nowrap=""> 
+                  <a href="" target="_blank" data-toggle="tooltip" title="Ver Detalle" ng-click="setSelected();" ng-dblclick="openSelected(mail.ID_ATENCION);" style="cursor: pointer;"> 
+                    <i class="fa fa-folder"></i>
+                  </a>
+                  <a href="" target="_blank" ng-show="mail.TIENE_MENSAJE>0" data-toggle="tooltip" title="Ver Conversación" ng-click="openModalBot(1, mail.TICKET_CHAT_BOT, mail.TICKET);" style="cursor: pointer;"> 
+                    <i class="fa fa-comments"></i>  
+                  </a>                  
+                </td>  
+
+                <td nowrap="">{{mail.TICKET}}</td>  
+                <td nowrap="">{{mail.ID_ATENCION}}</td>
+                <td nowrap="">{{mail.FECHA_INICIO}}</td> 
+                <td nowrap="">{{mail.FECHA_CREACION}}</td>  
+                <td nowrap="" style="mso-number-format:\@;">{{mail.NUMERO_OXT}}</td>      
+                <td nowrap="">{{mail.RAZON_SOCIAL}}</td>
+                <td nowrap="">{{mail.TIPO_LLAMADO}}</td>
+                <td nowrap="">{{mail.SOLICITUD}}</td>
+                <td nowrap="">{{mail.RESULTADO}}</td>
+                <td nowrap="">{{mail.ACCION}}</td>
+                <td nowrap="">{{mail.HUELLA}}</td> 
+                <td nowrap="">{{mail.PROBLEMA_REPORTADO}}</td> 
+                <td nowrap="">{{mail.APLICA_LLAMADA_CESOP}}</td> 
+                <td nowrap="">{{mail.MOTIVO_LLAMADO}}</td> 
+                <td nowrap="">{{mail.RESOLVIO_AUTOMATICAMENTE}}</td> 
+                <td nowrap="">{{mail.REQUIERE_ESCALAMIENTO}}</td> 
+                <td nowrap="">{{mail.A_QUIEN_ESCALO}}</td> 
+                <td nowrap="">{{mail.TICKET_ESCALAMIENTO}}</td> 
+                <td nowrap="">{{mail.REQUERIMIENTO_ONNET}}</td>   
+                <td nowrap="">{{mail.RESPONSABLE}}</td>  
+                <td nowrap="">{{mail.USUARIO}}</td>
+                <td nowrap="" style="mso-number-format:\@;">{{mail.COD_SERVICIO}}</td>  
+                <td nowrap="">{{mail.AGENTE}}</td>
+                <td nowrap="">{{mail.NECESITA_FOCAL}}</td>
+                <td nowrap="">{{mail.FOCAL}}</td> 
+                <td nowrap="">{{mail.TECNICO_EVALUACION}}</td> 
+                <td nowrap="">{{mail.EVALUACION_POSITIVA}}</td> 
+                <td nowrap="">{{mail.EVALUACION_NEGATIVA}}</td>   
+                <td nowrap="">{{mail.OBSERVACION}}</td>  
+             </tr>
+           </tbody>
+            </table>  
+
+          </div>
+            
+          </div>
+
+
+        </div>
+
+      </div>
+  
+  
+  
+    </uib-tab>
+    <uib-tab index="$index + 1" ng-repeat="tab in tabs " ng-click="BuscarTicketsDetalle(tab.id);" >
+      <uib-tab-heading>  
+      {{tab.title}}&nbsp;<a ng-click="closeSelected($index)"  href=''><i class="fa fa-remove"></i></a>  
+      </uib-tab-heading>
+      <!-- RESUMEN DETALLE MAILBOX -->
+      <div ng-include="includePath+'parts/detalles_buscaticket.tpl.html'"></div>
+        <!-- uib-tab-content -->
+    </uib-tab>
+
+  </uib-tabset>
+
+  
+     
+     <!-- /.col -->
+  
+  </section>
+           
+  
+  
+  </body>
+  

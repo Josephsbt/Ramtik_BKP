@@ -1,0 +1,282 @@
+<section class="content">
+
+  <div class="row">
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-xs-5">
+              <div class="box box-success">
+                <div class="box-header">
+                  <span class="pull-left" style=" font-weight: bold;"><i class="fa fa-file-text"></i> Evaluador de encuestas</span>
+                </div>
+                <span class="text-success" >
+                <div class="box-body" style="padding-top: 15px; text-align: left;">
+                    <div class="col-xs-4">
+                      <div class="input-group date">
+                          <p class="input-group">
+    
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                          <input type="text" class="form-control" style="width:100px" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" ng-change="changeHandler()" datepicker-options="dateOptions" clear-text="Borrar" current-text="Hoy"  close-text="Cerrar" alt-input-formats="altInputFormats" />
+    
+                          </p>
+                      </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <select class="form-control" style="width:160px;cursor:pointer;" ng-model="IdPregunta" >
+                            <option value="{{data.ID_PREGUNTA}}" ng-selected="IdPregunta" ng-repeat="data in PreguntasEvaluacion">{{data.PREGUNTA}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3">
+                      <button type="submit" class="btn btn-primary" ng-click="Actualiza();" ng-disabled="userForm.$invalid">Procesar</button>
+                    </div>
+                </div>
+                </span>
+                
+              
+              </div>
+              <div class="box box-success">
+    
+                        <div class="small-box bg-aqua">
+                          <div class="inner" style="height:80px;">
+                            <h3>OTTs: {{satis['Q_TOTAL']}}</h3>
+                          </div>
+                          <div class="icon">
+                            <i class="ion ion-android-attach"></i>
+                          </div>
+                          <!--a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a-->
+                          <a href="#" class="small-box-footer">&nbsp;</a>
+                        </div>
+                  </div>
+                
+            </div>
+    
+    
+    
+    
+            <div class="col-xs-7">
+                <div class="box box-success">
+                  <div class="box-header">
+                    <span class="pull-left" style=" font-weight: bold;"><i class="fa  fa-pie-chart"></i> Resultado Evaluación</span>
+                  </div>
+                  <p><span class="text-success" >
+                  <div class="box-body" style="padding-top: 15px; text-align: left;">
+                      <div class="col-xs-2">
+      
+                              <!--p class="pull-left badge bg-blue" ><b>Q Enc: 50</b></p-->
+                              <p class="pull-left badge bg-blue" ><b>Malas: {{satis['Q_ATT']}}</b></p>
+      
+                            <p ><span class="text-success" ><b></b></span><b>ATT</b></p>
+                            <ui-knob ng-show="(satis['POR_ATT']>=94)" value="satis['POR_ATT']" options="optionsVerde"></ui-knob>
+                            <ui-knob ng-hide="(satis['POR_ATT']>=94)" value="satis['POR_ATT']" options="optionsRojo"></ui-knob>
+                          
+                          
+                      </div>
+                      <div class="col-xs-2" >
+      
+                              <!--p class="pull-left badge bg-blue" ><b>Q Enc: 50</b></p-->
+                              <p class="pull-left badge bg-blue" ><b>Malas: {{satis['Q_ATT_PROVISION']}}</b></p>
+      
+                            <p ><span class="text-success" ><b></b></span><b>Provisión</b></p>
+                            <ui-knob ng-show="(satis['POR_ATT_PROVISION']>=94)" value="satis['POR_ATT_PROVISION']" options="optionsVerde"></ui-knob>
+                            <ui-knob ng-hide="(satis['POR_ATT_PROVISION']>=94)" value="satis['POR_ATT_PROVISION']" options="optionsRojo"></ui-knob>
+      
+      
+                       </div>
+                       <div class="col-xs-2" >
+      
+                          <!--p class="pull-left badge bg-blue" ><b>Q Enc: 50</b></p-->
+                          <p class="pull-left badge bg-blue" ><b>Malas: {{satis['Q_CLIENTE']}}</b></p>
+      
+                        <p ><span class="text-success" ><b></b></span><b>Cliente</b></p>
+                        <ui-knob ng-show="(satis['POR_CLIENTE']>=94)" value="satis['POR_CLIENTE']" options="optionsVerde"></ui-knob>
+                        <ui-knob ng-hide="(satis['POR_CLIENTE']>=94)" value="satis['POR_CLIENTE']" options="optionsRojo"></ui-knob>
+      
+                      </div>
+                      <div class="col-xs-2" >
+      
+                        <!--p class="pull-left badge bg-blue" ><b>Q Enc: 50</b></p-->
+                        <p class="pull-left badge bg-blue" ><b>Malas: {{satis['Q_FUNCIONAMIENTO']}}</b></p>
+      
+                        <p ><span class="text-success" ><b></b></span><b>Funcionamiento</b></p>
+                        <ui-knob ng-show="(satis['POR_FUNCIONAMIENTO']>=94)" value="satis['POR_FUNCIONAMIENTO']" options="optionsVerde"></ui-knob>
+                        <ui-knob ng-hide="(satis['POR_FUNCIONAMIENTO']>=94)" value="satis['POR_FUNCIONAMIENTO']" options="optionsRojo"></ui-knob>
+                        
+                      </div>
+                      <div class="col-xs-2" >
+      
+                          <!--p class="pull-left badge bg-blue" ><b>Q Enc: 50</b></p-->
+                          <p class="pull-left badge bg-blue" ><b>Malas: {{satis['Q_COMERCIAL']}}</b></p>
+      
+                        <p ><span class="text-success" ><b></b></span><b>Comercial</b></p>
+                        <ui-knob ng-show="(satis['POR_COMERCIAL']>=94)" value="satis['POR_COMERCIAL']" options="optionsVerde"></ui-knob>
+                        <ui-knob ng-hide="(satis['POR_COMERCIAL']>=94)" value="satis['POR_COMERCIAL']" options="optionsRojo"></ui-knob>
+                        <br>
+                          
+                      </div>
+                      <div class="col-xs-2" >
+      
+                          <!--p class="pull-left badge bg-blue" ><b>Q Enc: 50</b></p-->
+                          <p class="pull-left badge bg-blue" ><b>Malas: {{satis['Q_COMERCIAL_PROVISION_ATT']}}</b></p>
+      
+                        <p ><span class="text-success" ><b></b></span><b>Redes</b></p>
+                        <ui-knob ng-show="(satis['POR_COMERCIAL_PROVISION_ATT']>=94)" value="satis['POR_COMERCIAL_PROVISION_ATT']" options="optionsVerde"></ui-knob>
+                        <ui-knob ng-hide="(satis['POR_COMERCIAL_PROVISION_ATT']>=94)" value="satis['POR_COMERCIAL_PROVISION_ATT']" options="optionsRojo"></ui-knob>
+                        <br>
+                          
+                      </div>
+      
+      
+                  </div>
+                  </span>
+                  </p>
+                  <div class="overlay" ng-show="satisLoad">
+                    <i class="fa fa-refresh fa-spin"></i>
+                  </div>
+                </div>
+              </div>        
+    
+    
+    
+          </div>      
+
+      <div class="box box-warning direct-chat">
+          <div class="box-body">
+            <!-- Conversations are loaded here -->
+            <div class="direct-chat-messages"  style="height: 320px;">
+
+
+
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                      <div class="box box-success">
+                        <div class="box-body" ng-show="Evaluacion">
+            
+            
+            
+                            <div class="box">
+                                <!--div class="box-header">
+                                  <h3 class="box-title">Responsive Hover Table</h3>
+                    
+                                  <div class="box-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                      <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                    
+                                      <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div-->
+                                <!-- /.box-header -->
+                                <div class="box-body table-responsive-sm">
+                                  <table class="table table-hover table-sm">
+                                  <thead>
+                                    <tr>
+                                      <th>Fecha</th>
+                                      <th>Número OTX</th>
+                                      <th>Rut Cliente</th>
+                                      <th>Nota</th>
+                                      <th style="text-align:center;"><i class="fa fa-calendar"></i><br/>Plazo</th>
+                                      <th style="text-align:center;"><i class="fa fa-wrench"></i><br/>Cambio FEI</th>
+                                      <th style="text-align:center;"><i class="fa fa-share"></i><br/>Derivaciones</th>
+                                      <th style="text-align:center;"><i class="fa fa-wrench"></i><br/>ATT</th>
+                                      <th style="text-align:center;"><i class="fa fa-user-circle"></i><br/>CCI</th>
+                                      <th style="text-align:center;"><i class="fa fa-file"></i><br/>Boleta</th>
+                                      <th>Cliente reclama?</th>
+                                      <th>Causa</th>
+                                      <th></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr ng-repeat="data in Evaluacion" nowrap="">
+                                      <td nowrap="">{{data.Fecha_encuesta}}</td>
+                                      <td nowrap="">{{data.NUMERO_OXT}}</td>
+                                      <td nowrap="">{{data.RUT_CLIENTE}}</td>
+                                      <td nowrap="">{{data.NOTA}}</td>
+            
+                                      <td nowrap="" style="text-align:center;"><span class="{{data.PLAZO == 0 ? 'label label-success':'label label-danger'}}" data-toggle="tooltip" data-placement="top" title="{{data.GLOSA_PLAZO}}"><i class="{{data.PLAZO == 0 ? 'fa fa-check':'fa fa-times'}}"></i></span></td>
+            
+                                      <td nowrap="" style="text-align:center;"><span class="{{data.CAMBIO_FEI == 0 ? 'label label-success':'label label-danger'}}" style="cursor:pointer;" ng-click="data.CAMBIO_FEI == 0 ? '':openModalFei(1, data)"><i class="{{data.CAMBIO_FEI == 0 ? 'fa fa-check':'fa fa-times'}}"></i></span></td>
+            
+                                      <td nowrap="" style="text-align:center;"><span class="{{data.DERIVACIONES == 0 ? 'label label-success':'label label-danger'}}" data-toggle="tooltip" data-placement="top" title="{{data.GLOSA_DERIVACIONES}}"><i class="{{data.DERIVACIONES == 0 ? 'fa fa-check':'fa fa-times'}}"></i></span></td>
+            
+                                      <td nowrap="" style="text-align:center;"><span class="{{data.ATT == 0 ? 'label label-success':'label label-danger'}}"><i class="{{data.ATT == 0 ? 'fa fa-check':'fa fa-times'}}"></i></span></td>
+            
+                                      <td nowrap="" style="text-align:center;"><span class="{{data.CCI == 0 ? 'label label-success':'label label-danger'}}" data-toggle="tooltip" data-placement="top" title="{{data.GLOSA_CCI  | limitTo:20}}..." style="cursor:pointer;" ng-click="openModalObservacion(1, data)"><i class="{{data.CCI == 0 ? 'fa fa-check':'fa fa-times'}}"></i></span></td>
+            
+                                      <td nowrap="" style="text-align:center;"><span class="{{data.BOLETA == 0 ? 'label label-success':'label label-danger'}}"><i class="{{data.BOLETA == 0 ? 'fa fa-check':'fa fa-times'}}"></i></span></td>
+            
+                                      <td nowrap="nowrap">
+            
+                                          <i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="top" title="Detalle Reclamo" style="cursor:pointer;" ng-click="openModalReclamo(1, data)"></i>
+                                          <select ng-model="reclamo[$index]" ng-init="reclamo[$index] = { RECLAMO: data.CLIENTE_RECLAMA }" ng-options="dataReclamos.RECLAMO for dataReclamos in Reclamos track by dataReclamos.RECLAMO" ng-change="ActualizaCausa(reclamo[$index].RECLAMO, $index)" style="width:140px;height:20px;cursor:pointer;" data-toggle="tooltip" data-placement="top" title="{{data.CLIENTE_RECLAMA}}">
+                                          </select>
+            
+                                          <!--select style="width:140px;height:20px;cursor:pointer;" ng-model="reclamo[$index]" ng-change="ActualizaCausa(reclamo[$index], $index)">
+                                              <option value="{{data.CLIENTE_RECLAMA}}" ng-selected="data.CLIENTE_RECLAMA" selected="selected" >{{data.CLIENTE_RECLAMA}}</option>
+                                              <option value="{{dataReclamos.RECLAMO}}" style="cursor:pointer;" ng-selected="$first" ng-repeat="dataReclamos in Reclamos" ng-init="data.CLIENTE_RECLAMA">{{dataReclamos.RECLAMO}}</option>
+                                          </select-->
+            
+                                      </td>
+                                      <td nowrap="">
+            
+                                          <select style="width:140px;height:20px;cursor:pointer;" ng-model="causa[$index]" data-toggle="tooltip" data-placement="top" title="{{data.CAUSA}}">
+                                              <option ng-show="!data.CAUSA" value="{{data.CAUSA}}" ng-selected="data.CAUSA" selected="selected" >{{data.CAUSA}}</option>
+                                              <option value="{{dataCausas.CAUSA}}" style="cursor:pointer;" ng-repeat="dataCausas in Causas[$index]">{{dataCausas.CAUSA}}</option>
+                                          </select>
+            
+                                       </td>
+                                       <td>
+            
+                                          <a class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="top" title="Guardar Causa..." style="cursor:pointer;" ng-click="Guardar(Evaluacion[$index],reclamo[$index].RECLAMO,causa[$index]);">
+                                              <i class="fa fa-save"></i> Guardar
+                                          </a>                              
+            
+                                       </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                </div>
+                                <!-- /.box-body -->
+                              </div>
+            
+            
+            
+                        </div>
+                        <div class="overlay" ng-show="satisLoad">
+                          <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
+            
+
+
+
+
+            </div>
+            <!--/.direct-chat-messages-->
+
+          </div>
+          <!-- /.box-body -->
+
+        </div>      
+
+
+
+
+
+          </div>	  
+
+
+    </div>
+
+  </div>
+
+
+</section>

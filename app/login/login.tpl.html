@@ -1,0 +1,50 @@
+<!-- BOOT / LOADER: aparece y desaparece -->
+<div class="cyber-boot" ng-if="true">
+  <div class="cyber-boot__core cyber-boot__core--logo">
+    <img ng-src="../src/assets/entel-logo-official.png" alt="Entel" class="cyber-logo-entel cyber-logo-entel--boot"/>
+  </div>
+  <div class="cyber-boot__text">INICIANDO SISTEMA</div>
+  <div class="cyber-boot__bar"><i></i></div>
+  <div class="cyber-boot__pct">CARGANDO MODULOS / BKP-CESOP</div>
+</div>
+
+<!-- LOGIN -->
+<div class="login-box">
+  <div class="login-box-body">
+    <div class="login-brand">
+      <img ng-src="../src/assets/entel-logo-official.png" alt="Entel" class="login-brand__entel"/>
+    </div>
+    <h4>Ingreso <span> BKP -CESOP-</span></h4>
+    <p class="login-box-msg"><span ng-if="isError" style="color:#B85450">{{err_msg}}</span></p>
+    <form novalidate>
+      <label for="rut">RUT:</label>
+      <div class="form-group form-entel has-feedback {{isError?'has-error': ''}}">
+        <div class="row">
+          <div class="col-xs-12">
+            <input type="text" ng-model="user.run" class="form-control form-control-entel" placeholder="RUT" ng-blur="onBlurRun()"
+              onfocus="this.closest('.login-box-body').classList.add('is-glow')"
+              onblur="this.closest('.login-box-body').classList.remove('is-glow')">
+          </div>
+        </div>
+      </div>
+      <label for="rut">CLAVE:</label>
+      <div class="form-group form-entel has-feedback {{isError?'has-error': ''}}">
+        <input type="password" ng-model="user.password" class="form-control form-control-entel" placeholder="Password"
+          onfocus="this.closest('.login-box-body').classList.add('is-glow')"
+          onblur="this.closest('.login-box-body').classList.remove('is-glow')">
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          <button ng-click="login(user)" class="btn btn-primary btn-block btn-flat {{isCargando?'whirl whirl-min duo':''}}" ng-disabled="isCargando"
+            onmouseenter="this.closest('.login-box-body').classList.add('is-glow')"
+            onmouseleave="this.closest('.login-box-body').classList.remove('is-glow')">Ingresar</button>
+        </div>
+      </div>
+    </form>
+    <div class="login-ramtik">
+      <a href="https://ramtik.com/" target="_blank">
+        <img ng-src="../src/assets/logo-ramtik.svg" alt="Ramtik Latam" class="login-ramtik__logo"/>
+      </a>
+    </div>
+  </div>
+</div>

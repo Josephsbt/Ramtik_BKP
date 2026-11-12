@@ -1,0 +1,218 @@
+<style>
+  thead tr th { 
+              position: sticky;
+              top: 0;
+              z-index: 10;
+              background-color: #0A7E96;
+              color: #E4F6FF;
+          }
+      
+          .table-responsive { 
+              height:200px;
+              overflow:scroll;
+          }    
+    div.scroll {
+          margin: 0px, 0px;
+          padding: 2px;
+          background-color: #ffff;  
+          width: 100%;
+          height: 330px;   
+          overflow-x: auto;
+          overflow-y: auto; 
+          white-space: auto;
+      }
+  </style>
+  
+
+
+<body style="height: 100%; background-color: #E4F6FF;">   
+  <section class="content-header">
+      <a class="btn btn-block btn-social bg-blue">
+          <i class="fa fa-phone"></i> Reporte Atenciones 
+     
+        
+      </a>
+  
+      <div class="row">  
+              <!--*******************************CONSULTA FECHA*******************************-->
+              <div class="col-xs-12">
+               
+               
+                <div class="box box-success groove">
+                  <span class="text-success" >
+         
+                  <div class="box-body" style="padding-top: 5px; text-align: left;">
+                    <div class="row">
+         
+                      <div class="col-xs-2">
+                        <div class="input-group date">  
+                          <span class="pull-left" style=" font-weight: bold;"> Fecha desde&nbsp;&nbsp;</span>
+                            <p class="input-group">
+                            <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                            <input type="text" class="form-control" style="width:100px" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" ng-change="changeHandler()" datepicker-options="dateOptions" clear-text="Borrar" current-text="Hoy"  close-text="Cerrar" alt-input-formats="altInputFormats" />
+         
+                            </p>
+                        </div>
+                      </div>
+                      <div class="col-xs-2">
+                        <div class="input-group date">
+                          <span class="pull-left" style=" font-weight: bold;"> Fecha hasta&nbsp;&nbsp;</span>
+                          <p class="input-group">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                          <input type="text" class="form-control" style="width:100px" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup2.opened" min-date="minDate" ng-change="changeHandler()" datepicker-options="dateOptions" clear-text="Borrar" current-text="Hoy"  close-text="Cerrar" alt-input-formats="altInputFormats" />
+         
+                          </p>
+                        </div>
+         
+                      </div>
+  
+                      <!--div class="col-xs-2">
+         
+                        <div class="input-group date">
+                        <span class="pull-left" style=" font-weight: bold;">Tipo Canal</span>   
+                        <p class="input-group">
+                        <select class="form-control" id="TipoCanal" ng-model="TipoCanal" style="width: 180px;" ng-change="obtieneCanalesRechazos(TipoCanal);"> 
+                          <option ng-repeat="tipocanal in tipocanalesRechazos" value="{{tipocanal.TIPO_CANAL}}">{{tipocanal.TIPO_CANAL}}</option>  
+                        </select>
+                      </p>
+                      </div>
+                      </!--div>
+                      
+                      <div-- class="col-xs-2">
+         
+                        <div class="input-group date">
+                        <span class="pull-left" style=" font-weight: bold;">Canal</span>  
+                        <p class="input-group">
+                        <select class="form-control" id="Canal" ng-model="Canal" style="width: 160px;">
+                          <option ng-repeat="canal in canalesRechazos" value="{{canal.CANAL}}">{{canal.CANAL}}</option>
+                        </select>
+                      </p>
+                      </div>
+                      </div-->
+                      <!--div class="col-xs-2">
+         
+                        <div class="input-group date">
+                        <span class="pull-left" style=" font-weight: bold;">OTT</span>   
+                        <br/>
+                        <p class="input-group">
+                          <input type="number" class="form-control" style="width:150px" id="OTT" name="OTT" ng-model="OTT" />  
+                        </p>
+                      </div>
+                      </!--div-->       
+  
+                      <div class="col-xs-1"> 
+         
+                          <!--div class="input-group date">
+                          <span class="pull-left" style=" font-weight: bold;">Comuna</span>   
+                          <p class="input-group">
+                          <select class="form-control" id="Comuna" ng-model="Comuna" style="width: 160px;">
+                            <option ng-repeat="comuna in comunasRechazos" value="{{comuna.COMUNA}}">{{comuna.COMUNA}}</option>  
+                          </select>
+                          </p>
+                          </div-->
+
+                      </div>       
+                      <div class="col-xs-7 text-left">   
+                       <br/>
+                       <button type="submit" class="btn btn-primary" ng-click="BuscarAtencionesAgente();" ng-disabled="userForm.$invalid">Procesar</button>  
+                       <button id="exportButton" data-toggle="tooltip" data-placement="top" title="Exportar a Excel!" class="btn btn-md btn-success clearfix pull-right" ng-click="ExportToExcel1('exportable')"><span class="fa fa-file-excel-o"></span></button>             
+                        <!--div class="input-group date">  
+                        <span class="pull-left" style=" font-weight: bold;"> Tipo Orden&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                        <p class="input-group">
+                        <select class="form-control" ng-model="TipoOrden" ng-change="CambiaTipo(Tipo);" style="width: 160px;">
+                          <option value="1">TODO</option>  
+                          <option value="2">INSTALACIÓN</option>            
+                          <option value="3">POSTVENTAS</option>            
+                        </select>
+                      </p>
+                      </div-->
+                      </div>
+         
+         
+         
+                    </div>
+         
+                  </div>
+         
+                  </span>
+                </div>
+                  
+               </div>    
+      </div>
+  
+      <div class="row">   
+    
+        <div class="col-md-12" style="overflow: auto;width: 100%;height: 400px;">   
+
+          <div class="row">
+            <div class="col-xs-12">
+
+            <table class="table"  id="exportable">  
+              <thead>
+                <tr>
+                  <th nowrap="">
+                    #
+                  </th>
+                  <th nowrap="">ID_ATENCION</th>
+                  <th nowrap="">FECHA_ATENCION</th>
+                  <th nowrap="">SERVICIO</th>
+                  <th nowrap="">TIPO_LLAMADO</th>
+                  <th nowrap="">SOLICITUD</th>
+                  <th nowrap="">RESULTADO</th>
+                  <th nowrap="">ACCION</th>
+                  <th nowrap="">RESPONSABLE</th>
+                  <th nowrap="">TICKET</th>
+                  <th nowrap="">OBSERVACION</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="datosVueltas in ListaGeneral"> 
+                <td>{{$index + 1}}</td>
+                <td nowrap="">
+                  
+                  {{datosVueltas.ID_ATENCION}}&nbsp;&nbsp;
+  
+                  <!--span data-toggle="tooltip" title="Seleccionar orden" style="font-size: 15px; cursor: pointer;" ng-click="seleccionaLlamadaProactiva($index+1, datosVueltas.NUMERO_OXT, datosVueltas.ESTADO_CCI);">
+                    <i style="color: {{Posicion == $index+1 ? 'blue':'orange'}} ;" class="fa fa-check-square-o"></i>
+                  </!--span-->   
+  
+                </td>
+                <td nowrap="">{{datosVueltas.FECHA_ATENCION}}</td>
+                <td nowrap="">{{datosVueltas.SERVICIO}}</td>
+                <td nowrap="">{{datosVueltas.TIPO_LLAMADO}}</td>
+                <td nowrap="">{{datosVueltas.SOLICITUD}}</td>
+                <td nowrap="">{{datosVueltas.RESULTADO}}</td>
+                <td nowrap="">{{datosVueltas.ACCION}}</td>
+                <td nowrap="">{{datosVueltas.RESPONSABLE}}</td>
+                <td nowrap="">{{datosVueltas.TICKET}}</td>
+                <td nowrap="">{{datosVueltas.OBSERVACION}}</td> 
+              </tr>
+           </tbody>
+            </table>  
+
+          </div>
+            
+          </div>
+
+
+        </div>
+
+      </div>
+  
+  
+  
+  
+  
+     
+     <!-- /.col -->
+  
+  </section>
+           
+  
+  
+  </body>
+  

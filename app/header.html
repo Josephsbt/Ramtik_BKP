@@ -1,0 +1,190 @@
+<!-- Main Header -->
+<div style="position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 50px;
+    height: 50px;" class="{{gloading}}">
+
+  </div>
+<header class="main-header">
+
+  <!-- Logo Ramtik Latam (más visible) -->
+  <a href="#" class="logo">
+    <span class="logo-mini">
+      <img ng-src="../src/assets/logo-ramtik.svg" class="cyber-logo-header" alt="Ramtik Latam"/>
+    </span>
+    <span class="logo-lg">
+      <img ng-src="../src/assets/logo-ramtik.svg" class="cyber-logo-header" alt="Ramtik Latam"/>
+      <span class="cyber-wordmark">BKP <b>CESOP</b></span>
+    </span>
+  </a>
+
+  <!-- Header Navbar -->
+  <nav class="navbar navbar-static-top" role="navigation">
+    <!-- Sidebar toggle button-->
+    <a href="" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <!-- <ul class="nav navbar-nav">
+      <li class="dropdown user user-menu">
+      <!-- <i class="fa fa-dashboard"></i> -->
+      <!-- <a href="" ui-sref="home.dashboard"><span> Alarmas CESOP</span></a></li> -->
+      <!-- <li><a href="" ui-sref="home.3play"><span>Alarmas 3Play</span></a></li> -->
+      <!-- ui-sref="home.3play" -->
+    <!-- </ul> -->
+    <!-- <ul class="nav navbar-nav">
+      <li>
+        <a href="" ui-sref="home.dashboard"><span> Alarmas CESOP</span></a>
+      </li>
+    </ul> -->
+
+    <!-- Navbar Right Menu -->
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+          <li class="dropdown notifications-menu" style="padding-top: 10px;">
+              <div class="alert alert-warning" style="width: 70px; height: 30px; padding: 5px; margin: 0; ">
+                {{time | date:'hh:mm:ss'}}
+              </div>
+
+           </li>
+          <li class="dropdown notifications-menu" style="padding-top: 5px;padding-right:10px">
+      <!--input
+          bs-switch
+          ng-model="isSelected"
+          type="checkbox"
+          -->
+
+          </li>
+          <li class="dropdown open"> 
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">              
+            <div class="alert {{estadoLogConexion=='FUERA DE LINEA' ? 'alert-danger':estadoLogConexion=='BREAK' ? 'alert-info':estadoLogConexion=='EN COLACION' ? 'alert-danger':estadoLogConexion=='EN LINEA' ? 'alert-success':estadoLogConexion=='INICIO JORNADA' ? 'alert-warning':estadoLogConexion=='TERMINO JORNADA' ? 'alert-hola':'alert-danger' }}" style="width: 190px; height: 25px; padding: 3px; margin: 0; ">
+              <!--{{counter}} ---> &nbsp;&nbsp;<i class="fa {{estadoLogConexion=='FUERA DE LINEA' ? 'fa-times-circle':estadoLogConexion=='BREAK' ? 'fa-coffee':estadoLogConexion=='EN COLACION' ? 'fa-spoon':estadoLogConexion=='EN LINEA' ? 'fa-user':estadoLogConexion=='INICIO JORNADA' ? 'fa-edit':estadoLogConexion=='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}"></i>&nbsp;&nbsp;{{estadoLogConexion}} 
+              <span class="caret"></span>
+            </div>
+             </a>
+            <ul class="dropdown-menu" role="menu"> 
+              <li><a class="fa fa-coffee" style="color: #379DCE;" href="#" ng-click="grabalogConexion('BREAK')">&nbsp;&nbsp;<font face="nunito,arial,verdana">BREAK</font></a></li>
+              <li><a class="fa fa-spoon" style="color: #DD4B39;" href="#" ng-click="grabalogConexion('EN COLACION')">&nbsp;&nbsp;&nbsp;&nbsp;<font face="nunito,arial,verdana">EN COLACION</font></a></li>
+              <li><a class="fa fa-user" style="color: #00A65A;" href="#" ng-click="grabalogConexion('EN LINEA')">&nbsp;&nbsp;&nbsp;&nbsp;<font face="nunito,arial,verdana">EN LINEA</font></a></li>
+              <li><a class="fa fa-edit" style="color: #F39C12;" href="#" ng-click="grabalogConexion('INICIO JORNADA')">&nbsp;&nbsp;<font face="nunito,arial,verdana">INICIO JORNADA</font></a></li>
+              <li><a class="fa fa-hand-paper-o" style="color: #0154A0;" href="#" ng-click="grabalogConexion('TERMINO JORNADA')">&nbsp;&nbsp;<font face="nunito,arial,verdana">TERMINO JORNADA</font></a></li> 
+            </ul>
+          </li>
+          <!--li class="dropdown messages-menu">
+              <a href="#" class="dropdown-toggle" ng-click="openModalBitacora(1,'');" data-toggle="dropdown" data-toggle="tooltip" title="Bitácora">
+                <i class="fa fa-align-left"></i>
+                <span class="label label-success">4</span>
+              </a>
+          </!--li-->
+                  
+          <li class="dropdown messages-menu">
+            
+            <a href="{{imagePathDoc}}ManualBKP.docx" target="_blank" data-toggle="tooltip" title="Manual">
+              <i class="fa fa-folder"></i>
+              <!--span class="label label-success">4</!--span-->
+            </a>
+            <!--ul class="dropdown-menu">
+              <li class="header">4 veces compartido</li>
+              <li>
+                <ul-- class="menu">
+                  <li>
+                    <a href="#">
+                      <div class="pull-left">
+                        <img ng-src="{{imagePath}}{{currentUser.user_id}}.JPG" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        {{currentUser.user_name}}
+                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                      </h4>
+                      <p>Compartio cci a contacto@ram.cl</p>
+                    </a>
+                  </li>
+                </ul-->
+              </li>
+              <!-- <li class="footer"><a href="#">See All Messages</a></li>
+            </!--ul-->
+          </li>
+<!-- 
+          <li class="dropdown notifications-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                <span class="label label-warning">1</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">Tienes 1 notificación</li>
+                <li>
+                  <ul class="menu">
+                    <li>
+                      <a href="">
+                        <i class="fa fa-users text-aqua"></i> 5 nuevos miembros ingresaron hoy
+                      </a>
+                    </li>
+
+                  </ul>
+                </li> 
+              </ul>
+            </li>
+           -->
+
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img ng-src="{{imagePath}}110000.jpg" class="user-image" alt="User Image">
+              <!--img ng-src="{{imagePath}}{{currentUser.user_id}}.JPG" class="user-image" alt="User Image"-->
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs">{{currentUser.user_name}}</span>
+            </a>
+            <ul class="dropdown-menu" >
+              <!-- The user image in the menu -->
+              <li class="user-header" style="height:auto;background:transparent;">
+                  <img ng-src="{{imagePath}}110000.jpg" class="img-circle" alt="User Image">
+                <!--img ng-src="{{imagePath}}{{currentUser.user_id}}.JPG" class="img-circle" alt="User Image"-->
+                <p>
+                  {{currentUser.user_name}}
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="col-xs-6 text-center">
+                  <small><a href="#">Cambiar Contraseña</a></small>
+                </div>
+                <div class="col-xs-6 text-center">
+                  <small><a href="#">Modificar mis datos</a></small>
+                </div>
+                <!-- <div class="col-xs-4 text-center">
+                  <a href="#">Friends</a>
+                </div> -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer" style="background: transparent;">
+                <!-- <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div> -->
+                <div class="pull-right">
+                  <a href="#" ng-click="goOut()" style=" color: #fff;font-family: dinnext light,dinnext regular,Trebuchet MS,Arial,Helvetica;
+      font-style: italic;
+      font-size: 1.200em;">Salir del <span style="color: #00E5FF">_Sistema</span></a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <!-- <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li> -->
+      </ul>
+    </div>
+    <!--div class="navbar-custom-menu hidden-xs">
+      <ul class="nav navbar-nav">
+        <li class="user user-menu">
+          <a href="" ng-click="modalUsabilidad();">
+            <span>Usabilidad</span>
+          </a>
+        </li>
+      </ul>
+    </div-->  
+
+  </nav>
+</header>

@@ -1,0 +1,115 @@
+<style>
+  thead tr th { 
+              position: sticky;
+              top: 0;
+              z-index: 10;
+              background-color: #0A7E96;
+              color: #E4F6FF;
+          }
+      
+          .table-responsive {   
+              height:200px;
+              overflow:scroll;
+          }    
+    div.scroll {
+          margin: 0px, 0px;
+          padding: 2px;
+          background-color: #ffff;  
+          width: 100%;
+          height: 330px;   
+          overflow-x: auto;
+          overflow-y: auto; 
+          white-space: auto;
+      }
+  </style>
+  
+
+
+<body>   
+  <section class="content-header" style="height: 500px; background-color: #E4F6FF;">
+      <a class="btn btn-block btn-social bg-blue">
+          <i class="fa fa-warning"></i> Editar Warning 
+      </a>
+  
+      <div class="row">  
+              <!--*******************************CONSULTA FECHA*******************************-->
+              <div class="col-xs-12">
+               
+               
+                <div class="box box-success groove">
+                  <span class="text-success" >
+         
+                  <div class="box-body" style="padding-top: 5px; text-align: left;">
+                    <div class="row">
+         
+                      <div class="col-xs-2">
+                        <div class="form-group">  
+                          <span class="pull-left" style=" font-weight: bold;"> Nombre Warning&nbsp;&nbsp;</span> 
+                          <br/>
+                            <p class="input-group">
+                              <input type="text" id="NOMBRE_WARNING" ng-model="NOMBRE_WARNING" class="form-control" maxlength="50" placeholder="Nombre" required>         
+                            </p>
+                        </div>
+                      </div>
+
+                      <div class="col-xs-4"> 
+                        <div class="form-group">  
+                          <span class="pull-left" style=" font-weight: bold;"> Glosa Warning&nbsp;&nbsp;</span>
+                          <br/>
+                            <p class="input-group">
+                              <input type="text" id="GLOSA_WARNING" ng-model="GLOSA_WARNING" style="width: 350px;" class="form-control" maxlength="500" placeholder="Glosa" required>         
+                            </p>
+                        </div>
+                      </div>
+
+                      <div class="col-xs-2">
+                        <div class="input-group date">  
+                          <span class="pull-left" style=" font-weight: bold;"> Fecha Inicio&nbsp;&nbsp;</span>
+                            <p class="input-group">
+                            <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                            <input type="text" class="form-control" style="width:100px" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" ng-change="changeHandler()" datepicker-options="dateOptions" clear-text="Borrar" current-text="Hoy"  close-text="Cerrar" alt-input-formats="altInputFormats" />
+         
+                            </p>
+                        </div>
+                      </div>
+                      <div class="col-xs-2">
+                        <div class="input-group date">
+                          <span class="pull-left" style=" font-weight: bold;"> Fecha Termino&nbsp;&nbsp;</span>
+                          <p class="input-group">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                          <input type="text" class="form-control" style="width:100px" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup2.opened" min-date="minDate" ng-change="changeHandler()" datepicker-options="dateOptions" clear-text="Borrar" current-text="Hoy"  close-text="Cerrar" alt-input-formats="altInputFormats" />
+         
+                          </p>
+                        </div>
+         
+                      </div>
+  
+
+                      <div class="col-xs-2 text-right">   
+                        <br/>
+                        <button type="submit" class="btn btn-primary" ng-click="grabaWarning(NOMBRE_WARNING, GLOSA_WARNING, dt, dt1, ESTADO);" ng-disabled="userForm.$invalid">Actualizar</button>  
+
+                      </div>
+         
+         
+         
+                    </div>
+         
+                  </div>
+         
+                  </span>
+                </div>
+                  
+               </div>    
+      </div>
+  
+  </section>
+           
+  
+  
+  </body>
+  

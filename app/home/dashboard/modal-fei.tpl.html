@@ -1,0 +1,93 @@
+<div class="modal-header modal-header-warning">
+  <div class="row">
+    <div class="col-md-9">
+    <h5 class="modal-title text-center"><i class="glyphicon glyphicon-eye-open"></i> Detalle Cambio FEI: {{data.NUMERO_OXT}}</h5>
+    </div>
+    <!--div class="col-md-3" style="font-size: 18px; text-align: right;">
+        <button id="exportButton" data-toggle="tooltip" data-placement="top" title="Exportar a Excel!" class="btn btn-md btn-success clearfix" ng-click="exportToExcel('#exportable')"><span class="fa fa-file-excel-o"></span><small>   Exportar a Excel</small></button>	
+    </div-->
+
+  </div>    
+</div>
+
+<section class="content">
+  <div class="row"> 
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+        <uib-tabset active="activeTabIndex">
+              <div style="padding: 0 20px 20px 20px;">
+                <div class="box-body no-padding">
+                  <div class="row" ng-show="searchNormalState">
+                    <div class="col-md-12">
+                      <button type="button" name="button" ng-click="cancelBuscarNormal()" class="btn btn-danger col-md-12" style="margin-bottom: 10px">Cancelar Búsqueda Normal</button>
+                    </div>
+                  </div>
+                  <div class="row" ng-show="searchSuperState">
+                      <div class="col-md-12"><br>
+                      </div>
+                    </div>
+
+                  <div class="table-responsive mailbox-messages"  style="height: 280px;" ng-hide="dontshowMailbox" id="exportable">
+                    <table class="table  table-striped table-bordered table-hover ram-hover font-table ">
+                      <thead>
+                        <tr>
+                          <th nowrap><font size="1">Fecha Comprometida</font></th>
+                          <th nowrap><font size="1">Nueva Fecha Comprometida</font></th>
+                          <th nowrap><font size="1">Rango</font></th>
+                          <th nowrap><font size="1">Nuevo Rango</font></th>
+                          <th nowrap><font size="1">Ing. Control</font></th>
+                          <th nowrap><font size="1">Fecha Cambio</font></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <tr ng-repeat="data in dataFei">
+                        <td nowrap class="mailbox-name"><font size="1">{{data.FEC_COMPROMETIDA}}</font></td>
+                        <td nowrap class="mailbox-name"><font size="1">{{data.NEW_FEC_COMPROMETIDA}}</font></td>
+                        <td nowrap class="mailbox-name"><font size="1">{{data.RANGO}}</font></td>
+                        <td nowrap class="mailbox-name"><font size="1">{{data.NEW_RANGO}}</font></td>
+                        <td nowrap class="mailbox-name"><font size="1">{{data.ING_CONTROL}}</font></td>
+                        <td nowrap class="mailbox-name"><font size="1">{{data.FECHA_CAMBIO}}</font></td>
+                      </tr>   
+                      </tbody>
+                    </table>
+                    <!-- /.table -->
+
+                  </div>
+                  <!-- /.mail-box-messages -->
+                  <div class="table-responsive mailbox-messages" ng-show="dontshowMailbox">
+                    <div class="alert" style="text-align:center; color: #484951">
+                      <h3>=( No tenemos información que mostrar</h3>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- /.box-body -->
+              </div>
+            <uib-tab index="$index + 1" ng-repeat="tab in tabs " ng-click="reloadMap()">
+              <uib-tab-heading>
+                {{tab.title}} <a ng-click="closeSelected($index)" href=''><i class="fa fa-remove"></i></a>
+              </uib-tab-heading>
+              <!-- RESUMEN DETALLE MAILBOX -->
+              <div ng-include="includePath+'mailbox/parts/detalles.tpl.html'"></div>
+                <!-- uib-tab-content -->
+            </uib-tab>
+
+          </uib-tabset>   
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.col -->
+
+  </div>
+  <!-- /.row -->
+</section>
+
+<div class="modal-footer noanimate">
+
+    <button class="btn btn-primary btn-xsrefund-btn pull-right" type="button" ng-click="cancel()">CERRAR</button>
+
+</div>
+
