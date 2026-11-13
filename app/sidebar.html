@@ -26,16 +26,16 @@
          Menu Principal
        </li>
        <li ng-click="cambiaMenu('1')"> 
-         <a href="" ui-sref="home.dashboard"> <i class="fa fa-pie-chart {{Menu == '1' ? 'text-green':'text-white'}}"></i><span>{{currentUser.profile==0 ||currentUser.profile==1 ? 'Dashboard':'Inicio'}}</span></a>  
+         <a href="" ui-sref="home.dashboard" class="menu-icon--dashboard"> <i class="fa fa-tachometer"></i><span>{{currentUser.profile==0 ||currentUser.profile==1 ? 'Dashboard':'Inicio'}}</span></a>  
        </li>
        <li ng-click="cambiaMenu('6')" ng-show="currentUser.profile==0 ||currentUser.profile==1"> 
-         <a href="" ui-sref="warning"> <i class="fa fa-warning {{Menu == '6' ? 'text-green':'text-white'}}"></i><span>Warning</span></a>  
+         <a href="" ui-sref="warning" class="menu-icon--warning"> <i class="fa fa-exclamation-triangle"></i><span>Warning</span></a>  
        </li>
        <li ng-click="cambiaMenu('7')">    
-         <a href="" ui-sref="busquedatickets"> <i class="fa fa-search {{Menu == '7' ? 'text-green':'text-white'}}"></i><span>Búsqueda Tickets</span></a>         
+         <a href="" ui-sref="busquedatickets" class="menu-icon--search"> <i class="fa fa-binoculars"></i><span>Búsqueda Tickets</span></a>         
        </li>
        <li>
-         <a href="" ng-click="goOut()" class="sidebar-gameover"><i class="fa fa-power-off"></i><span>GAME OVER</span><small class="sidebar-gameover__sub">Insert Coin to Exit</small></a>
+         <a href="" ng-click="goOut()" class="sidebar-gameover"><i class="fa fa-power-off"></i><span>GAME OVER</span><small class="sidebar-gameover__sub">exit</small></a>
        </li>
     </ul>
 

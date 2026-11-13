@@ -8923,7 +8923,7 @@ $scope.loadDatosDashBoardFront = function(dt, dtt, Servicio){
     if ($rootScope.datosDashboard && $rootScope.datosDashboard.length) {
       var _maxQ = 0;
       $rootScope.datosDashboard.forEach(function (_d) { if ((_d.CANT_ATENCIONES || 0) > _maxQ) _maxQ = _d.CANT_ATENCIONES; });
-      $rootScope.datosDashboard.forEach(function (_d) { _d._pct = _maxQ > 0 ? Math.round((_d.CANT_ATENCIONES || 0) / _maxQ * 100) : 0; _d._nivel = (_d._pct >= 50) ? 'high' : 'low'; });
+      $rootScope.datosDashboard.forEach(function (_d) { _d._pct = _maxQ > 0 ? Math.round((_d.CANT_ATENCIONES || 0) / _maxQ * 100) : 0; if (_d._pct < 35) _d._nivel = 'low'; else if (_d._pct < 75) _d._nivel = 'medium'; else _d._nivel = 'high'; _d._isLeader = (_maxQ > 0 && (_d.CANT_ATENCIONES || 0) === _maxQ); });
     }
     //console.log("Respuesta datos dashboard ::", r)   
   },
@@ -8943,7 +8943,7 @@ $scope.loadDatosDashBoardChatBot = function(dt, dtt, Servicio){
     if ($rootScope.datosDashboard && $rootScope.datosDashboard.length) {
       var _maxQ = 0;
       $rootScope.datosDashboard.forEach(function (_d) { if ((_d.CANT_ATENCIONES || 0) > _maxQ) _maxQ = _d.CANT_ATENCIONES; });
-      $rootScope.datosDashboard.forEach(function (_d) { _d._pct = _maxQ > 0 ? Math.round((_d.CANT_ATENCIONES || 0) / _maxQ * 100) : 0; _d._nivel = (_d._pct >= 50) ? 'high' : 'low'; });
+      $rootScope.datosDashboard.forEach(function (_d) { _d._pct = _maxQ > 0 ? Math.round((_d.CANT_ATENCIONES || 0) / _maxQ * 100) : 0; if (_d._pct < 35) _d._nivel = 'low'; else if (_d._pct < 75) _d._nivel = 'medium'; else _d._nivel = 'high'; _d._isLeader = (_maxQ > 0 && (_d.CANT_ATENCIONES || 0) === _maxQ); });
     }
     //console.log("Respuesta datos dashboard ::", r)   
   },
@@ -8960,7 +8960,7 @@ $scope.loadDatosDashBoard = function(){
     if ($rootScope.datosDashboard && $rootScope.datosDashboard.length) {
       var _maxQ = 0;
       $rootScope.datosDashboard.forEach(function (_d) { if ((_d.CANT_ATENCIONES || 0) > _maxQ) _maxQ = _d.CANT_ATENCIONES; });
-      $rootScope.datosDashboard.forEach(function (_d) { _d._pct = _maxQ > 0 ? Math.round((_d.CANT_ATENCIONES || 0) / _maxQ * 100) : 0; _d._nivel = (_d._pct >= 50) ? 'high' : 'low'; });
+      $rootScope.datosDashboard.forEach(function (_d) { _d._pct = _maxQ > 0 ? Math.round((_d.CANT_ATENCIONES || 0) / _maxQ * 100) : 0; if (_d._pct < 35) _d._nivel = 'low'; else if (_d._pct < 75) _d._nivel = 'medium'; else _d._nivel = 'high'; _d._isLeader = (_maxQ > 0 && (_d.CANT_ATENCIONES || 0) === _maxQ); });
     }
     //console.log("Respuesta datos dashboard ::", r)   
   },
