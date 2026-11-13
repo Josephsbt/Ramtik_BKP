@@ -35,13 +35,9 @@ html, body {
 }
 
 body {
-  background-image:
-    radial-gradient(ellipse at 18% 0%, rgba(1, 84, 160, .14), transparent 58%),
-    radial-gradient(ellipse at 82% 100%, rgba(123, 111, 168, .10), transparent 58%),
-    linear-gradient(rgba(42, 52, 66, .35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 52, 66, .35) 1px, transparent 1px);
-  background-size: auto, auto, 52px 52px, 52px 52px;
-  background-attachment: fixed;
+  background: #070b14 !important;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -168,11 +164,24 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
   background: transparent !important;
 }
 
-/* fondo con imagen real para el login */
-.content-wrapperonlybg {
-  background:
-    linear-gradient(rgba(15, 20, 25, .78), rgba(15, 20, 25, .92)),
-    url("../assets/bg_report.jpg") center/cover no-repeat !important;
+/* fondo Matrix: contenedores transparentes para que se vea el canvas */
+.content-wrapperonlybg,
+.wrapper,
+.wrapper-bg,
+.wrapper-bg-login,
+.content-wrapper {
+  background: transparent !important;
+}
+
+/* canvas Matrix de fondo */
+.matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* ---------- 4. LOGIN ---------- */
@@ -188,6 +197,7 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
   box-shadow: 0 20px 50px rgba(0, 0, 0, .55);
   backdrop-filter: blur(4px);
   position: relative;
+  z-index: 1;
   overflow: hidden;
 }
 

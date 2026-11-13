@@ -50,7 +50,8 @@ body {
       </style>
   </head>
 <!-- sidebar-open -->
-  <body class="skin-blue sidebar-open" style="background-color: #050B18; padding-right:0 !important; color:#A8C7DE;">
+  <body class="skin-blue sidebar-open" style="background-color: #070b14; padding: 0 !important; margin: 0 !important; color:#A8C7DE;">
+    <canvas id="matrix-canvas" class="matrix-canvas"></canvas>
     <div class="wrapper {{login_isok ? 'wrapper-bg' : 'wrapper-bg-login'}}">
 
       <div ng-if="login_isok" ng-include="'../app/header.html'"></div>
@@ -148,6 +149,9 @@ body {
 
     <!-- App -->
     <script src="../dist/js/app.js"></script>
+
+    <!-- Fondo Matrix -->
+    <script src="js/matrix-bg.js"></script>
 
   </body>
 </html>
