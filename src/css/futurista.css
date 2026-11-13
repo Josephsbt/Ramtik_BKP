@@ -216,7 +216,39 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
   margin: 2px 0 16px;
 }
 
-.login-box-body h4 span { color: var(--cy-amber); }
+.login-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 2px 0 16px;
+}
+
+.login-title__top,
+.login-title__bottom {
+  display: block;
+  animation: titleFade 3s ease-in-out infinite;
+}
+
+.login-title__top {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cy-amber);
+  animation-delay: 0s;
+}
+
+.login-title__bottom {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cy-amber);
+  letter-spacing: .24em;
+  animation-delay: 0.4s;
+}
+
+@keyframes titleFade {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50%      { opacity: 0.35; transform: translateY(-2px); }
+}
 
 .login-box-body label {
   color: var(--cy-muted) !important;
@@ -256,6 +288,11 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
   background: rgba(7, 11, 20, .85) !important;
   box-shadow: 0 0 8px rgba(0, 168, 255, 0.4) !important;
   outline: none;
+  text-shadow: 0 0 6px rgba(0, 168, 255, 0.5);
+}
+
+.form-control-entel:not(:placeholder-shown) {
+  text-shadow: 0 0 6px rgba(0, 168, 255, 0.4);
 }
 
 .has-error .form-control-entel { border-color: #B85450 !important; }
@@ -784,4 +821,5 @@ body::before {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
+  opacity: 0.85;
 }

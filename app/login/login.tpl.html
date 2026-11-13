@@ -14,7 +14,10 @@
     <div class="login-brand">
       <img ng-src="../src/assets/entel-logo-official.png" alt="Entel" class="login-brand__entel"/>
     </div>
-    <h4>Ingreso <span> BKP -CESOP-</span></h4>
+    <h4 class="login-title">
+      <span class="login-title__top">BKP</span>
+      <span class="login-title__bottom">CESOP</span>
+    </h4>
     <p class="login-box-msg"><span ng-if="isError" style="color:#B85450">{{err_msg}}</span></p>
     <form novalidate>
       <label for="rut">RUT:</label>
