@@ -21,19 +21,12 @@
 
   <!-- Header Navbar -->
   <nav class="navbar navbar-static-top" role="navigation">
-    <!-- Sidebar toggle removed (flotante por hover) -->
-    <!-- <ul class="nav navbar-nav">
-      <li class="dropdown user user-menu">
-      <!-- <i class="fa fa-dashboard"></i> -->
-      <!-- <a href="" ui-sref="home.dashboard"><span> Alarmas CESOP</span></a></li> -->
-      <!-- <li><a href="" ui-sref="home.3play"><span>Alarmas 3Play</span></a></li> -->
-      <!-- ui-sref="home.3play" -->
-    <!-- </ul> -->
-    <!-- <ul class="nav navbar-nav">
-      <li>
-        <a href="" ui-sref="home.dashboard"><span> Alarmas CESOP</span></a>
-      </li>
-    </ul> -->
+    <!-- Reloj central + reloj de arena + countdown -->
+    <div class="navbar-clock-center">
+      <span class="clock-time">{{time | date:'HH:mm:ss'}}</span>
+      <i class="fa fa-hourglass-half hourglass-icon" ng-class="{'flipped': isAfternoon}" title="Reloj de arena"></i>
+      <span class="clock-countdown" title="Tiempo restante de la jornada">{{countdown}}</span>
+    </div>
 
     <!-- Navbar Right Menu -->
     <div class="navbar-custom-menu">
@@ -45,143 +38,59 @@
 
            </li>
           <li class="dropdown notifications-menu" style="padding-top: 5px;padding-right:10px">
-      <!--input
-          bs-switch
-          ng-model="isSelected"
-          type="checkbox"
-          -->
-
           </li>
-          <li class="dropdown open"> 
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">              
+          <li class="dropdown open">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
             <div class="alert {{estadoLogConexion=='FUERA DE LINEA' ? 'alert-danger':estadoLogConexion=='BREAK' ? 'alert-info':estadoLogConexion=='EN COLACION' ? 'alert-danger':estadoLogConexion=='EN LINEA' ? 'alert-success':estadoLogConexion=='INICIO JORNADA' ? 'alert-warning':estadoLogConexion=='TERMINO JORNADA' ? 'alert-hola':'alert-danger' }}" style="width: 190px; height: 25px; padding: 3px; margin: 0; ">
-              <!--{{counter}} ---> &nbsp;&nbsp;<i class="fa {{estadoLogConexion=='FUERA DE LINEA' ? 'fa-times-circle':estadoLogConexion=='BREAK' ? 'fa-coffee':estadoLogConexion=='EN COLACION' ? 'fa-spoon':estadoLogConexion=='EN LINEA' ? 'fa-user':estadoLogConexion=='INICIO JORNADA' ? 'fa-edit':estadoLogConexion=='TERMINO JORNADA' ? 'fa-hand-paper-o':'fa-times-circle' }}"></i>&nbsp;&nbsp;{{estadoLogConexion}} 
+              &nbsp;&nbsp;<i class="fa {{estadoLogConexion=='FUERA DE LINEA' ? 'fa-times-circle':estadoLogConexion=='BREAK' ? 'fa-coffee':estadoLogConexion=='EN COLACION' ? 'fa-utensils':estadoLogConexion=='EN LINEA' ? 'fa-user':estadoLogConexion=='INICIO JORNADA' ? 'fa-play-circle':estadoLogConexion=='TERMINO JORNADA' ? 'fa-stop-circle':'fa-times-circle' }}"></i>&nbsp;&nbsp;{{estadoLogConexion}}
               <span class="caret"></span>
             </div>
              </a>
-            <ul class="dropdown-menu" role="menu"> 
-              <li><a class="fa fa-coffee" style="color: #379DCE;" href="#" ng-click="grabalogConexion('BREAK')">&nbsp;&nbsp;<font face="nunito,arial,verdana">BREAK</font></a></li>
-              <li><a class="fa fa-spoon" style="color: #DD4B39;" href="#" ng-click="grabalogConexion('EN COLACION')">&nbsp;&nbsp;&nbsp;&nbsp;<font face="nunito,arial,verdana">EN COLACION</font></a></li>
-              <li><a class="fa fa-user" style="color: #00A65A;" href="#" ng-click="grabalogConexion('EN LINEA')">&nbsp;&nbsp;&nbsp;&nbsp;<font face="nunito,arial,verdana">EN LINEA</font></a></li>
-              <li><a class="fa fa-edit" style="color: #F39C12;" href="#" ng-click="grabalogConexion('INICIO JORNADA')">&nbsp;&nbsp;<font face="nunito,arial,verdana">INICIO JORNADA</font></a></li>
-              <li><a class="fa fa-hand-paper-o" style="color: #0154A0;" href="#" ng-click="grabalogConexion('TERMINO JORNADA')">&nbsp;&nbsp;<font face="nunito,arial,verdana">TERMINO JORNADA</font></a></li> 
+            <ul class="dropdown-menu state-menu" role="menu">
+              <li><a href="#" ng-click="grabalogConexion('BREAK')"><i class="fa fa-coffee"></i>&nbsp;&nbsp;BREAK</a></li>
+              <li><a href="#" ng-click="grabalogConexion('EN COLACION')"><i class="fa fa-utensils"></i>&nbsp;&nbsp;EN COLACION</a></li>
+              <li><a href="#" ng-click="grabalogConexion('EN LINEA')"><i class="fa fa-user"></i>&nbsp;&nbsp;EN LINEA</a></li>
+              <li><a href="#" ng-click="grabalogConexion('INICIO JORNADA')"><i class="fa fa-play-circle"></i>&nbsp;&nbsp;INICIO JORNADA</a></li>
+              <li><a href="#" ng-click="grabalogConexion('TERMINO JORNADA')"><i class="fa fa-stop-circle"></i>&nbsp;&nbsp;TERMINO JORNADA</a></li>
             </ul>
           </li>
-          <!--li class="dropdown messages-menu">
-              <a href="#" class="dropdown-toggle" ng-click="openModalBitacora(1,'');" data-toggle="dropdown" data-toggle="tooltip" title="Bitácora">
-                <i class="fa fa-align-left"></i>
-                <span class="label label-success">4</span>
-              </a>
-          </!--li-->
-                  
-          <li class="dropdown messages-menu">
-            
-            <a href="{{imagePathDoc}}ManualBKP.docx" target="_blank" data-toggle="tooltip" title="Manual">
-              <i class="fa fa-folder"></i>
-              <!--span class="label label-success">4</!--span-->
-            </a>
-            <!--ul class="dropdown-menu">
-              <li class="header">4 veces compartido</li>
-              <li>
-                <ul-- class="menu">
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img ng-src="{{imagePath}}{{currentUser.user_id}}.JPG" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        {{currentUser.user_name}}
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Compartio cci a contacto@ram.cl</p>
-                    </a>
-                  </li>
-                </ul-->
-              </li>
-              <!-- <li class="footer"><a href="#">See All Messages</a></li>
-            </!--ul-->
-          </li>
-<!-- 
-          <li class="dropdown notifications-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o"></i>
-                <span class="label label-warning">1</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">Tienes 1 notificación</li>
-                <li>
-                  <ul class="menu">
-                    <li>
-                      <a href="">
-                        <i class="fa fa-users text-aqua"></i> 5 nuevos miembros ingresaron hoy
-                      </a>
-                    </li>
 
-                  </ul>
-                </li> 
-              </ul>
-            </li>
-           -->
+          <li class="dropdown messages-menu">
+            <a href="{{imagePathDoc}}ManualBKP.docx" target="_blank" data-toggle="tooltip" title="Manual">
+              <i class="fa fa-folder folder-glow-icon"></i>
+            </a>
+          </li>
 
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
             <a href="" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-              <img ng-src="{{imagePath}}110000.jpg" class="user-image" alt="User Image">
-              <!--img ng-src="{{imagePath}}{{currentUser.user_id}}.JPG" class="user-image" alt="User Image"-->
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <img ng-src="{{selectedAvatar}}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{currentUser.user_name}}</span>
             </a>
-            <ul class="dropdown-menu" >
-              <!-- The user image in the menu -->
+            <ul class="dropdown-menu user-panel" >
               <li class="user-header" style="height:auto;background:transparent;">
-                  <img ng-src="{{imagePath}}110000.jpg" class="img-circle" alt="User Image">
-                <!--img ng-src="{{imagePath}}{{currentUser.user_id}}.JPG" class="img-circle" alt="User Image"-->
-                <p>
-                  {{currentUser.user_name}}
-                </p>
+                <img ng-src="{{selectedAvatar}}" class="img-circle" alt="User Image">
+                <p>{{currentUser.user_name}}</p>
+                <div class="avatar-selector">
+                  <img ng-repeat="av in avatars" ng-src="{{av}}" class="avatar-option" ng-class="{'active': selectedAvatar === av}" ng-click="selectAvatar(av)" alt="Avatar">
+                </div>
               </li>
-              <!-- Menu Body -->
               <li class="user-body">
                 <div class="col-xs-6 text-center">
-                  <small><a href="#">Cambiar Contraseña</a></small>
+                  <a href="#" class="user-action-link">Cambio de contraseña</a>
                 </div>
                 <div class="col-xs-6 text-center">
-                  <small><a href="#">Modificar mis datos</a></small>
+                  <a href="#" class="user-action-link">Modificar datos</a>
                 </div>
-                <!-- <div class="col-xs-4 text-center">
-                  <a href="#">Friends</a>
-                </div> -->
               </li>
-              <!-- Menu Footer-->
               <li class="user-footer" style="background: transparent;">
-                <!-- <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div> -->
                 <div class="pull-right">
-                  <a href="#" ng-click="goOut()" style=" color: #fff;font-family: dinnext light,dinnext regular,Trebuchet MS,Arial,Helvetica;
-      font-style: italic;
-      font-size: 1.200em;">Salir del <span style="color: #00E5FF">_Sistema</span></a>
+                  <a href="#" ng-click="goOut()" class="game-over-btn">GAME OVER</a>
                 </div>
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
-          <!-- <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li> -->
       </ul>
     </div>
-    <!--div class="navbar-custom-menu hidden-xs">
-      <ul class="nav navbar-nav">
-        <li class="user user-menu">
-          <a href="" ng-click="modalUsabilidad();">
-            <span>Usabilidad</span>
-          </a>
-        </li>
-      </ul>
-    </div-->  
-
   </nav>
 </header>

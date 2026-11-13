@@ -239,9 +239,37 @@ angular.module('CodetziPortabilidad', [
 
 		$rootScope.time = new Date();
 		$rootScope.fecha = moment().format("dddd");
+		$rootScope.selectedAvatar = '../src/assets/avatars/avatar_m1.svg';
+		$rootScope.avatars = [
+			'../src/assets/avatars/avatar_f1.svg',
+			'../src/assets/avatars/avatar_f2.svg',
+			'../src/assets/avatars/avatar_m1.svg',
+			'../src/assets/avatars/avatar_m2.svg'
+		];
+		$rootScope.selectAvatar = function (url) {
+			$rootScope.selectedAvatar = url;
+		};
+		$rootScope.isAfternoon = (new Date().getHours() >= 12);
+		$rootScope.countdown = '00:00:00';
+
+		function updateClock() {
+			var now = new Date();
+			$rootScope.time = now;
+			$rootScope.isAfternoon = (now.getHours() >= 12);
+			var end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
+			var diff = end.getTime() - now.getTime();
+			if (diff < 0) diff = 0;
+			var h = Math.floor(diff / 3600000);
+			var m = Math.floor((diff % 3600000) / 60000);
+			var s = Math.floor((diff % 60000) / 1000);
+			var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+			$rootScope.countdown = pad(h) + ':' + pad(m) + ':' + pad(s);
+		}
+
+		updateClock();
 		$rootScope.$watch('time', function () {
 		    $timeout(function () {
-		        $rootScope.time = new Date();
+		        updateClock();
 		    }, 1000);
 		});
 
