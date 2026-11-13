@@ -8918,7 +8918,13 @@ $scope.loadDatosDashBoardFront = function(dt, dtt, Servicio){
   $scope.Servicio = Servicio;   
 
   General.ObtieneDatosDashBoard(moment(dt).format('YYYYMMDD'), moment(dtt).format('YYYYMMDD'), Servicio).then(function(r){
-    $rootScope.datosDashboard = r.data.data;  
+    $rootScope.datosDashboard = r.data.data;
+    // calculo de porcentaje para barra BI (sin modificar datos originales)
+    if ($rootScope.datosDashboard && $rootScope.datosDashboard.length) {
+      var _maxQ = 0;
+      $rootScope.datosDashboard.forEach(function (_d) { if ((_d.CANT_ATENCIONES || 0) > _maxQ) _maxQ = _d.CANT_ATENCIONES; });
+      $rootScope.datosDashboard.forEach(function (_d) { _d._pct = _maxQ > 0 ? Math.round((_d.CANT_ATENCIONES || 0) / _maxQ * 100) : 0; _d._nivel = (_d._pct >= 50) ? 'high' : 'low'; });
+    }
     //console.log("Respuesta datos dashboard ::", r)   
   },
   function (error){
@@ -8932,7 +8938,13 @@ $scope.loadDatosDashBoardChatBot = function(dt, dtt, Servicio){
   $scope.Servicio = Servicio;   
 
   General.ObtieneDatosDashBoardChatBot(moment(dt).format('YYYYMMDD'), moment(dtt).format('YYYYMMDD'), Servicio).then(function(r){
-    $rootScope.datosDashboard = r.data.data;  
+    $rootScope.datosDashboard = r.data.data;
+    // calculo de porcentaje para barra BI (sin modificar datos originales)
+    if ($rootScope.datosDashboard && $rootScope.datosDashboard.length) {
+      var _maxQ = 0;
+      $rootScope.datosDashboard.forEach(function (_d) { if ((_d.CANT_ATENCIONES || 0) > _maxQ) _maxQ = _d.CANT_ATENCIONES; });
+      $rootScope.datosDashboard.forEach(function (_d) { _d._pct = _maxQ > 0 ? Math.round((_d.CANT_ATENCIONES || 0) / _maxQ * 100) : 0; _d._nivel = (_d._pct >= 50) ? 'high' : 'low'; });
+    }
     //console.log("Respuesta datos dashboard ::", r)   
   },
   function (error){
@@ -8944,6 +8956,12 @@ $scope.loadDatosDashBoardChatBot = function(dt, dtt, Servicio){
 $scope.loadDatosDashBoard = function(){
   General.ObtieneDatosDashBoard($rootScope.currentUser.user_id, sharedProperties.getEnd().format('YYYYMMDD'), sharedProperties.getEnd().format('YYYYMMDD')).then(function(r){
     $rootScope.datosDashboard = r.data.data;
+    // calculo de porcentaje para barra BI (sin modificar datos originales)
+    if ($rootScope.datosDashboard && $rootScope.datosDashboard.length) {
+      var _maxQ = 0;
+      $rootScope.datosDashboard.forEach(function (_d) { if ((_d.CANT_ATENCIONES || 0) > _maxQ) _maxQ = _d.CANT_ATENCIONES; });
+      $rootScope.datosDashboard.forEach(function (_d) { _d._pct = _maxQ > 0 ? Math.round((_d.CANT_ATENCIONES || 0) / _maxQ * 100) : 0; _d._nivel = (_d._pct >= 50) ? 'high' : 'low'; });
+    }
     //console.log("Respuesta datos dashboard ::", r)   
   },
   function (error){
