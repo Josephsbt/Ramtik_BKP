@@ -38,6 +38,10 @@ body {
   background: #070b14 !important;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -93,23 +97,15 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
 }
 
 .cyber-logo-entel {
-  height: 96px;
+  height: 64px;
   width: auto;
-  display: block;
-  margin: 0 auto;
-  animation: logoAppear 1.5s ease .25s both, logoDisappear .9s ease 3.0s forwards;
-  filter: drop-shadow(0 8px 20px rgba(1, 84, 160, .45));
+  display: inline-block;
+  filter: drop-shadow(0 4px 12px rgba(1, 84, 160, .35));
+  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), filter .3s ease;
 }
 
-.cyber-logo-entel--boot { height: 112px; }
-
-@keyframes logoAppear {
-  from { opacity: 0; transform: scale(.88) translateY(10px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-@keyframes logoDisappear {
-  to { opacity: 0; transform: scale(.92) translateY(-12px); }
+.cyber-logo-entel:hover {
+  filter: drop-shadow(0 0 24px rgba(38, 121, 231, .75));
 }
 
 .cyber-boot__text {
@@ -155,47 +151,37 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
 .wrapper,
 .wrapper-bg,
 .wrapper-bg-login,
-.content-wrapperonlybg {
-  background: transparent !important;
-}
-
-.content-wrapper,
-.content-wrapperonlybg {
-  background: transparent !important;
-}
-
-/* fondo Matrix: contenedores transparentes para que se vea el canvas */
 .content-wrapperonlybg,
-.wrapper,
-.wrapper-bg,
-.wrapper-bg-login,
 .content-wrapper {
   background: transparent !important;
 }
 
-/* canvas Matrix de fondo */
-.matrix-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
+/* centrado perfecto del login */
+.wrapper-bg-login,
+.content-wrapperonlybg {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  width: 100% !important;
 }
 
-/* ---------- 4. LOGIN ---------- */
-.login-box { width: 400px; max-width: 92vw; margin: 6vh auto 0; }
+.login-box {
+  margin: 0 auto !important;
+}
+
+/* ---------- 4. LOGIN (Glassmorphism) ---------- */
+.login-box { width: 400px; max-width: 92vw; }
 
 .login-box-body {
-  background: linear-gradient(160deg, rgba(26, 32, 41, .96), rgba(20, 26, 35, .98)) !important;
-  border: 1px solid var(--cy-line) !important;
-  border-top: 2px solid var(--cy-cyan) !important;
-  border-radius: 6px !important;
-  padding: 28px 32px 30px !important;
+  background: rgba(13, 19, 33, 0.78) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(0, 168, 255, 0.25) !important;
+  border-radius: 18px !important;
+  padding: 40px 35px !important;
   color: var(--cy-text) !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, .55);
-  backdrop-filter: blur(4px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 112, 243, 0.15) !important;
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -209,7 +195,7 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
 }
 
 .login-brand__entel {
-  height: 56px;
+  height: 64px;
   width: auto;
   display: inline-block;
   filter: drop-shadow(0 4px 12px rgba(1, 84, 160, .35));
@@ -244,25 +230,31 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
 .form-entel { border-bottom: 1px solid var(--cy-line) !important; margin-top: 6px !important; }
 
 .form-control-entel {
-  background: rgba(15, 20, 25, .7) !important;
-  border: 1px solid var(--cy-line) !important;
-  border-radius: 4px !important;
+  background: rgba(7, 11, 20, 0.7) !important;
+  border: 1px solid rgba(42, 52, 66, .8) !important;
+  border-radius: 8px !important;
   color: var(--cy-text-hot) !important;
   font-family: var(--cy-font-code) !important;
   font-size: 14px !important;
   font-style: normal !important;
-  height: 40px;
+  height: 42px;
   margin-top: 0 !important;
-  padding: 2px 14px !important;
+  padding: 2px 16px !important;
   box-shadow: none !important;
-  transition: border-color .25s, box-shadow .25s;
+  transition: border-color .25s, box-shadow .25s, background .25s;
 }
 
-.form-control-entel::placeholder { color: var(--cy-muted) !important; }
+.form-control-entel::placeholder { color: rgba(139, 146, 160, .6) !important; }
+
+.form-control-entel:hover {
+  border-color: rgba(0, 168, 255, .5) !important;
+  background: rgba(7, 11, 20, .8) !important;
+}
 
 .form-control-entel:focus {
-  border-color: var(--cy-cyan) !important;
-  box-shadow: 0 0 0 2px rgba(1, 84, 160, .22) !important;
+  border-color: #00a8ff !important;
+  background: rgba(7, 11, 20, .85) !important;
+  box-shadow: 0 0 8px rgba(0, 168, 255, 0.4) !important;
   outline: none;
 }
 
@@ -270,33 +262,45 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
 
 .login-box-msg { color: #B85450 !important; min-height: 18px; padding: 4px 0 10px !important; }
 
-/* botón de acceso */
+/* botón INGRESAR */
 .login-box-body .btn-primary,
 .btn-primary {
-  background: linear-gradient(135deg, var(--cy-cyan), var(--cy-ramtik)) !important;
-  border: 1px solid var(--cy-cyan) !important;
+  background: linear-gradient(135deg, #0070f3, #00a8ff) !important;
+  border: 1px solid rgba(0, 168, 255, .4) !important;
   color: #fff !important;
   font-family: var(--cy-font-head) !important;
   font-weight: 600 !important;
   letter-spacing: .16em;
   text-transform: uppercase;
   height: 44px;
-  border-radius: 4px !important;
-  box-shadow: 0 6px 18px rgba(1, 84, 160, .3);
-  transition: all .25s ease;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 14px rgba(0, 112, 243, .3), inset 0 1px 0 rgba(255, 255, 255, .1);
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .login-box-body .btn-primary:hover,
 .btn-primary:hover,
 .btn-primary:focus {
-  background: linear-gradient(135deg, var(--cy-ramtik), var(--cy-amber)) !important;
-  box-shadow: 0 8px 24px rgba(245, 121, 23, .35);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #0070f3, #00a8ff) !important;
+  box-shadow: 0 6px 20px rgba(0, 168, 255, .4), inset 0 1px 0 rgba(255, 255, 255, .15);
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
-.login-box-body .btn-primary:active { transform: translateY(1px); }
+.login-box-body .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 112, 243, .3), inset 0 1px 0 rgba(255, 255, 255, .05);
+  filter: brightness(0.95);
+}
 
-/* logo Ramtik al pie del login, visible */
+.login-box-body .btn-primary:focus {
+  outline: 2px solid rgba(0, 168, 255, .5);
+  outline-offset: 2px;
+}
+
+/* logo RAMTIK LATAM (natural, sin recuadro) */
 .login-ramtik {
   margin-top: 20px;
   padding-top: 16px;
@@ -304,25 +308,44 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-}
-
-.login-ramtik__label {
-  font-family: var(--cy-font-code);
-  font-size: 10px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--cy-muted);
 }
 
 .login-ramtik__logo {
-  height: 30px;
+  height: 80px;
   width: auto;
   display: block;
-  filter: drop-shadow(0 2px 8px rgba(38, 121, 231, .3));
-  background: rgba(255, 255, 255, .06);
-  padding: 4px 8px;
-  border-radius: 4px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), filter .3s ease;
+}
+
+.login-ramtik__logo:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 18px rgba(0, 150, 255, 0.9)) drop-shadow(0 0 8px rgba(0, 150, 255, 0.6));
+}
+
+/* logo Entel gira con resplandor naranja al hacer hover en Ingresar o escribir */
+.login-brand__entel {
+  transition: transform 1.1s cubic-bezier(.4, 0, .2, 1), filter .3s ease;
+  transform-origin: center;
+}
+
+.login-box-body.is-glow .login-brand__entel {
+  transform: rotate(360deg);
+  filter: drop-shadow(0 0 28px rgba(245, 121, 23, .85)) drop-shadow(0 0 12px rgba(245, 121, 23, .6));
+}
+
+.login-box-body:has(.btn-primary:hover) .login-brand__entel,
+.login-box-body:has(.form-control-entel:focus) .login-brand__entel {
+  transform: rotate(360deg);
+  filter: drop-shadow(0 0 28px rgba(245, 121, 23, .85)) drop-shadow(0 0 12px rgba(245, 121, 23, .6));
+}
+
+/* destello en inputs al escribir */
+.login-box-body:has(.form-control-entel:focus) .form-control-entel:focus {
+  box-shadow: 0 0 0 2px rgba(245, 121, 23, .25), 0 0 8px rgba(0, 168, 255, 0.4) !important;
+  border-color: #00a8ff !important;
 }
 
 /* ---------- 5. HEADER ---------- */
@@ -355,7 +378,7 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
 .skin-blue .main-header .logo:hover { color: var(--cy-ramtik) !important; }
 
 .main-header .logo .cyber-logo-header {
-  height: 36px;
+  height: 40px;
   width: auto;
   filter: drop-shadow(0 2px 6px rgba(38, 121, 231, .3));
 }
@@ -383,7 +406,6 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
 
 .skin-blue .main-header .navbar .sidebar-toggle:hover { background: rgba(1, 84, 160, .18) !important; }
 
-/* reloj del header */
 .alert-warning.clock-chip {
   background: rgba(1, 84, 160, .12) !important;
   border: 1px solid var(--cy-cyan) !important;
@@ -711,63 +733,37 @@ thead th {
 /* ---------- 15. HIGHCHARTS ---------- */
 .highcharts-container, .chart, .chart svg, .chart canvas { font-family: var(--cy-font-code); }
 
-/* ---------- 16f. LOGO ENTEL GIRA + RAMTIK GRANDE ---------- */
-.login-ramtik__logo {
-  height: 80px;
-  width: auto;
-  display: block;
-  background: transparent;
-  border: none;
-  padding: 0;
-  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), filter .3s ease;
-}
-
-.login-ramtik__logo:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 18px rgba(0, 150, 255, 0.9)) drop-shadow(0 0 8px rgba(0, 150, 255, 0.6));
-}
-
-/* logo Entel gira con resplandor naranja al hacer hover en Ingresar */
-.login-brand__entel {
-  transition: transform 1.1s cubic-bezier(.4, 0, .2, 1), filter .3s ease;
-  transform-origin: center;
-}
-
-.login-box-body.is-glow .login-brand__entel {
-  transform: rotate(360deg);
-  filter: drop-shadow(0 0 28px rgba(245, 121, 23, .85)) drop-shadow(0 0 12px rgba(245, 121, 23, .6));
-}
-
-.login-box-body:has(.btn-primary:hover) .login-brand__entel,
-.login-box-body:has(.form-control-entel:focus) .login-brand__entel {
-  transform: rotate(360deg);
-  filter: drop-shadow(0 0 28px rgba(245, 121, 23, .85)) drop-shadow(0 0 12px rgba(245, 121, 23, .6));
-}
-
-/* destello en inputs al escribir */
-.login-box-body:has(.form-control-entel:focus) .form-control-entel:focus {
-  box-shadow: 0 0 0 2px rgba(245, 121, 23, .25), 0 0 14px rgba(245, 121, 23, .2) !important;
-  border-color: var(--cy-amber) !important;
-}
-
-/* destello naranja en el botón */
-.login-box-body .btn-primary {
-  position: relative;
-  overflow: hidden;
-}
-
-.login-box-body .btn-primary::after {
+/* ---------- 15b. OVERLAY FONDO SUTIL + RESPONSIVE + ACCESIBILIDAD ---------- */
+body::before {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(245, 121, 23, .35), transparent 60%);
-  opacity: 0;
-  transition: opacity .3s ease;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(7, 11, 20, .45) 100%);
   pointer-events: none;
 }
 
-.login-box-body .btn-primary:hover::after {
-  opacity: 1;
+.form-control-entel:focus-visible {
+  outline: 2px solid var(--cy-cyan);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .login-box { width: 92vw; margin-top: 4vh; }
+  .login-box-body { padding: 24px 26px 26px !important; }
+  .login-brand__entel { height: 48px; }
+  .login-ramtik__logo { height: 64px; }
+}
+
+@media (max-width: 480px) {
+  .login-box { width: 94vw; margin-top: 3vh; }
+  .login-box-body { padding: 20px 20px 22px !important; border-radius: 8px !important; }
+  .login-box-body h4 { font-size: 14px; letter-spacing: .12em; }
+  .form-control-entel { height: 40px; font-size: 13px !important; }
+  .login-box-body .btn-primary { height: 42px; font-size: 13px !important; }
+  .login-brand__entel { height: 40px; }
+  .login-ramtik__logo { height: 52px; }
+  .matrix-canvas { opacity: 0.6; }
 }
 
 /* ---------- 16. MOTION PREFERENCE ---------- */
@@ -777,4 +773,15 @@ thead th {
     animation-iteration-count: 1 !important;
   }
   .cyber-boot { animation: bootOut .01ms linear forwards !important; }
+}
+
+/* ---------- MATRIX CANVAS ---------- */
+.matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
 }
