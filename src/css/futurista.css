@@ -2109,3 +2109,61 @@ button.btn.btn-primary.btn-procesar:active {
   font-weight: 700 !important;
   box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
 }
+
+/* ---------- Tarjeta de perfil Inicio: más grande y flotante ---------- */
+.box-widget.widget-user {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .45), 0 0 22px rgba(0, 136, 255, .18) !important;
+  transform: translateY(0);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.box-widget.widget-user:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .5), 0 0 28px rgba(0, 136, 255, .25) !important;
+}
+
+.widget-user .widget-user-header {
+  height: 80px !important;
+  padding-top: 12px !important;
+}
+
+.widget-user .widget-user-image {
+  top: 40px !important;
+  text-align: center !important;
+}
+
+.widget-user .widget-user-image img {
+  width: 80px !important;
+  height: 80px !important;
+  border: 3px solid #0d1424 !important;
+  box-shadow: 0 0 16px rgba(0, 136, 255, .4);
+}
+
+.widget-user .box-footer {
+  padding: 12px !important;
+  min-height: 70px !important;
+}
+
+.widget-user .description-block {
+  padding: 4px 0 !important;
+}
+
+.widget-user .description-header {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #E8ECF2 !important;
+}
+
+.widget-user .description-text,
+.widget-user small {
+  color: #C9CDD6 !important;
+  font-size: 11px !important;
+}
+
+.widget-user .border-right,
+.widget-user .border-left {
+  height: 52px !important;
+  margin-top: 6px !important;
+}
