@@ -2688,3 +2688,19 @@ input[type="file"] {
 .state-dropdown .dropdown-toggle:hover {
   filter: brightness(1.1);
 }
+
+/* ---------- Caja de login flotante con luz resplandeciente ---------- */
+.login-box-body {
+  animation: loginFloat 4.5s ease-in-out infinite;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .55), 0 0 30px rgba(0, 136, 255, .35), 0 0 60px rgba(0, 85, 255, .18) !important;
+  transition: box-shadow .3s ease, transform .3s ease;
+}
+
+.login-box-body:hover {
+  box-shadow: 0 22px 48px rgba(0, 0, 0, .6), 0 0 40px rgba(0, 136, 255, .5), 0 0 70px rgba(0, 85, 255, .25) !important;
+}
+
+@keyframes loginFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
