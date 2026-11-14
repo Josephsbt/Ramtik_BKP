@@ -69,7 +69,7 @@
       var padX = 5, padY = 10;
       for (var wx = padX; wx + 4 < w - padX; wx += stepX) {
         for (var wy = padY; wy + 4 < h - padY; wy += stepY) {
-          if (Math.random() < 0.4) continue;
+          if (Math.random() < 0.3) continue;
           windows.push({
             x: x + wx,
             y: yTop + wy,
@@ -157,7 +157,7 @@
       ctx.textBaseline = 'bottom';
       ctx.strokeStyle = '#ffffff';
       ctx.lineWidth = 2.4;
-      ctx.shadowBlur = 14;
+      ctx.shadowBlur = 16;
       ctx.strokeText('Ramtik', sigX, sigY);
       ctx.restore();
 
@@ -177,9 +177,9 @@
         if (w.on) {
           ctx.save();
           ctx.shadowColor = w.color;
-          ctx.shadowBlur = 12;
+          ctx.shadowBlur = 16;
           ctx.fillStyle = w.color;
-          ctx.fillRect(w.x, w.y, 3, 3);
+          ctx.fillRect(w.x, w.y, 4, 3);
           ctx.restore();
         }
       });
@@ -196,9 +196,9 @@
         if (w.on) {
           ctx.save();
           ctx.shadowColor = w.color;
-          ctx.shadowBlur = 12;
+          ctx.shadowBlur = 16;
           ctx.fillStyle = w.color;
-          ctx.fillRect(w.x, w.y, 3, 3);
+          ctx.fillRect(w.x, w.y, 4, 3);
           ctx.restore();
         }
       });
