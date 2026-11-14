@@ -344,6 +344,38 @@ angular.module('CodetziPortabilidad', [
 
 		$rootScope.AlbumCtrl();
 
+		// Auto-abrir Select2 al pasar el mouse
+		$timeout(function () {
+			if (window.jQuery && jQuery.fn && jQuery.fn.select2) {
+				jQuery(document).on('mouseenter', '.select2-container', function () {
+					var $sel = jQuery(this).prev('select');
+					if ($sel.length && $sel.data('select2')) {
+						$sel.select2('open');
+					}
+				});
+				var closeTimer = null;
+				jQuery(document).on('mouseleave', '.select2-container', function () {
+					var $sel = jQuery(this).prev('select');
+					closeTimer = setTimeout(function () {
+						if ($sel.length && $sel.data('select2')) {
+							$sel.select2('close');
+						}
+					}, 250);
+				});
+				jQuery(document).on('mouseenter', '.select2-dropdown', function () {
+					if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+				});
+				jQuery(document).on('mouseleave', '.select2-dropdown', function () {
+					closeTimer = setTimeout(function () {
+						jQuery('.select2-container--open select').each(function () {
+							var $s = jQuery(this);
+							if ($s.data('select2')) { $s.select2('close'); }
+						});
+					}, 250);
+				});
+			}
+		}, 2000);
+
 
 		$rootScope.Warning = '';
 		

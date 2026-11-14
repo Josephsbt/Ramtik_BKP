@@ -2265,3 +2265,42 @@ section.content .box {
   color: #ffffff !important;
   text-shadow: 0 0 10px rgba(255, 90, 0, .7) !important;
 }
+
+/* ---------- Botón Ticket verde neón ---------- */
+.btn-neon-green {
+  background: rgba(16, 185, 129, 0.18) !important;
+  border: 1px solid #10b981 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.45) !important;
+  transition: all .25s ease !important;
+}
+
+.btn-neon-green:hover {
+  background: rgba(16, 185, 129, 0.3) !important;
+  box-shadow: 0 0 22px rgba(16, 185, 129, 0.65) !important;
+  transform: translateY(-1px);
+}
+
+/* ---------- Select2 flechas desplegables ---------- */
+.select2-container .select2-selection {
+  background: #111827 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f8fafc !important;
+  transition: all .25s ease !important;
+}
+
+.select2-container:hover .select2-selection {
+  border-color: #0088ff !important;
+  box-shadow: 0 0 14px rgba(0, 136, 255, 0.45) !important;
+}
+
+.select2-container .select2-selection__arrow b {
+  border-color: #0088ff transparent transparent transparent !important;
+  transition: all .25s ease;
+}
+
+.select2-container:hover .select2-selection__arrow b {
+  border-color: #ff5a00 transparent transparent transparent !important;
+  filter: drop-shadow(0 0 6px rgba(255, 90, 0, 0.7));
+}
