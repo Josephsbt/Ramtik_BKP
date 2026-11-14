@@ -2197,3 +2197,32 @@ button.btn.btn-primary.btn-procesar:active {
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: none !important;
 }
+
+/* ---------- Modo oscuro Bitácora ---------- */
+.timeline,
+.timeline-inverse {
+  background: transparent !important;
+}
+
+.timeline > li > .timeline-item {
+  background: #111827 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .35) !important;
+  color: #f8fafc !important;
+}
+
+.timeline > li > .timeline-item .timeline-header,
+.timeline > li > .timeline-item .timeline-body,
+.timeline > li > .timeline-item .timeline-footer {
+  background: transparent !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.timeline > li > .timeline-item .timeline-header a {
+  color: #0088ff !important;
+}
+
+.timeline > li.time-label > span {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+}
