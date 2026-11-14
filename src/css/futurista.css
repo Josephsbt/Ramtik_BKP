@@ -2354,3 +2354,20 @@ section.content .box {
   background: rgba(16, 185, 129, 0.32) !important;
   box-shadow: 0 0 18px rgba(16, 185, 129, .65) !important;
 }
+
+/* ---------- Select2 con valor seleccionado: iluminado ---------- */
+.select2-container.select2-has-value .select2-selection {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.45) !important;
+  background: rgba(16, 185, 129, 0.08) !important;
+}
+
+.select2-container.select2-has-value .select2-selection__rendered {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.select2-container.select2-has-value .select2-selection__arrow b {
+  border-color: #10b981 transparent transparent transparent !important;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.7));
+}

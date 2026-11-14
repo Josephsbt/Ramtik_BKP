@@ -375,6 +375,27 @@ angular.module('CodetziPortabilidad', [
 				});
 			}
 		}, 2000);
+		// Marcar Select2 con valor seleccionado
+		$timeout(function () {
+			function updateSel2($sel) {
+				var $c = $sel.next('.select2-container');
+				if ($sel.val() && String($sel.val()).trim() !== '') {
+					$c.addClass('select2-has-value');
+				} else {
+					$c.removeClass('select2-has-value');
+				}
+			}
+			if (window.jQuery && jQuery.fn && jQuery.fn.select2) {
+				jQuery('select.select2-hidden-accessible').each(function () { updateSel2(jQuery(this)); });
+				jQuery(document).on('change select2:select select2:clear', 'select.select2-hidden-accessible', function () {
+					updateSel2(jQuery(this));
+				});
+				jQuery(document).on('select2:select', function (e) {
+					var $t = jQuery(e.target);
+					if ($t && $t.data('select2')) { updateSel2($t); }
+				});
+			}
+		}, 3000);
 
 
 		$rootScope.Warning = '';
