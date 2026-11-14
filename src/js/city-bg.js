@@ -76,7 +76,7 @@
             x: x + wx,
             y: yTop + wy,
             delay: Math.random() * 2200,
-            color: '#ffffff',
+            color: '#0088ff',
             on: false
           });
         }
@@ -113,12 +113,12 @@
     ctx.globalAlpha = alpha;
 
     ctx.save();
-    ctx.strokeStyle = '#ffffff';
+    ctx.strokeStyle = '#0088ff';
     ctx.lineWidth = 2.4;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    ctx.shadowColor = 'rgba(255, 255, 255, 0.95)';
-    ctx.shadowBlur = 14;
+    ctx.shadowColor = 'rgba(0, 136, 255, 0.95)';
+    ctx.shadowBlur = 16;
 
     if (state === 'draw') {
       // Fase 1: edificios 0% -> 75% del tiempo
@@ -133,7 +133,7 @@
       var tip = tipPosition(pSky);
       ctx.setLineDash([]);
       ctx.shadowBlur = 22;
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = '#0088ff';
       ctx.font = 'bold 18px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -158,7 +158,7 @@
       ctx.clip();
       ctx.font = 'italic 56px "Brush Script MT", "Segoe Script", "Snell Roundhand", cursive';
       ctx.textBaseline = 'bottom';
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = '#0088ff';
       ctx.lineWidth = 2.4;
       ctx.shadowBlur = 16;
       ctx.strokeText('Ramtik', sigX, sigY);

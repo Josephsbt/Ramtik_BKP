@@ -2692,12 +2692,12 @@ input[type="file"] {
 /* ---------- Caja de login flotante con luz resplandeciente ---------- */
 .login-box-body {
   animation: loginFloat 4.5s ease-in-out infinite;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .55), 0 0 45px rgba(200, 200, 200, .5), 0 0 90px rgba(180, 180, 180, .25) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .55), 0 0 45px rgba(0, 136, 255, .55), 0 0 90px rgba(0, 85, 255, .3) !important;
   transition: box-shadow .3s ease, transform .3s ease;
 }
 
 .login-box-body:hover {
-  box-shadow: 0 22px 48px rgba(0, 0, 0, .6), 0 0 60px rgba(220, 220, 220, .65), 0 0 110px rgba(200, 200, 200, .35) !important;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, .6), 0 0 60px rgba(0, 136, 255, .7), 0 0 110px rgba(0, 85, 255, .4) !important;
 }
 
 @keyframes loginFloat {
