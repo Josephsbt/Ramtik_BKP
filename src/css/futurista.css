@@ -2257,3 +2257,11 @@ section.content .box {
 .register-box-body .btn-primary {
   border: none !important;
 }
+
+/* ---------- Forzar blanco en pestañas activas (sobrescribe text-green) ---------- */
+.nav-tabs-custom .nav-tabs > li.active uib-tab-heading,
+.nav-tabs-custom .nav-tabs > li.active uib-tab-heading.text-green,
+.nav-tabs-custom .nav-tabs > li.active uib-tab-heading i {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 90, 0, .7) !important;
+}
