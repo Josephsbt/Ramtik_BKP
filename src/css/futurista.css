@@ -2411,12 +2411,6 @@ section.content .box {
   transform: translateY(-1px);
 }
 
-.custom-floating-select.has-value .cfs-trigger {
-  border-color: #10b981 !important;
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.45) !important;
-  background: rgba(16, 185, 129, 0.08) !important;
-}
-
 .cfs-trigger .cfs-value {
   flex: 1;
   text-align: left;
@@ -2489,15 +2483,27 @@ section.content .box {
 }
 
 /* ---------- Campos sin llenar: rojo neón ---------- */
-.custom-floating-select:not(.has-value) .cfs-trigger {
+.custom-floating-select.is-empty .cfs-trigger {
   border-color: #ef4444 !important;
   box-shadow: 0 0 12px rgba(239, 68, 68, 0.45) !important;
   background: rgba(239, 68, 68, 0.08) !important;
 }
 
-.custom-floating-select:not(.has-value) .cfs-trigger .cfs-arrow {
+.custom-floating-select.is-empty .cfs-trigger .cfs-arrow {
   color: #ef4444 !important;
   filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.7));
+}
+
+/* ---------- Campos llenos: verde neón (después del rojo) ---------- */
+.custom-floating-select.has-value .cfs-trigger {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.45) !important;
+  background: rgba(16, 185, 129, 0.08) !important;
+}
+
+.custom-floating-select.has-value .cfs-trigger .cfs-arrow {
+  color: #10b981 !important;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.7));
 }
 
 /* ---------- Modo oscuro box-body (Examinar/Evaluar) ---------- */

@@ -442,8 +442,10 @@ angular.module('CodetziPortabilidad', [
 						$trigger.find('.cfs-value').text(txt);
 						if ($sel.val() && String($sel.val()).trim() !== '') {
 							$wrapper.addClass('has-value');
+							$wrapper.removeClass('is-empty');
 						} else {
 							$wrapper.removeClass('has-value');
+							$wrapper.addClass('is-empty');
 						}
 						$dd.find('.cfs-option').removeClass('selected');
 						$dd.find('.cfs-option[data-value="' + $sel.val() + '"]').addClass('selected');
