@@ -105,14 +105,6 @@
     ctx.clearRect(0, 0, width, height);
     ctx.globalAlpha = alpha;
 
-    // traza de depuración temporal
-    if (now < startTime + 2000) {
-      ctx.fillStyle = 'red';
-      ctx.beginPath();
-      ctx.arc(100, 100, 20, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
     ctx.save();
     ctx.strokeStyle = '#ffffff';
     ctx.lineWidth = 2.4;
@@ -235,13 +227,11 @@
 
   function init() {
     canvas = document.getElementById('city-canvas');
-    console.log('city-bg init, canvas=', !!canvas);
     if (!canvas) return false;
     ctx = canvas.getContext('2d');
     if (!ctx) return false;
     applyStyles();
     resize();
-    console.log('city-bg resized', canvas.width, canvas.height);
     window.addEventListener('resize', resize);
     requestAnimationFrame(loop);
     return true;
@@ -256,5 +246,4 @@
     document.addEventListener('DOMContentLoaded', function () { if (init()) clearInterval(retry); });
   }
 })();
-JS
-echo updated
+
