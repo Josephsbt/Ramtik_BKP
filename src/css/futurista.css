@@ -2589,3 +2589,38 @@ section.content .box {
   color: #f8fafc !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
+
+/* ---------- Input de archivo (Examinar...) modo oscuro ---------- */
+input[type="file"] {
+  background-color: #111827 !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 6px 8px !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+}
+
+input[type="file"]::file-selector-button,
+input[type="file"]::-webkit-file-upload-button {
+  background: linear-gradient(135deg, #0055ff 0%, #ff6600 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 6px 12px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  margin-right: 8px !important;
+  font-weight: 700 !important;
+  transition: all .25s ease !important;
+}
+
+input[type="file"]::file-selector-button:hover,
+input[type="file"]::-webkit-file-upload-button:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 0 12px rgba(255, 102, 0, 0.5);
+}
+
+/* texto "No se han seleccionado archivos" */
+input[type="file"] {
+  color: #94a3b8 !important;
+}
