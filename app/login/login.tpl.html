@@ -22,13 +22,9 @@
     <form novalidate>
       <label for="rut">RUT:</label>
       <div class="form-group form-entel has-feedback {{isError?'has-error': ''}}">
-        <div class="row">
-          <div class="col-xs-12">
-            <input type="text" ng-model="user.run" class="form-control form-control-entel" placeholder="RUT" ng-blur="onBlurRun()"
-              onfocus="this.closest('.login-box-body').classList.add('is-glow')"
-              onblur="this.closest('.login-box-body').classList.remove('is-glow')">
-          </div>
-        </div>
+        <input type="text" ng-model="user.run" class="form-control form-control-entel" placeholder="RUT" ng-blur="onBlurRun()"
+          onfocus="this.closest('.login-box-body').classList.add('is-glow')"
+          onblur="this.closest('.login-box-body').classList.remove('is-glow')">
       </div>
       <label for="rut">CLAVE:</label>
       <div class="form-group form-entel has-feedback {{isError?'has-error': ''}}">
