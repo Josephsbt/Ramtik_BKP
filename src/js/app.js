@@ -406,8 +406,8 @@ angular.module('CodetziPortabilidad', [
 					var $sel = $(this);
 					if ($sel.data('cfs-enhanced')) return;
 					$sel.data('cfs-enhanced', true);
-					var $wrapper = $('<div class="custom-floating-select"></div>');
-					$sel.wrap($wrapper);
+					$sel.wrap('<div class="custom-floating-select"></div>');
+					var $wrapper = $sel.parent();
 					$sel.addClass('cfs-native');
 					var $trigger = $('<button type="button" class="cfs-trigger"><span class="cfs-value"></span><i class="fa fa-chevron-down cfs-arrow"></i></button>');
 					$sel.after($trigger);
