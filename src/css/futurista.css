@@ -1875,3 +1875,21 @@ button.btn.btn-primary.btn-procesar:active {
 .mini-bar-blue span { background: linear-gradient(90deg, #0055ff, #0088ff); box-shadow: 0 0 8px rgba(0, 136, 255, .6); }
 .mini-bar-green span { background: linear-gradient(90deg, #10b981, #34d399); box-shadow: 0 0 8px rgba(16, 185, 129, .6); }
 .mini-bar-orange span { background: linear-gradient(90deg, #ff5a00, #ff7b00); box-shadow: 0 0 8px rgba(255, 90, 0, .6); }
+
+/* ---------- Estado activo en menú de estados ---------- */
+.state-menu li a.state-active {
+  background: rgba(0, 136, 255, 0.18) !important;
+  color: #fff !important;
+  box-shadow: 0 0 16px rgba(0, 136, 255, .55), inset 0 0 10px rgba(255, 90, 0, .18) !important;
+  text-shadow: 0 0 8px rgba(0, 136, 255, .8);
+}
+
+.state-menu li a.state-active i {
+  color: #ff5a00 !important;
+  text-shadow: 0 0 10px rgba(255, 90, 0, .8);
+  transform: scale(1.15);
+}
+
+.state-menu li a i {
+  transition: all .2s ease;
+}
