@@ -2487,3 +2487,15 @@ section.content .box {
   background: rgba(16, 185, 129, 0.32) !important;
   box-shadow: 0 0 16px rgba(16, 185, 129, 0.6);
 }
+
+/* ---------- Campos sin llenar: rojo neón ---------- */
+.custom-floating-select:not(.has-value) .cfs-trigger {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.45) !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+}
+
+.custom-floating-select:not(.has-value) .cfs-trigger .cfs-arrow {
+  color: #ef4444 !important;
+  filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.7));
+}
