@@ -319,18 +319,18 @@
 
                                           <div class="col-xs-2">  
                                             
-                                          <li class="dropdown open" style="list-style-type: none;">  
-                                            <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">               
-                                            <div >
-                                              <span class="fa fa-bars" style="color: white;"></span>  
+                                          <li class="dropdown filter-dropdown" style="list-style-type: none;">  
+                                            <a href="" class="dropdown-toggle filter-trigger" data-toggle="dropdown" aria-expanded="false">               
+                                            <div>
+                                              <span class="fa fa-bars"></span>  
                                             </div>
                                              </a>
-                                            <ul class="dropdown-menu text-right" role="menu">  
-                                              <li><a class="fa fa-users" style="color: {{Servicio=='0' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '0');">&nbsp;&nbsp;<font face="nunito,arial,verdana">TODOS</font></a></li>
-                                              <li><a class="fa fa-pencil-square-o" style="color: {{Servicio=='4' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '4');">&nbsp;&nbsp;<font face="nunito,arial,verdana">CALIDAD</font></a></li>
-                                              <li><a class="fa fa-comments" style="color: {{Servicio=='5' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardChatBot(dt, dtt, '5');">&nbsp;&nbsp;<font face="nunito,arial,verdana">CHATBOX</font></a></li>
-                                              <li><a class="fa fa-home" style="color: {{Servicio=='2' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '2');">&nbsp;&nbsp;&nbsp;&nbsp;<font face="nunito,arial,verdana">HOGAR</font></a></li>
-                                              <li><a class="fa fa-industry" style="color: {{Servicio=='3' ? '#00A65A':''}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '3');">&nbsp;&nbsp;&nbsp;&nbsp;<font face="nunito,arial,verdana">TELCO</font></a></li>
+                                            <ul class="dropdown-menu filter-menu text-right" role="menu">  
+                                              <li><a class="filter-item" ng-class="{'filter-active': Servicio=='0'}" style="color: {{Servicio=='0' ? '#10b981':'#C9CDD6'}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '0');"><i class="fa fa-users"></i><span>TODOS</span></a></li>
+                                              <li><a class="filter-item" ng-class="{'filter-active': Servicio=='4'}" style="color: {{Servicio=='4' ? '#0088ff':'#C9CDD6'}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '4');"><i class="fa fa-shield"></i><span>CALIDAD</span></a></li>
+                                              <li><a class="filter-item" ng-class="{'filter-active': Servicio=='5'}" style="color: {{Servicio=='5' ? '#ff5a00':'#C9CDD6'}}" href="#" ng-click="loadDatosDashBoardChatBot(dt, dtt, '5');"><i class="fa fa-comments"></i><span>CHATBOX</span></a></li>
+                                              <li><a class="filter-item" ng-class="{'filter-active': Servicio=='2'}" style="color: {{Servicio=='2' ? '#0088ff':'#C9CDD6'}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '2');"><i class="fa fa-home"></i><span>HOGAR</span></a></li>
+                                              <li><a class="filter-item" ng-class="{'filter-active': Servicio=='3'}" style="color: {{Servicio=='3' ? '#ff5a00':'#C9CDD6'}}" href="#" ng-click="loadDatosDashBoardFront(dt, dtt, '3');"><i class="fa fa-bolt"></i><span>TELCO</span></a></li>
 
                                             </ul>
                                           </li>
