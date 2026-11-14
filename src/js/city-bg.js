@@ -56,30 +56,33 @@
 
   function buildWindows() {
     windows = [];
+    var baseY = 0.88 * height;
     for (var i = 0; i < peaks.length - 1; i++) {
       var p1 = peaks[i], p2 = peaks[i + 1];
-      if (p1[1] === p2[1]) continue;
+      // solo segmentos horizontales superiores (techos de edificios)
+      if (p1[1] !== p2[1]) continue;
+      if (p1[0] >= p2[0]) continue;
       var x = p1[0] * width;
-      var yTop = Math.min(p1[1], p2[1]) * height;
-      var yBot = Math.max(p1[1], p2[1]) * height;
-      var h = yBot - yTop;
-      var w = Math.abs((p2[0] - p1[0]) * width);
-      if (h < 50 || w < 12) continue;
-      var stepX = 13, stepY = 15;
-      var padX = 5, padY = 10;
+      var w = (p2[0] - p1[0]) * width;
+      var yTop = p1[1] * height;
+      var h = baseY - yTop;
+      if (h < 40 || w < 20) continue;
+      var stepX = 12, stepY = 14;
+      var padX = 6, padY = 8;
       for (var wx = padX; wx + 4 < w - padX; wx += stepX) {
         for (var wy = padY; wy + 4 < h - padY; wy += stepY) {
-          if (Math.random() < 0.3) continue;
+          if (Math.random() < 0.35) continue;
           windows.push({
             x: x + wx,
             y: yTop + wy,
-            delay: Math.random() * 2000,
+            delay: Math.random() * 2200,
             color: '#ffffff',
             on: false
           });
         }
       }
     }
+    window.__cityWindows = windows;
   }
 
   function drawSkyline(ctx, progress) {
