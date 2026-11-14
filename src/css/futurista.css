@@ -2631,7 +2631,7 @@ input[type="file"] {
   color: #f8fafc !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 14px !important;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, .6), 0 0 24px rgba(239, 68, 68, .2) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .6), 0 0 24px rgba(0, 136, 255, .2) !important;
 }
 
 .sweet-alert h2 {
@@ -2642,14 +2642,14 @@ input[type="file"] {
   color: #C9CDD6 !important;
 }
 
-.sweet-alert .sa-icon.sa-warning,
-.sweet-alert .sa-icon.sa-error {
-  border-color: #ef4444 !important;
+.sweet-alert .sa-icon.sa-info {
+  border-color: #0088ff !important;
+  color: #0088ff !important;
 }
 
 .sweet-alert button.confirm {
-  background: #ef4444 !important;
-  box-shadow: 0 0 14px rgba(239, 68, 68, .45) !important;
+  background: #0088ff !important;
+  box-shadow: 0 0 14px rgba(0, 136, 255, .45) !important;
 }
 
 .sweet-alert button.cancel {
