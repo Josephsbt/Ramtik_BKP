@@ -347,6 +347,15 @@ angular.module('CodetziPortabilidad', [
 
 		$rootScope.AlbumCtrl();
 
+		// Re-aplicar custom selects al cambiar de vista (SPA)
+		$rootScope.$on('$stateChangeSuccess', function () {
+			$timeout(function () {
+				if (typeof $rootScope.enhanceCustomSelects === 'function') {
+					$rootScope.enhanceCustomSelects();
+				}
+			}, 800);
+		});
+
 		// Auto-abrir Select2 al pasar el mouse
 		$timeout(function () {
 			if (window.jQuery && jQuery.fn && jQuery.fn.select2) {
@@ -404,7 +413,7 @@ angular.module('CodetziPortabilidad', [
 		$timeout(function () {
 			if (!window.jQuery) return;
 			var $ = window.jQuery;
-			function enhanceCustomSelects() {
+			$rootScope.enhanceCustomSelects = function () {
 				$('.register-box-body select').each(function () {
 					var $sel = $(this);
 					if ($sel.data('cfs-enhanced')) return;
@@ -477,7 +486,7 @@ angular.module('CodetziPortabilidad', [
 					}
 				});
 			}
-			enhanceCustomSelects();
+			$rootScope.enhanceCustomSelects();
 		}, 3000);
 
 
