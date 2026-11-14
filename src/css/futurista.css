@@ -1998,3 +1998,48 @@ button.btn.btn-primary.btn-procesar:active {
   transform: scale(1.15);
   text-shadow: 0 0 10px currentColor;
 }
+
+/* ---------- Tabs superiores (DashBoard, Inicio, Tipificación) ---------- */
+.nav-tabs-custom .nav-tabs > li > a {
+  color: #C9CDD6 !important;
+  transition: all .25s ease !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.nav-tabs-custom .nav-tabs > li > a:hover {
+  color: #0088ff !important;
+  background: rgba(0, 136, 255, 0.12) !important;
+  text-shadow: 0 0 8px rgba(0, 136, 255, .6);
+  border-color: transparent !important;
+}
+
+.nav-tabs-custom .nav-tabs > li.active > a,
+.nav-tabs-custom .nav-tabs > li.active > a:hover,
+.nav-tabs-custom .nav-tabs > li.active > a:focus {
+  color: #ff5a00 !important;
+  background: rgba(255, 90, 0, 0.12) !important;
+  text-shadow: 0 0 10px rgba(255, 90, 0, .7);
+  border-color: rgba(255, 90, 0, 0.4) !important;
+  font-weight: 700 !important;
+}
+
+/* ---------- Modo oscuro en pestaña Inicio ---------- */
+.tab-content,
+.tab-content .box,
+.tab-content .box-body,
+.tab-content .box-primary,
+.tab-content .products-list,
+.tab-content .product-list-in-box,
+.tab-content .table,
+.tab-content .table > tbody > tr > td,
+.tab-content .table > tbody > tr > th {
+  background: #0d1424 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.tab-content .box-header {
+  background: #111827 !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}

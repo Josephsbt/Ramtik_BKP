@@ -766,11 +766,10 @@
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header bg-aqua-active" style="height: 60px;">
                           <h3 class="widget-user-username" style="font-size: 100%"><b>{{currentUser.user_name}}</b></h3> 
-                          <h5 class="widget-user-desc" style="font-size: 80%">Agente CESOP</h5> 
+                          <h5 class="widget-user-desc" style="font-size: 80%">&nbsp;</h5> 
                         </div>
-                        <div class="widget-user-image">
-                          <img class="img-circle" src="{{imagePath}}110000.jpg" alt="User CESOP" style="height: 70px;">
-                          <!--img class="img-circle" src="{{imagePath}}{{currentUser.user_id}}.JPG" alt="User CCI" style="height: 70px;"-->
+                        <div class="widget-user-image" style="text-align:center;">
+                          <img class="img-circle" ng-src="{{selectedAvatar}}" alt="User CESOP" style="height: 70px; width:70px; object-fit:cover; margin:0 auto; display:block;">
                         </div>
                         <div class="box-footer" style="height: 75px;">
                           <div class="row" >
