@@ -2704,3 +2704,18 @@ input[type="file"] {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
+
+/* ---------- CITY CANVAS (login) ---------- */
+.city-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body:has(.wrapper-bg) .city-canvas {
+  display: none !important;
+}
