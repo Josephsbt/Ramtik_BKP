@@ -446,6 +446,8 @@ angular.module('CodetziPortabilidad', [
 						$dd.find('.cfs-option[data-value="' + $sel.val() + '"]').addClass('selected');
 					}
 					function openDd() {
+						rebuild();
+						updateTrigger();
 						$('.custom-floating-select.open').not($wrapper).removeClass('open');
 						$wrapper.addClass('open');
 					}
