@@ -12,19 +12,27 @@
   var fadeStart = 0;
   var alpha = 1;
   var windows = [];
-  var MAXLEN = 9000;
+  var MAXLEN = 16000;
+  var SKYLINE_FRAC = 0.68;
 
+  // Skyline más detallado: edificios variados, torres, antenas
   var peaks = [
-    [0, 0.86], [0.04, 0.86], [0.04, 0.72], [0.10, 0.72], [0.10, 0.86],
-    [0.13, 0.86], [0.13, 0.62], [0.20, 0.62], [0.20, 0.86],
-    [0.23, 0.86], [0.23, 0.50], [0.31, 0.50], [0.31, 0.86],
-    [0.34, 0.86], [0.34, 0.40], [0.42, 0.40], [0.42, 0.86],
-    [0.45, 0.86], [0.45, 0.26], [0.52, 0.26], [0.52, 0.86],   // pico central (detrás del login)
-    [0.55, 0.86], [0.55, 0.46], [0.63, 0.46], [0.63, 0.86],
-    [0.66, 0.86], [0.66, 0.58], [0.74, 0.58], [0.74, 0.86],
-    [0.77, 0.86], [0.77, 0.68], [0.84, 0.68], [0.84, 0.86],
-    [0.87, 0.86], [0.87, 0.78], [0.94, 0.78], [0.94, 0.86],
-    [0.97, 0.86], [1.00, 0.86]
+    [0, 0.88],
+    [0.02, 0.88], [0.02, 0.78], [0.05, 0.78], [0.05, 0.88],
+    [0.07, 0.88], [0.07, 0.66], [0.09, 0.66], [0.09, 0.60], [0.11, 0.60], [0.11, 0.88],
+    [0.13, 0.88], [0.13, 0.74], [0.18, 0.74], [0.18, 0.88],
+    [0.20, 0.88], [0.20, 0.55], [0.22, 0.55], [0.22, 0.48], [0.24, 0.48], [0.24, 0.88],
+    [0.27, 0.88], [0.27, 0.70], [0.33, 0.70], [0.33, 0.88],
+    [0.35, 0.88], [0.35, 0.42], [0.37, 0.42], [0.37, 0.34], [0.39, 0.34], [0.39, 0.88],
+    [0.42, 0.88], [0.42, 0.52], [0.49, 0.52], [0.49, 0.88],
+    [0.51, 0.88], [0.51, 0.22], [0.53, 0.22], [0.53, 0.16], [0.55, 0.16], [0.55, 0.88], // pico central (detrás del login)
+    [0.58, 0.88], [0.58, 0.40], [0.65, 0.40], [0.65, 0.88],
+    [0.67, 0.88], [0.67, 0.56], [0.69, 0.56], [0.69, 0.50], [0.71, 0.50], [0.71, 0.88],
+    [0.73, 0.88], [0.73, 0.64], [0.80, 0.64], [0.80, 0.88],
+    [0.82, 0.88], [0.82, 0.48], [0.84, 0.48], [0.84, 0.42], [0.86, 0.42], [0.86, 0.88],
+    [0.88, 0.88], [0.88, 0.72], [0.93, 0.72], [0.93, 0.88],
+    [0.95, 0.88], [0.95, 0.80], [0.98, 0.80], [0.98, 0.88],
+    [1.00, 0.88]
   ];
 
   function resize() {
@@ -35,8 +43,6 @@
 
   function buildWindows() {
     windows = [];
-    var base = height * 0.86;
-    // generar ventanas en cada edificio (segmentos verticales)
     for (var i = 0; i < peaks.length - 1; i++) {
       var p1 = peaks[i], p2 = peaks[i + 1];
       if (p1[1] === p2[1]) continue; // solo segmentos verticales
@@ -44,17 +50,20 @@
       var yTop = Math.min(p1[1], p2[1]) * height;
       var yBot = Math.max(p1[1], p2[1]) * height;
       var h = yBot - yTop;
-      if (h < 40) continue;
-      var cols = Math.max(1, Math.floor((p2[0] - p1[0]) * width / 18));
-      if (cols < 1) cols = 1;
-      for (var c = 0; c < cols; c++) {
-        for (var r = 0; r < Math.floor(h / 16); r++) {
-          if (Math.random() < 0.55) continue;
+      if (h < 50) continue;
+      var w = (p2[0] - p1[0]) * width;
+      if (w < 12) continue;
+      // cuadrícula de ventanas
+      var stepX = 13, stepY = 15;
+      var padX = 5, padY = 10;
+      for (var wx = padX; wx + 4 < w - padX; wx += stepX) {
+        for (var wy = padY; wy + 4 < h - padY; wy += stepY) {
+          if (Math.random() < 0.4) continue;
           windows.push({
-            x: x + 6 + c * 14,
-            y: yTop + 8 + r * 16,
-            delay: Math.random() * 1800,
-            color: Math.random() < 0.75 ? '#fff7e6' : (Math.random() < 0.5 ? '#ff8a3d' : '#5ab0ff'),
+            x: x + wx,
+            y: yTop + wy,
+            delay: Math.random() * 2000,
+            color: Math.random() < 0.7 ? '#fff7e6' : (Math.random() < 0.5 ? '#5ab0ff' : '#ff8a3d'),
             on: false
           });
         }
@@ -72,9 +81,23 @@
     var sigX = width * 0.78;
     var sigY = height * 0.86;
     ctx.lineTo(sigX, sigY);
-    ctx.font = 'italic 52px "Brush Script MT", "Segoe Script", cursive';
+    ctx.font = 'italic 56px "Brush Script MT", "Segoe Script", "Snell Roundhand", cursive';
     ctx.textBaseline = 'bottom';
     ctx.strokeText('Ramtik', sigX, sigY);
+  }
+
+  function tipPosition(progress) {
+    // progreso a lo largo del polyline (0..SKYLINE_FRAC) luego firma
+    if (progress < SKYLINE_FRAC) {
+      var p = progress / SKYLINE_FRAC;
+      var idx = Math.floor(p * (peaks.length - 1));
+      if (idx >= peaks.length - 1) idx = peaks.length - 2;
+      var local = p * (peaks.length - 1) - idx;
+      var x = (peaks[idx][0] + (peaks[idx + 1][0] - peaks[idx][0]) * local) * width;
+      var y = (peaks[idx][1] + (peaks[idx + 1][1] - peaks[idx][1]) * local) * height;
+      return { x: x, y: y };
+    }
+    return { x: width * 0.78, y: height * 0.86 };
   }
 
   function loop(now) {
@@ -84,32 +107,31 @@
     ctx.clearRect(0, 0, width, height);
     ctx.globalAlpha = alpha;
 
-    // línea neón
     ctx.save();
     ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 2.4;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    ctx.shadowColor = 'rgba(255,255,255,0.9)';
-    ctx.shadowBlur = 8;
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.95)';
+    ctx.shadowBlur = 14;
     ctx.setLineDash([MAXLEN]);
+
     if (state === 'draw') {
-      var p = Math.min(1, elapsed / 5000);
+      var p = Math.min(1, elapsed / 5200);
       ctx.lineDashOffset = MAXLEN * (1 - p);
       drawSkylinePath(ctx);
       ctx.stroke();
-      // punta de estrella
-      // calcular posición aproximada del tip a lo largo del path no es trivial; dibujamos flare en progreso lineal
-      var tipX = width * Math.min(1, p * 0.98 + 0.02);
-      // altura del skyline en ese x aproximada
-      var tipY = height * 0.86;
+
+      // estrella guía
+      var tip = tipPosition(p);
       ctx.setLineDash([]);
+      ctx.shadowBlur = 22;
       ctx.fillStyle = '#ffffff';
-      ctx.shadowBlur = 18;
-      ctx.font = '16px sans-serif';
+      ctx.font = 'bold 18px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('\u2726', tipX, tipY);
+      ctx.fillText('\u2726', tip.x, tip.y);
+
       if (p >= 1) { state = 'lights'; completeTime = now; windows.forEach(function (w) { w.on = false; }); }
     } else if (state === 'lights') {
       ctx.lineDashOffset = 0;
@@ -122,13 +144,13 @@
         if (w.on) {
           ctx.save();
           ctx.shadowColor = w.color;
-          ctx.shadowBlur = 10;
+          ctx.shadowBlur = 12;
           ctx.fillStyle = w.color;
           ctx.fillRect(w.x, w.y, 3, 3);
           ctx.restore();
         }
       });
-      if (since > 3200) { state = 'fade'; fadeStart = now; }
+      if (since > 3400) { state = 'fade'; fadeStart = now; }
     } else if (state === 'fade') {
       ctx.lineDashOffset = 0;
       ctx.setLineDash([]);
@@ -138,16 +160,15 @@
         if (w.on) {
           ctx.save();
           ctx.shadowColor = w.color;
-          ctx.shadowBlur = 10;
+          ctx.shadowBlur = 12;
           ctx.fillStyle = w.color;
           ctx.fillRect(w.x, w.y, 3, 3);
           ctx.restore();
         }
       });
       var fe = now - fadeStart;
-      alpha = Math.max(0, 1 - fe / 1500);
+      alpha = Math.max(0, 1 - fe / 1600);
       if (alpha <= 0) {
-        // reset
         alpha = 1;
         state = 'draw';
         startTime = now;
@@ -176,3 +197,5 @@
     init();
   }
 })();
+JS
+echo updated
