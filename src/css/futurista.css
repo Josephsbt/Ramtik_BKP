@@ -2130,15 +2130,17 @@ button.btn.btn-primary.btn-procesar:active {
 }
 
 .widget-user .widget-user-image {
-  top: 40px !important;
+  top: 50px !important;
   text-align: center !important;
 }
 
 .widget-user .widget-user-image img {
-  width: 80px !important;
-  height: 80px !important;
-  border: 3px solid #0d1424 !important;
-  box-shadow: 0 0 16px rgba(0, 136, 255, .4);
+  width: 48px !important;
+  height: 48px !important;
+  border: 2px solid #0d1424 !important;
+  box-shadow: 0 0 12px rgba(0, 136, 255, .4);
+  top: 52px !important;
+  margin-top: 0 !important;
 }
 
 .widget-user .box-footer {
@@ -2166,4 +2168,31 @@ button.btn.btn-primary.btn-procesar:active {
 .widget-user .border-left {
   height: 52px !important;
   margin-top: 6px !important;
+}
+
+/* ---------- Eliminar franja blanca encima de la tabla ---------- */
+.tab-content .table,
+.tab-content .table thead,
+.tab-content .table thead tr,
+.tab-content .table thead tr th,
+.tab-content .table tbody tr,
+.tab-content .products-list,
+.tab-content .product-list-in-box,
+.tab-content .item {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.tab-content .table thead tr th {
+  background: #0d1424 !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.tab-content .box-body,
+.tab-content .box-primary {
+  background: #0d1424 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
 }
