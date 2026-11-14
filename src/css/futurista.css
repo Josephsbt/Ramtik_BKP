@@ -2226,3 +2226,34 @@ button.btn.btn-primary.btn-procesar:active {
 .timeline > li.time-label > span {
   box-shadow: 0 0 10px rgba(0, 0, 0, .4);
 }
+
+/* ---------- Modo oscuro Tipificación y Cierre ---------- */
+.register-box-body,
+.register-box-body.with-border,
+section.content,
+section.content .box {
+  background: #0d1424 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.register-box-body .form-control,
+.register-box-body input,
+.register-box-body textarea,
+.register-box-body select {
+  background: #111827 !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.register-box-body h4,
+.register-box-body .h4 {
+  background: #111827 !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.register-box-body .btn-success,
+.register-box-body .btn-primary {
+  border: none !important;
+}
