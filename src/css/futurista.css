@@ -1648,8 +1648,9 @@ button.btn.btn-primary[ng-click*="Procesar"]:hover {
   color: #ff5a00;
   font-size: 16px;
   text-shadow: 0 0 8px rgba(255, 90, 0, .7);
-  animation: hourglassSand 2s ease-in-out infinite;
   transform-origin: center;
+  transition: transform 1s linear;
+  display: inline-block;
 }
 
 .hourglass-icon.flipped {
@@ -1778,17 +1779,23 @@ button.btn.btn-primary[ng-click*="Procesar"]:hover {
 
 /* botón PROCESAR */
 button.btn.btn-primary.btn-procesar {
-  background: linear-gradient(135deg, #0088ff, #ff5a00) !important;
+  background: linear-gradient(135deg, #020b1c 0%, #0a3d8f 45%, #1a7fe8 100%) !important;
   border: none !important;
   color: #fff !important;
   font-weight: 700 !important;
   letter-spacing: .08em !important;
   text-transform: uppercase !important;
   border-radius: 8px !important;
-  box-shadow: 0 4px 18px rgba(0, 136, 255, .35) !important;
+  box-shadow: 0 4px 18px rgba(0, 85, 255, .35) !important;
   transition: all .25s ease !important;
   display: block !important;
-  margin: 10px auto !important;
+  margin: 26px auto 10px !important;
+}
+
+button.btn.btn-primary.btn-procesar:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 0 26px rgba(255, 102, 0, .75), 0 0 14px rgba(0, 85, 255, .5) !important;
+  transform: translateY(-2px);
 }
 
 button.btn.btn-primary.btn-procesar:hover {
@@ -1801,3 +1808,70 @@ button.btn.btn-primary.btn-procesar:active {
   transform: translateY(1px) scale(0.98);
   box-shadow: 0 2px 10px rgba(0, 136, 255, .3) !important;
 }
+
+/* ---------- METRIC CARDS (Hogar, Calidad, Telco) ---------- */
+.small-box.bg-aqua,
+.small-box.bg-green,
+.small-box.bg-orange {
+  border-left: 5px solid transparent !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .35) !important;
+  transition: all .25s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.small-box.bg-aqua { border-left-color: #0088ff !important; }
+.small-box.bg-green { border-left-color: #10b981 !important; }
+.small-box.bg-orange { border-left-color: #ff5a00 !important; }
+
+.small-box.bg-aqua:hover {
+  box-shadow: 0 0 28px rgba(0, 136, 255, .6), 0 8px 24px rgba(0, 0, 0, .4) !important;
+  border-color: #0088ff !important;
+  border-left-color: #0088ff !important;
+  transform: translateY(-2px);
+}
+
+.small-box.bg-green:hover {
+  box-shadow: 0 0 28px rgba(16, 185, 129, .6), 0 8px 24px rgba(0, 0, 0, .4) !important;
+  border-color: #10b981 !important;
+  border-left-color: #10b981 !important;
+  transform: translateY(-2px);
+}
+
+.small-box.bg-orange:hover {
+  box-shadow: 0 0 28px rgba(255, 90, 0, .6), 0 8px 24px rgba(0, 0, 0, .4) !important;
+  border-color: #ff5a00 !important;
+  border-left-color: #ff5a00 !important;
+  transform: translateY(-2px);
+}
+
+/* contorno completo en hover */
+.small-box.bg-aqua:hover { outline: 2px solid rgba(0, 136, 255, .7); }
+.small-box.bg-green:hover { outline: 2px solid rgba(16, 185, 129, .7); }
+.small-box.bg-orange:hover { outline: 2px solid rgba(255, 90, 0, .7); }
+
+/* mini barras */
+.metric-mini-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 6px 0 4px;
+}
+
+.mini-bar {
+  height: 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, .08);
+  overflow: hidden;
+}
+
+.mini-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  transition: width .6s ease;
+}
+
+.mini-bar-blue span { background: linear-gradient(90deg, #0055ff, #0088ff); box-shadow: 0 0 8px rgba(0, 136, 255, .6); }
+.mini-bar-green span { background: linear-gradient(90deg, #10b981, #34d399); box-shadow: 0 0 8px rgba(16, 185, 129, .6); }
+.mini-bar-orange span { background: linear-gradient(90deg, #ff5a00, #ff7b00); box-shadow: 0 0 8px rgba(255, 90, 0, .6); }

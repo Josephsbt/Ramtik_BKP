@@ -1,15 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1264b5"/>
-      <stop offset="100%" stop-color="#070b14"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a2a5a"/>
+      <stop offset="100%" stop-color="#050b14"/>
+    </linearGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0088ff"/>
+      <stop offset="100%" stop-color="#003366"/>
     </linearGradient>
   </defs>
-  <rect width="128" height="128" rx="64" fill="url(#g)"/>
-  <circle cx="64" cy="44" r="18" fill="#f2d6c9"/>
-  <path d="M46 30 Q64 20 82 30 L82 40 Q64 34 46 40 Z" fill="#1a2029"/>
-  <path d="M32 118 C32 86 46 72 64 72 C82 72 96 86 96 118 Z" fill="#e8ecf2"/>
-  <circle cx="56" cy="44" r="2" fill="#1a2029"/>
-  <circle cx="72" cy="44" r="2" fill="#1a2029"/>
-  <path d="M58 52 Q64 56 70 52" stroke="#1a2029" stroke-width="1.5" fill="none"/>
+  <rect width="256" height="256" rx="128" fill="url(#bg)"/>
+  <!-- hair -->
+  <path d="M70 92 Q90 58 128 56 Q166 58 186 92 L186 104 Q128 76 70 104 Z" fill="#1a1a1a"/>
+  <!-- face -->
+  <ellipse cx="128" cy="110" rx="46" ry="52" fill="#f2d6c9"/>
+  <!-- eyebrows -->
+  <path d="M100 96 Q110 92 120 96" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+  <path d="M136 96 Q146 92 156 96" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+  <!-- eyes -->
+  <ellipse cx="110" cy="104" rx="5" ry="3.5" fill="#1a2029"/>
+  <ellipse cx="146" cy="104" rx="5" ry="3.5" fill="#1a2029"/>
+  <!-- nose -->
+  <path d="M128 110 Q124 120 128 124 Q132 120 128 110" fill="#e6bfae"/>
+  <!-- mouth -->
+  <path d="M118 136 Q128 140 138 136" stroke="#9e5a4a" stroke-width="2" fill="none"/>
+  <!-- beard stubble -->
+  <path d="M108 142 Q128 152 148 142" stroke="#b8907a" stroke-width="1" fill="none" opacity="0.6"/>
+  <!-- neck -->
+  <rect x="114" y="160" width="28" height="18" rx="6" fill="#f2d6c9"/>
+  <!-- suit -->
+  <path d="M60 256 C60 190 92 170 128 170 C164 170 196 190 196 256 Z" fill="url(#suit)"/>
+  <!-- tie -->
+  <path d="M124 172 L120 200 L128 210 L136 200 L132 172 Z" fill="#ff5a00"/>
+  <!-- shirt -->
+  <path d="M112 172 L128 190 L144 172" fill="#e8ecf2"/>
 </svg>

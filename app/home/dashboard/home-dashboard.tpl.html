@@ -175,7 +175,6 @@
                                       </div>
                   
                                       <div class="col-xs-2">       
-                                       <br/>
                                        <button type="submit" class="btn btn-primary btn-procesar" ng-click="ObtieneDatosDashBoardSupervisor(dt, dtt);loadDatosDashBoardFront(dt, dtt, '0');">Procesar</button>  
                                       </div>
                          
@@ -210,6 +209,10 @@
 
                     <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_HOGAR_MANTENCION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_HOGAR_MANTENCION | currency:"":0}}% Mantención</b></h5>  
                     <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_HOGAR_PROVISION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_HOGAR_PROVISION | currency:"":0}}% Provisión</b></h5>  
+                    <div class="metric-mini-bars">
+                      <div class="mini-bar mini-bar-blue"><span ng-style="{'width': (datosDashboardSupervisor[0].POR_ATENCIONES_HOGAR_MANTENCION || 0) + '%'}"></span></div>
+                      <div class="mini-bar mini-bar-orange"><span ng-style="{'width': (datosDashboardSupervisor[0].POR_ATENCIONES_HOGAR_PROVISION || 0) + '%'}"></span></div>
+                    </div>
 
                     <br/>
                   </div>
@@ -242,6 +245,10 @@
                   <br/>
                   <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_CALIDAD_MANTENCION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_CALIDAD_MANTENCION | currency:"":0}}% Mantención</b></h5>  
                   <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_CALIDAD_PROVISION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_CALIDAD_PROVISION | currency:"":0}}% Provisión</b></h5>  
+                  <div class="metric-mini-bars">
+                    <div class="mini-bar mini-bar-green"><span ng-style="{'width': (datosDashboardSupervisor[0].POR_ATENCIONES_CALIDAD_MANTENCION || 0) + '%'}"></span></div>
+                    <div class="mini-bar mini-bar-orange"><span ng-style="{'width': (datosDashboardSupervisor[0].POR_ATENCIONES_CALIDAD_PROVISION || 0) + '%'}"></span></div>
+                  </div>
 
                   <br/>
                 </div>  
@@ -274,6 +281,10 @@
                     <br/>
                     <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_TELCO_MANTENCION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_TELCO_MANTENCION | currency:"":0}}% Mantención</b></h5>  
                     <h5 class="h66"><b>Q: {{datosDashboardSupervisor[0].Q_ATENCIONES_TELCO_PROVISION | currency:"":0}} | {{datosDashboardSupervisor[0].POR_ATENCIONES_TELCO_PROVISION | currency:"":0}}% Provisión</b></h5>  
+                    <div class="metric-mini-bars">
+                      <div class="mini-bar mini-bar-orange"><span ng-style="{'width': (datosDashboardSupervisor[0].POR_ATENCIONES_TELCO_MANTENCION || 0) + '%'}"></span></div>
+                      <div class="mini-bar mini-bar-blue"><span ng-style="{'width': (datosDashboardSupervisor[0].POR_ATENCIONES_TELCO_PROVISION || 0) + '%'}"></span></div>
+                    </div>
   
                     <br/>
                   </div>  
@@ -813,6 +824,10 @@
 
                     <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_HOGAR_MANTENCION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_HOGAR_MANTENCION | currency:"":0}}% Mantención</b></h5>  
                     <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_HOGAR_PROVISION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_HOGAR_PROVISION | currency:"":0}}% Provisión</b></h5>  
+                    <div class="metric-mini-bars">
+                      <div class="mini-bar mini-bar-blue"><span ng-style="{'width': (datosDashboardInicio[0].POR_ATENCIONES_HOGAR_MANTENCION || 0) + '%'}"></span></div>
+                      <div class="mini-bar mini-bar-orange"><span ng-style="{'width': (datosDashboardInicio[0].POR_ATENCIONES_HOGAR_PROVISION || 0) + '%'}"></span></div>
+                    </div>
 
                     <br/>
                   </div>
@@ -846,6 +861,10 @@
 
                   <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_CALIDAD_MANTENCION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_CALIDAD_MANTENCION | currency:"":0}}% Mantención</b></h5>  
                   <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_CALIDAD_PROVISION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_CALIDAD_PROVISION | currency:"":0}}% Provisión</b></h5>  
+                  <div class="metric-mini-bars">
+                    <div class="mini-bar mini-bar-green"><span ng-style="{'width': (datosDashboardInicio[0].POR_ATENCIONES_CALIDAD_MANTENCION || 0) + '%'}"></span></div>
+                    <div class="mini-bar mini-bar-orange"><span ng-style="{'width': (datosDashboardInicio[0].POR_ATENCIONES_CALIDAD_PROVISION || 0) + '%'}"></span></div>
+                  </div>
 
                   <br/>
                 </div>  
@@ -879,6 +898,10 @@
 
                     <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_TELCO_MANTENCION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_TELCO_MANTENCION | currency:"":0}}% Mantención</b></h5>  
                     <h5 class="h66"><b>Q: {{datosDashboardInicio[0].Q_ATENCIONES_TELCO_PROVISION | currency:"":0}} | {{datosDashboardInicio[0].POR_ATENCIONES_TELCO_PROVISION | currency:"":0}}% Provisión</b></h5>  
+                    <div class="metric-mini-bars">
+                      <div class="mini-bar mini-bar-orange"><span ng-style="{'width': (datosDashboardInicio[0].POR_ATENCIONES_TELCO_MANTENCION || 0) + '%'}"></span></div>
+                      <div class="mini-bar mini-bar-blue"><span ng-style="{'width': (datosDashboardInicio[0].POR_ATENCIONES_TELCO_PROVISION || 0) + '%'}"></span></div>
+                    </div>
   
                     <br/>
                   </div>  

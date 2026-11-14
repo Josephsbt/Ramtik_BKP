@@ -24,19 +24,13 @@
     <!-- Reloj central + reloj de arena + countdown -->
     <div class="navbar-clock-center">
       <span class="clock-time">{{time | date:'HH:mm:ss'}}</span>
-      <i class="fa fa-hourglass-half hourglass-icon" ng-class="{'flipped': isAfternoon}" title="Reloj de arena"></i>
+      <i class="fa fa-hourglass-half hourglass-icon" ng-style="{'transform': 'rotate(' + hourglassDeg + 'deg)'}" title="Reloj de arena"></i>
       <span class="clock-countdown" title="Tiempo restante de la jornada">{{countdown}}</span>
     </div>
 
     <!-- Navbar Right Menu -->
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
-          <li class="dropdown notifications-menu" style="padding-top: 10px;">
-              <div class="alert alert-warning" style="width: 70px; height: 30px; padding: 5px; margin: 0; ">
-                {{time | date:'hh:mm:ss'}}
-              </div>
-
-           </li>
           <li class="dropdown notifications-menu" style="padding-top: 5px;padding-right:10px">
           </li>
           <li class="dropdown open">

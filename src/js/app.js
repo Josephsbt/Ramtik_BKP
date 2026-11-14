@@ -239,23 +239,26 @@ angular.module('CodetziPortabilidad', [
 
 		$rootScope.time = new Date();
 		$rootScope.fecha = moment().format("dddd");
-		$rootScope.selectedAvatar = '../src/assets/avatars/avatar_m1.svg';
 		$rootScope.avatars = [
 			'../src/assets/avatars/avatar_f1.svg',
 			'../src/assets/avatars/avatar_f2.svg',
 			'../src/assets/avatars/avatar_m1.svg',
 			'../src/assets/avatars/avatar_m2.svg'
 		];
+		$rootScope.selectedAvatar = $localStorage.selectedAvatar || '../src/assets/avatars/avatar_m1.svg';
 		$rootScope.selectAvatar = function (url) {
 			$rootScope.selectedAvatar = url;
+			$localStorage.selectedAvatar = url;
 		};
 		$rootScope.isAfternoon = (new Date().getHours() >= 12);
+		$rootScope.hourglassDeg = (new Date().getSeconds() * 6);
 		$rootScope.countdown = '00:00:00';
 
 		function updateClock() {
 			var now = new Date();
 			$rootScope.time = now;
 			$rootScope.isAfternoon = (now.getHours() >= 12);
+			$rootScope.hourglassDeg = (now.getSeconds() * 6);
 			var end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
 			var diff = end.getTime() - now.getTime();
 			if (diff < 0) diff = 0;

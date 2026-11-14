@@ -1,16 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0088ff"/>
       <stop offset="100%" stop-color="#ff5a00"/>
     </linearGradient>
+    <linearGradient id="hoodie" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0a0a14"/>
+    </linearGradient>
   </defs>
-  <rect width="128" height="128" rx="64" fill="url(#g)"/>
-  <circle cx="64" cy="44" r="18" fill="#f2d6c9"/>
-  <rect x="40" y="30" width="48" height="10" rx="5" fill="#1a2029"/>
-  <path d="M30 118 C30 86 44 72 64 72 C84 72 98 86 98 118 Z" fill="#0f1419"/>
-  <rect x="44" y="24" width="40" height="6" rx="3" fill="#0088ff" opacity="0.9"/>
-  <circle cx="56" cy="44" r="2" fill="#1a2029"/>
-  <circle cx="72" cy="44" r="2" fill="#1a2029"/>
-  <path d="M58 52 Q64 56 70 52" stroke="#1a2029" stroke-width="1.5" fill="none"/>
+  <rect width="256" height="256" rx="128" fill="url(#bg)"/>
+  <!-- cap -->
+  <path d="M58 96 Q70 56 128 52 Q186 56 198 96 L198 108 Q128 80 58 108 Z" fill="#0f1419"/>
+  <rect x="62" y="96" width="132" height="10" rx="4" fill="#ff5a00"/>
+  <!-- headset -->
+  <path d="M58 108 Q58 68 128 64 Q198 68 198 108" stroke="#0088ff" stroke-width="5" fill="none"/>
+  <rect x="52" y="104" width="12" height="24" rx="4" fill="#0088ff"/>
+  <rect x="192" y="104" width="12" height="24" rx="4" fill="#0088ff"/>
+  <!-- face -->
+  <ellipse cx="128" cy="114" rx="44" ry="48" fill="#f2d6c9"/>
+  <!-- eyes -->
+  <ellipse cx="110" cy="108" rx="5" ry="3.5" fill="#1a2029"/>
+  <ellipse cx="146" cy="108" rx="5" ry="3.5" fill="#1a2029"/>
+  <!-- nose -->
+  <path d="M128 114 Q124 124 128 128 Q132 124 128 114" fill="#e6bfae"/>
+  <!-- mouth -->
+  <path d="M118 138 Q128 142 138 138" stroke="#9e5a4a" stroke-width="2" fill="none"/>
+  <!-- neck -->
+  <rect x="114" y="160" width="28" height="18" rx="6" fill="#f2d6c9"/>
+  <!-- hoodie -->
+  <path d="M56 256 C56 192 88 172 128 172 C168 172 200 192 200 256 Z" fill="url(#hoodie)"/>
+  <!-- pocket -->
+  <rect x="104" y="200" width="48" height="24" rx="6" fill="none" stroke="#ff5a00" stroke-width="2"/>
+  <!-- strings -->
+  <line x1="120" y1="178" x2="116" y2="200" stroke="#e8ecf2" stroke-width="2"/>
+  <line x1="136" y1="178" x2="140" y2="200" stroke="#e8ecf2" stroke-width="2"/>
 </svg>
