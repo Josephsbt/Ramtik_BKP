@@ -397,6 +397,82 @@ angular.module('CodetziPortabilidad', [
 			}
 		}, 3000);
 
+		// Transformar selects de Tipificación en custom floating selects
+		$timeout(function () {
+			if (!window.jQuery) return;
+			var $ = window.jQuery;
+			function enhanceCustomSelects() {
+				$('.register-box-body select').each(function () {
+					var $sel = $(this);
+					if ($sel.data('cfs-enhanced')) return;
+					$sel.data('cfs-enhanced', true);
+					var $wrapper = $('<div class="custom-floating-select"></div>');
+					$sel.wrap($wrapper);
+					$sel.addClass('cfs-native');
+					var $trigger = $('<button type="button" class="cfs-trigger"><span class="cfs-value"></span><i class="fa fa-chevron-down cfs-arrow"></i></button>');
+					$sel.after($trigger);
+					var $dd = $('<ul class="cfs-dropdown"></ul>');
+					$sel.after($dd);
+
+					function rebuild() {
+						$dd.empty();
+						$sel.find('option').each(function () {
+							var $opt = $(this);
+							var val = $opt.val();
+							var text = $opt.text();
+							if (val === '' && text.trim() === '') return;
+							var $li = $('<li class="cfs-option"></li>').text(text).attr('data-value', val);
+							if (String(val) === String($sel.val())) $li.addClass('selected');
+							$li.on('click', function (e) {
+								e.preventDefault();
+								e.stopPropagation();
+								$sel.val(val).trigger('change');
+								updateTrigger();
+								$wrapper.removeClass('open');
+							});
+							$dd.append($li);
+						});
+					}
+					function updateTrigger() {
+						var txt = $sel.find('option:selected').text();
+						if (!txt) txt = $sel.find('option').first().text();
+						$trigger.find('.cfs-value').text(txt);
+						if ($sel.val() && String($sel.val()).trim() !== '') {
+							$wrapper.addClass('has-value');
+						} else {
+							$wrapper.removeClass('has-value');
+						}
+						$dd.find('.cfs-option').removeClass('selected');
+						$dd.find('.cfs-option[data-value="' + $sel.val() + '"]').addClass('selected');
+					}
+					function openDd() {
+						$('.custom-floating-select.open').not($wrapper).removeClass('open');
+						$wrapper.addClass('open');
+					}
+					function closeDd() { $wrapper.removeClass('open'); }
+
+					$trigger.on('click', function (e) {
+						e.preventDefault();
+						e.stopPropagation();
+						if ($wrapper.hasClass('open')) closeDd(); else openDd();
+					});
+					$sel.on('change', function () { updateTrigger(); rebuild(); });
+
+					var obs = new MutationObserver(function () { updateTrigger(); rebuild(); });
+					obs.observe($sel[0], { childList: true, subtree: true, attributes: true });
+
+					rebuild();
+					updateTrigger();
+				});
+				$(document).off('click.cfs-enhance').on('click.cfs-enhance', function (e) {
+					if (!$(e.target).closest('.custom-floating-select').length) {
+						$('.custom-floating-select.open').removeClass('open');
+					}
+				});
+			}
+			enhanceCustomSelects();
+		}, 3000);
+
 
 		$rootScope.Warning = '';
 		
