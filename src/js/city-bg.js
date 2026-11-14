@@ -235,11 +235,13 @@
 
   function init() {
     canvas = document.getElementById('city-canvas');
+    console.log('city-bg init, canvas=', !!canvas);
     if (!canvas) return false;
     ctx = canvas.getContext('2d');
     if (!ctx) return false;
     applyStyles();
     resize();
+    console.log('city-bg resized', canvas.width, canvas.height);
     window.addEventListener('resize', resize);
     requestAnimationFrame(loop);
     return true;
