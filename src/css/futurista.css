@@ -1897,6 +1897,9 @@ button.btn.btn-primary.btn-procesar:active {
 /* ---------- Filtro flotante de agentes ---------- */
 .filter-dropdown {
   position: relative;
+  display: inline-block;
+  width: auto;
+  min-width: 38px;
 }
 
 .filter-trigger {
@@ -1944,8 +1947,8 @@ button.btn.btn-primary.btn-procesar:active {
   content: "";
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: 150px;
   height: 10px;
   z-index: 999;
 }
