@@ -1933,9 +1933,21 @@ button.btn.btn-primary.btn-procesar:active {
   border-radius: 10px !important;
   box-shadow: 0 12px 28px rgba(0, 0, 0, .5), 0 0 18px rgba(255, 90, 0, .18) !important;
   padding: 6px !important;
-  margin-top: 6px !important;
+  margin-top: 0 !important;
+  top: 100% !important;
   right: 0 !important;
   left: auto !important;
+}
+
+/* puente invisible para no perder el hover entre botón y menú */
+.filter-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  z-index: 999;
 }
 
 .filter-dropdown:hover .dropdown-menu.filter-menu {
@@ -1944,8 +1956,8 @@ button.btn.btn-primary.btn-procesar:active {
 }
 
 @keyframes filterFade {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .filter-item {
