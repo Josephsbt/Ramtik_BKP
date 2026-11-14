@@ -343,7 +343,7 @@
                   
                                     <div class="box-body" style="padding-top: 15px; text-align: left;">
                                       <div class="row">
-                                        <div class="col-xs-2" ng-class="{'top-leader-card': dataD._isLeader}" ng-repeat="dataD in datosDashboard track by $index" ng-show="$index+1 == 1 ||$index+1 == 2 ||$index+1 == 3 ||$index+1 == 4 ||$index+1 == 5 ||$index+1 == 6">  
+                                        <div class="col-xs-2" ng-class="{'top-leader-card': dataD._isLeader}" ng-repeat="dataD in datosDashboard" ng-show="$index+1 == 1 ||$index+1 == 2 ||$index+1 == 3 ||$index+1 == 4 ||$index+1 == 5 ||$index+1 == 6">  
                         
                                               <p class="bi-agent-name"><span class="bi-agent-dot {{dataD.ESTADO_CONEXION =='EN LINEA' ? 'bi-dot--on' : 'bi-dot--off'}}"></span><b>{{dataD.NOMBRE_AGENTE}}</b></p> 
                                               <p ng-show="Servicio!='5'" class="pull-left badge bg-blue" ><b style="cursor:pointer;" title="Atenciones...">Q: {{dataD.CANT_ATENCIONES}}</b></p>
