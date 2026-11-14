@@ -2655,3 +2655,36 @@ input[type="file"] {
 .sweet-alert button.cancel {
   background: #374151 !important;
 }
+
+/* ---------- Menú de estados: auto-open por hover ---------- */
+.state-dropdown {
+  position: relative;
+}
+
+.state-dropdown .dropdown-menu.state-menu {
+  display: none;
+  margin-top: 0 !important;
+  top: 100% !important;
+  right: 0 !important;
+  left: auto !important;
+}
+
+.state-dropdown:hover .dropdown-menu.state-menu {
+  display: block;
+  animation: filterFade .18s ease;
+}
+
+/* puente invisible para no cerrar al mover el cursor */
+.state-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 210px;
+  height: 8px;
+  z-index: 999;
+}
+
+.state-dropdown .dropdown-toggle:hover {
+  filter: brightness(1.1);
+}
