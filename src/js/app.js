@@ -310,6 +310,9 @@ angular.module('CodetziPortabilidad', [
 
 
 		$rootScope.grabalogConexion = function(ESTADO){
+			// Actualización instantánea de la UI (sin recarga)
+			$rootScope.estadoLogConexion = ESTADO;
+			$rootScope.counter = 0;
 			General.grabalogConexion(ESTADO).then(function(r){  
 				if(r.data.success==true){
 					$rootScope.obtieneLogConexion();

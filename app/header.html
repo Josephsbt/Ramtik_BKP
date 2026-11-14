@@ -41,11 +41,11 @@
             </div>
              </a>
             <ul class="dropdown-menu state-menu" role="menu">
-              <li><a href="#" ng-click="grabalogConexion('BREAK')" ng-class="{'state-active': estadoLogConexion === 'BREAK'}"><i class="fa fa-coffee"></i><span>BREAK</span></a></li>
-              <li><a href="#" ng-click="grabalogConexion('EN COLACION')" ng-class="{'state-active': estadoLogConexion === 'EN COLACION'}"><i class="fa fa-cutlery"></i><span>EN COLACIÓN</span></a></li>
-              <li><a href="#" ng-click="grabalogConexion('EN LINEA')" ng-class="{'state-active': estadoLogConexion === 'EN LINEA'}"><i class="fa fa-headphones"></i><span>EN LÍNEA</span></a></li>
-              <li><a href="#" ng-click="grabalogConexion('INICIO JORNADA')" ng-class="{'state-active': estadoLogConexion === 'INICIO JORNADA'}"><i class="fa fa-bolt"></i><span>INICIO JORNADA</span></a></li>
-              <li><a href="#" ng-click="grabalogConexion('TERMINO JORNADA')" ng-class="{'state-active': estadoLogConexion === 'TERMINO JORNADA'}"><i class="fa fa-flag-checkered"></i><span>TÉRMINO JORNADA</span></a></li>
+              <li><a href="javascript:void(0)" ng-click="grabalogConexion('BREAK'); $event.preventDefault();" ng-class="{'state-active': estadoLogConexion === 'BREAK'}"><i class="fa fa-coffee"></i><span>BREAK</span></a></li>
+              <li><a href="javascript:void(0)" ng-click="grabalogConexion('EN COLACION'); $event.preventDefault();" ng-class="{'state-active': estadoLogConexion === 'EN COLACION'}"><i class="fa fa-cutlery"></i><span>EN COLACIÓN</span></a></li>
+              <li><a href="javascript:void(0)" ng-click="grabalogConexion('EN LINEA'); $event.preventDefault();" ng-class="{'state-active': estadoLogConexion === 'EN LINEA'}"><i class="fa fa-headphones"></i><span>EN LÍNEA</span></a></li>
+              <li><a href="javascript:void(0)" ng-click="grabalogConexion('INICIO JORNADA'); $event.preventDefault();" ng-class="{'state-active': estadoLogConexion === 'INICIO JORNADA'}"><i class="fa fa-bolt"></i><span>INICIO JORNADA</span></a></li>
+              <li><a href="javascript:void(0)" ng-click="grabalogConexion('TERMINO JORNADA'); $event.preventDefault();" ng-class="{'state-active': estadoLogConexion === 'TERMINO JORNADA'}"><i class="fa fa-flag-checkered"></i><span>TÉRMINO JORNADA</span></a></li>
             </ul>
           </li>
 
