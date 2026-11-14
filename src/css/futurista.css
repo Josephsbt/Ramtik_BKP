@@ -2565,3 +2565,27 @@ section.content .box {
   margin-right: 6px;
   text-shadow: 0 0 8px rgba(0, 136, 255, 0.7);
 }
+
+/* ---------- Modo oscuro modales (Examinar/Evaluar) ---------- */
+.modal-content,
+.modal-header,
+.modal-body,
+.modal-footer {
+  background: #0d1424 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.modal-content .form-control {
+  background: #111827 !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
