@@ -2130,7 +2130,8 @@ button.btn.btn-primary.btn-procesar:active {
 }
 
 .widget-user .widget-user-image {
-  top: 86px !important;
+  top: 92px !important;
+  left: 52% !important;
   text-align: center !important;
 }
 
