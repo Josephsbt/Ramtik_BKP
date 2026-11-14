@@ -8719,10 +8719,10 @@ $scope.GuardarAtencion = function (blob, NUMERO_OXT, COD_SERVICIO, TIPO_SERVICIO
   swal({
     title: "Confirmación!",
     text: "¿Esta seguro de terminar la llamada?",  
-    type: "warning",
+    type: "error",
     showCancelButton: true, 
-    confirmButtonColor: "#A5DC86", 
-    cancelButtonColor: "#A5DC86", 
+    confirmButtonColor: "#ef4444", 
+    cancelButtonColor: "#6b7280", 
     focusConfirm: false,
     confirmButtonText: "Aceptar",
     cancelButtonText: "No",

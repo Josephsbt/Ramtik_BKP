@@ -2624,3 +2624,34 @@ input[type="file"]::-webkit-file-upload-button:hover {
 input[type="file"] {
   color: #94a3b8 !important;
 }
+
+/* ---------- SweetAlert confirmación modo oscuro ---------- */
+.sweet-alert {
+  background: #0d1424 !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .6), 0 0 24px rgba(239, 68, 68, .2) !important;
+}
+
+.sweet-alert h2 {
+  color: #ffffff !important;
+}
+
+.sweet-alert p {
+  color: #C9CDD6 !important;
+}
+
+.sweet-alert .sa-icon.sa-warning,
+.sweet-alert .sa-icon.sa-error {
+  border-color: #ef4444 !important;
+}
+
+.sweet-alert button.confirm {
+  background: #ef4444 !important;
+  box-shadow: 0 0 14px rgba(239, 68, 68, .45) !important;
+}
+
+.sweet-alert button.cancel {
+  background: #374151 !important;
+}
