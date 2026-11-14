@@ -218,6 +218,7 @@
     ctx.restore();
     ctx.globalAlpha = 1;
 
+    window.__cityState = state;
     requestAnimationFrame(loop);
   }
 
