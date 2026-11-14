@@ -2016,11 +2016,17 @@ button.btn.btn-primary.btn-procesar:active {
 .nav-tabs-custom .nav-tabs > li.active > a,
 .nav-tabs-custom .nav-tabs > li.active > a:hover,
 .nav-tabs-custom .nav-tabs > li.active > a:focus {
-  color: #ff5a00 !important;
+  color: #ffffff !important;
   background: rgba(255, 90, 0, 0.12) !important;
   text-shadow: 0 0 10px rgba(255, 90, 0, .7);
   border-color: rgba(255, 90, 0, 0.4) !important;
   font-weight: 700 !important;
+}
+
+/* icono activo blanco */
+.nav-tabs-custom .nav-tabs > li.active > a i {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 90, 0, .7);
 }
 
 /* ---------- Modo oscuro en pestaña Inicio ---------- */
@@ -2042,4 +2048,64 @@ button.btn.btn-primary.btn-procesar:active {
   background: #111827 !important;
   color: #f8fafc !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---------- Líneas divisorias contenidas en tarjeta perfil ---------- */
+.widget-user .border-right,
+.widget-user .border-left {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  height: 50px !important;
+  margin-top: 8px !important;
+  padding-top: 0 !important;
+}
+
+/* ---------- Título Ram Servicios ---------- */
+.profile-service-title {
+  text-align: center !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin: 4px auto !important;
+  padding: 4px 10px;
+  background: rgba(0, 136, 255, 0.18);
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.widget-user-header {
+  text-align: center !important;
+}
+
+/* ---------- Eliminar línea blanca horizontal en tabla ---------- */
+.nav-tabs-custom,
+.nav-tabs-custom .nav-tabs {
+  border-bottom: 1px solid #0d1424 !important;
+  background: transparent !important;
+}
+
+.tab-content {
+  border-top: 1px solid #0d1424 !important;
+  background: #0d1424 !important;
+}
+
+/* ---------- Iconos de procedimientos ---------- */
+.proc-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  background: rgba(0, 136, 255, 0.12);
+  box-shadow: 0 0 12px rgba(0, 136, 255, 0.25);
+}
+
+/* ---------- Etiqueta Visitas ---------- */
+.visit-badge {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border: 1px solid #10b981 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
 }

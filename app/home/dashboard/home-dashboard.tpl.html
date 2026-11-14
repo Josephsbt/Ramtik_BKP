@@ -766,7 +766,7 @@
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header bg-aqua-active" style="height: 60px;">
                           <h3 class="widget-user-username" style="font-size: 100%"><b>{{currentUser.user_name}}</b></h3> 
-                          <h5 class="widget-user-desc" style="font-size: 80%">&nbsp;</h5> 
+                          <h5 class="widget-user-desc profile-service-title" style="font-size: 80%">Ram Servicios</h5> 
                         </div>
                         <div class="widget-user-image" style="text-align:center;">
                           <img class="img-circle" ng-src="{{selectedAvatar}}" alt="User CESOP" style="height: 70px; width:70px; object-fit:cover; margin:0 auto; display:block;">
@@ -949,31 +949,31 @@
                                 <th style="width: 10px;height: 70px;">
                                     <div class="product-img">
 
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Acceso')==0" src="../dist/img/acceso.png" width="50px" height="50px" alt="Acceso">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Asignación')==0" src="../dist/img/asignacion.jpg" width="50px" height="50px" alt="Asignación">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Bloqueo')==0" src="../dist/img/bloqueo.jpg" width="50px" height="50px" alt="Bloqueo">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Desbloquear')==0" src="../dist/img/desbloqueo.jpg" width="50px" height="50px" alt="Desbloqueo">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Creación')==0" src="../dist/img/creacion.png" width="50px" height="50px" alt="Creación">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Gestión')==0" src="../dist/img/gestion.png" width="50px" height="50px" alt="Gestión">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Gestiones')==0" src="../dist/img/gestion.png" width="50px" height="50px" alt="Gestiones">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Incidentes')==0" src="../dist/img/incidente.jpg" width="50px" height="50px" alt="Incidente">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Modificar')==0" src="../dist/img/modificar.png" width="50px" height="50px" alt="Modificar">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Monitor')==0" src="../dist/img/consulta.png" width="50px" height="50px" alt="Consulta">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Requerimiento')==0" src="../dist/img/requerimiento.png" width="50px" height="50px" alt="Requerimiento">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Restablecer')==0" src="../dist/img/restablecer.jpg" width="50px" height="50px" alt="Restablecer">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Problemas')==0" src="../dist/img/modificar.png" width="50px" height="50px" alt="Certificación"> 
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Cambio Equipo')==0" src="../dist/img/CambioEquipo.jpg" width="50px" height="50px" alt="Cambio Equipo"> 
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Error Callback')==0" src="../dist/img/ErrorCallback.jpg" width="50px" height="50px" alt="Error Callback"> 
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Wa')==0" src="../dist/img/default-reabastecimiento.png" width="50px" height="50px" alt="Generado"> 
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Derivación')==0" src="../dist/img/asignacion.jpg" width="50px" height="50px" alt="Asignación">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Decos')==0" src="../dist/img/incidente.jpg" width="50px" height="50px" alt="Generado"> 
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Cambio Mal Generado')==0" src="../dist/img/CambioMalGenerado.jpg" width="50px" height="50px" alt="Cambio Mal Generado">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Errores X Pasos')==0" src="../dist/img/ErroresXPasos.jpg" width="50px" height="50px" alt="Errores X Pasos">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Pont Fijo sin Internet')==0" src="../dist/img/PontFijosinInternet.jpg" width="50px" height="50px" alt="Pont Fijo sin Internet">
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Zona Roja')==0" src="../dist/img/ZonaRoja.jpg" width="50px" height="50px" alt="Zona Roja (2012)">  
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Zofri')==0" src="../dist/img/Zofri.jpg" width="50px" height="50px" alt="Zofri (2013)">    
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Revisión recursos')==0" src="../dist/img/Revision.jpg" width="50px" height="50px" alt="Revisión recursos ONNET (2010)">     
-                                      <img ng-show="dataR.GL_FLUJO.indexOf('Revision Incidencias')==0" src="../dist/img/Revision_Incidencias.jpg" width="50px" height="50px" alt="Revision Incidencias Asignacion (2011)">     
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Acceso')==0" class="fa fa-unlock proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Asignación')==0" class="fa fa-tasks proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Bloqueo')==0" class="fa fa-lock proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Desbloquear')==0" class="fa fa-unlock-alt proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Creación')==0" class="fa fa-plus-circle proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Gestión')==0" class="fa fa-cogs proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Gestiones')==0" class="fa fa-cogs proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Incidentes')==0" class="fa fa-exclamation-triangle proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Modificar')==0" class="fa fa-edit proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Monitor')==0" class="fa fa-search proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Requerimiento')==0" class="fa fa-file-text proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Restablecer')==0" class="fa fa-refresh proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Problemas')==0" class="fa fa-shield proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Cambio Equipo')==0" class="fa fa-exchange proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Error Callback')==0" class="fa fa-phone proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Wa')==0" class="fa fa-check-circle proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Derivación')==0" class="fa fa-share proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Decos')==0" class="fa fa-check-circle proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Cambio Mal Generado')==0" class="fa fa-times-circle proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Errores X Pasos')==0" class="fa fa-list-ol proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Pont Fijo sin Internet')==0" class="fa fa-wifi proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Zona Roja')==0" class="fa fa-exclamation-circle proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Zofri')==0" class="fa fa-building proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Revisión recursos')==0" class="fa fa-search-plus proc-icon" style="font-size:42px; color:#0088ff;"></i>
+                                      <i ng-show="dataR.GL_FLUJO.indexOf('Revision Incidencias')==0" class="fa fa-clipboard proc-icon" style="font-size:42px; color:#0088ff;"></i>
                                       
                                       
                                     </div>
@@ -1003,7 +1003,7 @@
                                   </div-->
                                 </th>
                                 <th style="width: 20px">
-                                    <span class="badge bg-green ng-binding">{{dataR.VISITAS}} Visitas</span>
+                                    <span class="badge visit-badge">{{dataR.VISITAS}} Visitas</span>
                                     <!--div class="product-info">
                                     <span class="label {{dataR.USABILIDAD < 25 ? 'label-warning':dataR.USABILIDAD < 50 ? 'label-info':'label-success'}} pull-right">{{dataR.VISITAS}} </span>
                                     </div-->
