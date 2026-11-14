@@ -2712,7 +2712,7 @@ input[type="file"] {
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  z-index: 0 !important;
+  z-index: 1 !important;
   pointer-events: none !important;
   display: block !important;
   opacity: 1 !important;

@@ -105,6 +105,14 @@
     ctx.clearRect(0, 0, width, height);
     ctx.globalAlpha = alpha;
 
+    // traza de depuración temporal
+    if (now < startTime + 2000) {
+      ctx.fillStyle = 'red';
+      ctx.beginPath();
+      ctx.arc(100, 100, 20, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
     ctx.save();
     ctx.strokeStyle = '#ffffff';
     ctx.lineWidth = 2.4;
@@ -214,19 +222,36 @@
     requestAnimationFrame(loop);
   }
 
+  function applyStyles() {
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.zIndex = '1';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.display = 'block';
+  }
+
   function init() {
     canvas = document.getElementById('city-canvas');
-    if (!canvas) return;
+    if (!canvas) return false;
     ctx = canvas.getContext('2d');
+    if (!ctx) return false;
+    applyStyles();
     resize();
     window.addEventListener('resize', resize);
     requestAnimationFrame(loop);
+    return true;
   }
 
+  // reintento seguro hasta que el canvas exista
+  var retry = setInterval(function () {
+    if (init()) clearInterval(retry);
+  }, 200);
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+    document.addEventListener('DOMContentLoaded', function () { if (init()) clearInterval(retry); });
   }
 })();
 JS
