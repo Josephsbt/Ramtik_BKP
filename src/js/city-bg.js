@@ -18,11 +18,13 @@
       var d = dotsData[i];
       dots.push({ x: d[0] * width, y: d[1] * height });
     }
-    // puntos de pulso en América (EE.UU., Colombia, Perú, Chile)
-    pulses.push({ x: width * 0.20, y: height * 0.30, phase: 0 });
-    pulses.push({ x: width * 0.24, y: height * 0.46, phase: 1.2 });
-    pulses.push({ x: width * 0.26, y: height * 0.62, phase: 2.4 });
-    pulses.push({ x: width * 0.28, y: height * 0.72, phase: 3.6 });
+    // puntos de pulso: EE.UU., Colombia, Venezuela, Perú, Chile, Isla de Pascua
+    pulses.push({ x: width * 0.2706, y: height * 0.3464, phase: 0 });
+    pulses.push({ x: width * 0.2798, y: height * 0.5669, phase: 1.2 });
+    pulses.push({ x: width * 0.2982, y: height * 0.5354, phase: 2.4 });
+    pulses.push({ x: width * 0.2752, y: height * 0.6771, phase: 3.6 });
+    pulses.push({ x: width * 0.2936, y: height * 0.8030, phase: 4.8 });
+    pulses.push({ x: width * 0.1743, y: height * 0.7715, phase: 6.0 });
   }
 
   function resize() {
