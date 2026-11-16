@@ -171,7 +171,13 @@ a:hover, a:focus { color: var(--cy-text-hot); text-decoration: none; }
   position: relative !important;
   overflow: hidden !important;
   z-index: 1;
-  background: linear-gradient(145deg, #050811 0%, #0a1628 50%, #070b14 100%) !important;
+  background: radial-gradient(circle at 50% 45%, #0f2544 0%, #091326 48%, #04070e 100%) !important;
+}
+
+.skin-blue .wrapper.wrapper-bg-login > .content-wrapperonlybg {
+  position: relative !important;
+  z-index: 10 !important;
+  background: transparent !important;
 }
 
 /* ocultar capas decorativas para dejar ver el canvas de ciudad */

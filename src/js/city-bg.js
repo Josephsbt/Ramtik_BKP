@@ -52,19 +52,18 @@
   function buildDots() {
     dots = [];
     pulses = [];
-    var step = 16;
+    var step = 14;
     for (var y = step; y < height; y += step) {
       for (var x = step; x < width; x += step) {
         var nx = x / width;
         var ny = y / height;
         if (inContinent(nx, ny)) {
-          // ruido orgánico en los bordes
-          if (Math.random() < 0.12) continue;
-          dots.push({ x: x, y: y, color: Math.random() < 0.85 ? 'rgba(148, 163, 184, 0.14)' : 'rgba(56, 189, 248, 0.15)' });
+          if (Math.random() < 0.10) continue;
+          dots.push({ x: x, y: y });
         }
       }
     }
-    // puntos de pulso en América (presencia regional)
+    // puntos de pulso en América
     pulses.push({ x: width * 0.20, y: height * 0.36, phase: 0 });
     pulses.push({ x: width * 0.26, y: height * 0.58, phase: 1.2 });
     pulses.push({ x: width * 0.18, y: height * 0.46, phase: 2.4 });
@@ -82,7 +81,7 @@
     canvas.style.left = '0';
     canvas.style.width = '100%';
     canvas.style.height = '100%';
-    canvas.style.zIndex = '0';
+    canvas.style.zIndex = '1';
     canvas.style.pointerEvents = 'none';
     canvas.style.display = 'block';
   }
@@ -94,11 +93,11 @@
     ctx.clearRect(0, 0, width, height);
 
     // puntos del mapamundi
+    ctx.fillStyle = 'rgba(148, 185, 235, 0.28)';
     for (var i = 0; i < dots.length; i++) {
       var d = dots[i];
-      ctx.fillStyle = d.color;
       ctx.beginPath();
-      ctx.arc(d.x, d.y, 1.1, 0, Math.PI * 2);
+      ctx.arc(d.x, d.y, 1.3, 0, Math.PI * 2);
       ctx.fill();
     }
 
@@ -106,13 +105,13 @@
     for (var j = 0; j < pulses.length; j++) {
       var pu = pulses[j];
       var pulse = (Math.sin(t * 1.2 + pu.phase) + 1) / 2;
-      var r = 4 + pulse * 6;
-      var a = 0.08 + pulse * 0.22;
+      var r = 3 + pulse * 5;
+      var a = 0.15 + pulse * 0.35;
       ctx.save();
       ctx.globalAlpha = a;
       ctx.shadowColor = 'rgba(56, 189, 248, 0.6)';
-      ctx.shadowBlur = 12;
-      ctx.fillStyle = 'rgba(56, 189, 248, 1)';
+      ctx.shadowBlur = 10;
+      ctx.fillStyle = '#38bdf8';
       ctx.beginPath();
       ctx.arc(pu.x, pu.y, r, 0, Math.PI * 2);
       ctx.fill();
